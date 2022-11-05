@@ -1,0 +1,144 @@
+body {
+    min-height: 100vh;
+    background: rgb(245, 242, 242);
+
+}
+
+.form-control:not(select) {
+    padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+    height: 52px;
+    padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.border-md {
+    border-width: 2px;
+}
+
+.btn-facebook {
+    background: #405D9D;
+    border: none;
+}
+
+.btn-facebook:hover,
+.btn-facebook:focus {
+    background: #314879;
+}
+
+.btn-twitter {
+    background: #42AEEC;
+    border: none;
+}
+
+.btn-twitter:hover,
+.btn-twitter:focus {
+    background: #1799e4;
+}
+
+.btn-instagram {
+    background: #FD1D1D;
+    ;
+    border: none;
+}
+
+.btn-instagram:hover,
+.btn-instagram:focus {
+    background: #F56040;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Cabin+Condensed);
+
+/* body {
+    background: #f1f1f1;
+    background-size: cover;
+    font-family: 'Cabin Condensed', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+svg {
+    font-weight: bold;
+
+    max-width: 600px;
+    height: 100%;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+
+/* body {
+    display: flex;
+    background: #000;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+} */
+
+.content {
+    position: absolute;
+    margin: 400px;
+    padding: 0;
+    padding-left: 180px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.content h2 {
+    color: #fff;
+    font-size: 12em;
+    position: absolute;
+    width: max-content;
+    transform: translate(-50%, -50%);
+}
+
+.content h2:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px #0beb28;
+}
+
+.content h2:nth-child(2) {
+    color: #26f71e;
+    animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+
+    0%,
+    100% {
+        clip-path: polygon(0% 45%,
+                16% 44%,
+                33% 50%,
+                54% 60%,
+                70% 61%,
+                84% 59%,
+                100% 52%,
+                100% 100%,
+                0% 100%);
+    }
+
+    50% {
+        clip-path: polygon(0% 60%,
+                15% 65%,
+                34% 66%,
+                51% 62%,
+                67% 50%,
+                84% 45%,
+                100% 46%,
+                100% 100%,
+                0% 100%);
+    }
+}
