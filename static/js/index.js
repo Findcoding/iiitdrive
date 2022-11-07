@@ -6,10 +6,3 @@ $(function () {
         $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
     });
 });
-
-
-function print() {
-    console.log("......");
-}
-
-print()
