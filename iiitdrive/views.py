@@ -10,6 +10,14 @@ from django.conf.urls.static import static
 # Create your views here.
 
 
-def homepage(request):
+def indexpage(request):
     print("hello world")
     return render(request, 'index.html')
+
+
+def homepage(request):
+    return render(request, 'home.html')
+
+
+def upload(request):
+    return render(request, 'upload.html')
