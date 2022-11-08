@@ -109,7 +109,7 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: #EDDD5E;
     border-radius: 50%;
     transition: all 0.3s;
     font-size: 0.9rem;
@@ -119,7 +119,7 @@ svg {
 .social-link:focus {
     background: #ddd;
     text-decoration: none;
-    color: #555;
+    color: #EDDD5E;
 }
 
 .card2:hover {
@@ -216,3 +216,52 @@ button {
     transform: translateX(200%);
     transition-delay: 300ms;
   }
+
+
+
+
+  .btn-outline-secondary {
+    color: #EDDD5E;
+    border-color: #EDDD5E;
+}
+
+
+.btn {
+    transition: .5s;
+    font-weight: 500;
+}
+
+.btn-primary,
+.btn-outline-primary:hover {
+    color: white;
+}
+
+.btn-secondary,
+.btn-outline-secondary:hover {
+    color: black;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+}
