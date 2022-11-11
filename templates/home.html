@@ -144,7 +144,7 @@
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Upload/Post Something</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">What's on your mind?</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -154,34 +154,58 @@
 
 
                                 <div class="row">
-                                    <div class="p-5 bg-white shadow rounded-lg"><img
-                                            src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png" alt=""
-                                            width="200" class="d-block mx-auto mb-4 rounded-pill">
+                                    <div class="container">
 
-                                        <!-- Default bootstrap file upload-->
+                                        <div class="p-5 bg-white shadow" style="border: 2px solid black;">
+                                            <img src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png" alt=""
+                                                width="150" class="d-block mx-auto mb-4 rounded-pill">
+    
+                                            <!-- Default bootstrap file upload-->
+<!--     
+                                            <h6 class="text-center mb-4 text-muted">
+                                                You can use default Bootstrap file upload
+                                            </h6> -->
 
-                                        <h6 class="text-center mb-4 text-muted">
-                                            You can use default Bootstrap file upload
-                                        </h6>
+                                            
 
-                                        <div class="custom-file overflow-hidden rounded-pill mb-5">
-                                            <input id="customFile" type="file" class="custom-file-input rounded-pill">
-                                            <label for="customFile" class="custom-file-label rounded-pill">Choose
-                                                file</label>
+
+                                            <div class="card gedf-card">
+                                                <div class="card-header">
+                                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">
+                                                                Create Post</a>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="tab-content" id="myTabContent">
+                                                        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                                                            <div class="form-group">
+                                                                <label class="sr-only" for="message">post</label>
+                                                                <textarea class="form-control" id="message" rows="3" placeholder="Write something here..."></textarea>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="customFile">
+                                                                    <label class="custom-file-label" for="customFile">Upload image</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="py-4"></div>
+                            
+                                                        </div>
+                                    
+                                                    </div>
+                                            
+                                                </div>
+                                            </div>
+
+
+
+
                                         </div>
-                                        <!-- End -->
-
-                                        <h6 class="text-center mb-4 text-muted">
-                                            Or a custom button that launches file browser
-                                        </h6>
-
-                                        <!-- Custom bootstrap upload file-->
-                                        <label for="fileUpload"
-                                            class="file-upload btn btn-primary btn-block rounded-pill shadow"><i
-                                                class="fa fa-upload mr-2"></i>Browse for file ...
-                                            <input id="fileUpload" type="file">
-                                        </label>
-                                        <!-- End -->
 
                                     </div>
                                 </div>
@@ -191,8 +215,8 @@
                             <!-- Model body end -->
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary">Post</button>
                             </div>
 
                         </div>
@@ -290,6 +314,7 @@
 
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
+                        <h3>ACTIVITY FEED</h3>
                         <div class="w3-card w3-round w3-white">
                             <div class="w3-container w3-padding">
                                 <h6 class="w3-opacity">Social Media template</h6>
@@ -357,6 +382,41 @@
                         Like</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
                         Comment</button>
+                </div>
+
+                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                            <div class="card">
+                                <div class="d-flex justify-content-between p-2 px-3">
+                                    <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/UXdKE3o.jpg" width="50" class="rounded-circle">
+                                        <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">Jeanette Sun</span> <small class="text-primary">Collegues</small> </div>
+                                    </div>
+                                    <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">20 mins</small> <i class="fa fa-ellipsis-h"></i> </div>
+                                </div> <img src="https://i.imgur.com/xhzhaGA.jpg" class="img-fluid">
+                                <div class="p-2">
+                                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                    <hr>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex flex-row icons d-flex align-items-center"> <i class="fa fa-heart"></i> <i class="fa fa-smile-o ml-2"></i> </div>
+                                        <div class="d-flex flex-row muted-color"> <span>2 comments</span> <span class="ml-2">Share</span> </div>
+                                    </div>
+                                    <hr>
+                                    <div class="comments">
+                                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40" class="rounded-image">
+                                            <div class="d-flex flex-column ml-2"> <span class="name">Daniel Frozer</span> <small class="comment-text">I like this alot! thanks alot</small>
+                                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>18 mins</small> </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40" class="rounded-image">
+                                            <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span> <small class="comment-text">Thanks for sharing!</small>
+                                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>8 mins</small> </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment-input"> <input type="text" class="form-control">
+                                            <div class="fonts"> <i class="fa fa-camera"></i> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
 
                 <!-- End Middle Column -->
