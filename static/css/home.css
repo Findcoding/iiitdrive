@@ -229,3 +229,19 @@ hr {
   outline: 0;
   box-shadow: none
 }
+
+
+
+/* Rotate Icon */
+
+.icon {
+  transition: all 0.5s;
+}
+
+.icon .fa-pencil {
+  transition: all 1s;
+}
+
+.icon:hover .fa-pencil {
+  transform: rotate(360deg)
+}
