@@ -23,4 +23,7 @@ urlpatterns = [
     path('', views.indexpage, name='index'),
     path('home', views.homepage, name='home'),
     path('upload', views.upload, name='upload'),
+    path('mydrive', views.mydrive, name='mydrive'),
+    path('starred', views.starred, name='starred'),
+    path('trash', views.trash, name='trash'),
 ]
