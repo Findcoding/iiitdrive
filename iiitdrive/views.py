@@ -21,3 +21,13 @@ def homepage(request):
 
 def upload(request):
     return render(request, 'upload.html')
+
+
+def mydrive(request):
+    return render(request, 'mydrive.html')
+
+def starred(request):
+    return render(request, 'starred.html')
+
+def trash(request):
+    return render(request, 'trash.html')
