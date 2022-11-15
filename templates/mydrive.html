@@ -1,0 +1,422 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<head>
+    {% block linkfile %}
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <script src="https://kit.fontawesome.com/09f47cf394.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/upload.css' %}" />
+    <script type="text/javascript" src="{% static 'js/upload.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mydrive.css' %}" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+
+
+
+    {% endblock %}
+
+
+    {% block extrahead %}
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "Open Sans", sans-serif
+        }
+    </style>
+    {% endblock %}
+
+</head>
+
+<body class="w3-theme-l5">
+    {% block content %}
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-padding-large w3-theme-d4">
+                <div class="content">
+                    <h2>IIITDRIVE</h2>
+                    <h2>IIITDRIVE</h2>
+                </div>
+            </a>
+            <a href="{% url 'mydrive' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-theme-d4" title="My Drive">
+                <h2 style="color: black;">My Drive</h2>
+            </a>
+            <a href="{% url 'starred' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+                title="Starred"><h2>Starred</h2></a>
+            <a href="{% url 'trash' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
+                <h2>Trash</h2></a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
+                title="My Account">
+                <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle"
+                    style="height:40px;width:42px" alt="Avatar">
+            </a>
+        </div>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+    </div>
+
+
+    <!-- Page Container -->
+    <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+        <!-- The Grid -->
+        <div class="w3-row">
+            <!-- Left Column -->
+            <div class="w3-col m3">
+                <!-- Profile -->
+                <div class="w3-card w3-round w3-white">
+                    <div class="w3-container">
+                        <h4 class="w3-center">My Profile</h4>
+                        <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle"
+                                style="height:106px;width:106px" alt="Avatar"></p>
+                        <hr>
+                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
+                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+                    </div>
+                </div>
+                <br>
+
+                <!-- Upload bottom -->
+                <!-- <p><a target="_self" href="{% url 'upload' %}"><i class="fas fa-cloud-upload-alt"
+                                style="font-size: 70px; margin-right: 10px;"></i></a></p> -->
+
+                <button type="button" class="btn btn-primary bottomright icon" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop" style="font-size: 30px; margin-right: 10px; margin-bottom: 10px;">
+                    <i class="fa fa-cloud-upload icon" aria-hidden="true" style="font-size: 30px;"></i><b> Upload</b>
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">What's on your mind?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <!-- Model body -->
+                            <div class="modal-body">
+
+
+                                <div class="row">
+                                    <div class="container">
+
+                                        <div class="p-5 bg-white shadow" style="border: 2px solid black;">
+                                            <img src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png" alt=""
+                                                width="150" class="d-block mx-auto mb-4 rounded-pill">
+    
+                                            <!-- Default bootstrap file upload-->
+<!--     
+                                            <h6 class="text-center mb-4 text-muted">
+                                                You can use default Bootstrap file upload
+                                            </h6> -->
+
+                                            
+
+
+                                            <div class="card gedf-card">
+                                                <div class="card-header">
+                                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">
+                                                                Create Post</a>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="tab-content" id="myTabContent">
+                                                        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                                                            <div class="form-group">
+                                                                <label class="sr-only" for="message">post</label>
+                                                                <textarea class="form-control" id="message" rows="3" placeholder="Write something here..."></textarea>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="customFile">
+                                                                    <label class="custom-file-label" for="customFile">Upload image</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="py-4"></div>
+                            
+                                                        </div>
+                                    
+                                                    </div>
+                                            
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Model body end -->
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary">Post</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Accordion -->
+                <div class="w3-card w3-round">
+                    <div class="w3-white">
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
+                                class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
+                        <div id="Demo1" class="w3-hide w3-container">
+                            <p>Some text..</p>
+                        </div>
+                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
+                                class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+                        <div id="Demo2" class="w3-hide w3-container">
+                            <p>Some other text..</p>
+                        </div>
+                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
+                                class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
+                        <div id="Demo3" class="w3-hide w3-container">
+                            <div class="w3-row-padding">
+                                <br>
+                                <div class="w3-half">
+                                    <img src="https://www.w3schools.com/w3images/lights.jpg" style="width:100%"
+                                        class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%"
+                                        class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="https://www.w3schools.com/w3images/mountains.jpg" style="width:100%"
+                                        class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="https://www.w3schools.com/w3images/forest.jpg" style="width:100%"
+                                        class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%"
+                                        class="w3-margin-bottom">
+                                </div>
+                                <div class="w3-half">
+                                    <img src="https://www.w3schools.com/w3images/snow.jpg" style="width:100%"
+                                        class="w3-margin-bottom">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <!-- Interests -->
+                <div class="w3-card w3-round w3-white w3-hide-small">
+                    <div class="w3-container">
+                        <p>Recent Tags</p>
+                        <p>
+                            <span class="w3-tag w3-small w3-theme-d5">News</span>
+                            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
+                            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
+                            <span class="w3-tag w3-small w3-theme-d2">Games</span>
+                            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
+                            <span class="w3-tag w3-small w3-theme">Games</span>
+                            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
+                            <span class="w3-tag w3-small w3-theme-l2">Food</span>
+                            <span class="w3-tag w3-small w3-theme-l3">Design</span>
+                            <span class="w3-tag w3-small w3-theme-l4">Art</span>
+                            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+                        </p>
+                    </div>
+                </div>
+                <br>
+
+                <!-- Alert Box -->
+                <div
+                    class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+                    <span onclick="this.parentElement.style.display='none'"
+                        class="w3-button w3-theme-l3 w3-display-topright">
+                        <i class="fa fa-remove"></i>
+                    </span>
+                    <p><strong>Hey!</strong></p>
+                    <p>People are looking at your profile. Find out who.</p>
+                </div>
+
+                <!-- End Left Column -->
+            </div>
+
+            <!-- Middle Column -->
+            <div class="w3-col m7">
+
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <h3>ACTIVITY FEED</h3>
+                        <div class="w3-card w3-round w3-white">
+                            <div class="w3-container w3-padding">
+                                <h6 class="w3-opacity">Social Media template</h6>
+                                <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
+                                <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>
+                                     Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                    <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar"
+                        class="w3-left w3-circle w3-margin-right" style="width:60px">
+                    <span class="w3-right w3-opacity">1 min</span>
+                    <h4>John Doe</h4><br>
+                    <hr class="w3-clear">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <div class="w3-row-padding" style="margin:0 -16px">
+                        <div class="w3-half">
+                            <img src="https://www.w3schools.com/w3images/lights.jpg" style="width:100%"
+                                alt="Northern Lights" class="w3-margin-bottom">
+                        </div>
+                        <div class="w3-half">
+                            <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%" alt="Nature"
+                                class="w3-margin-bottom">
+                        </div>
+                    </div>
+                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
+                            class="fa fa-thumbs-up"></i> Like</button>
+                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
+                         Comment</button>
+                </div>
+
+                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                    <img src="https://www.w3schools.com/w3images/avatar5.png" alt="Avatar"
+                        class="w3-left w3-circle w3-margin-right" style="width:60px">
+                    <span class="w3-right w3-opacity">16 min</span>
+                    <h4>Jane Doe</h4><br>
+                    <hr class="w3-clear">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
+                         Like</button>
+                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
+                         Comment</button>
+                </div>
+
+                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                    <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar"
+                        class="w3-left w3-circle w3-margin-right" style="width:60px">
+                    <span class="w3-right w3-opacity">32 min</span>
+                    <h4>Angie Jane</h4><br>
+                    <hr class="w3-clear">
+                    <p>Have you seen this?</p>
+                    <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%"
+                        class="w3-margin-bottom">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
+                        Like</button>
+                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
+                        Comment</button>
+                </div>
+
+                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                            <div class="card">
+                                <div class="d-flex justify-content-between p-2 px-3">
+                                    <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/UXdKE3o.jpg" width="50" class="rounded-circle">
+                                        <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">Jeanette Sun</span> <small class="text-primary">Collegues</small> </div>
+                                    </div>
+                                    <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">20 mins</small> <i class="fa fa-ellipsis-h"></i> </div>
+                                </div> <img src="https://i.imgur.com/xhzhaGA.jpg" class="img-fluid">
+                                <div class="p-2">
+                                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                    <hr>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex flex-row icons d-flex align-items-center"> <i class="fa fa-heart"></i> <i class="fa fa-smile-o ml-2"></i> </div>
+                                        <div class="d-flex flex-row muted-color"> <span>2 comments</span> <span class="ml-2">Share</span> </div>
+                                    </div>
+                                    <hr>
+                                    <div class="comments">
+                                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40" class="rounded-image">
+                                            <div class="d-flex flex-column ml-2"> <span class="name">Daniel Frozer</span> <small class="comment-text">I like this alot! thanks alot</small>
+                                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>18 mins</small> </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40" class="rounded-image">
+                                            <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span> <small class="comment-text">Thanks for sharing!</small>
+                                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>8 mins</small> </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment-input"> <input type="text" class="form-control">
+                                            <div class="fonts"> <i class="fa fa-camera"></i> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+
+                <!-- End Middle Column -->
+            </div>
+
+            <!-- Right Column -->
+            
+
+            <!-- End Grid -->
+        </div>
+
+        <!-- End Page Container -->
+    </div>
+    <br>
+
+    {% endblock %}
+
+</body>

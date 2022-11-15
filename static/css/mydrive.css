@@ -1,0 +1,14 @@
+
+/* Rotate Icon */
+
+.icon {
+    transition: all 0.5s;
+  }
+  
+  .icon .fa-cloud-upload {
+    transition: all 1s;
+  }
+  
+  .icon:hover .fa-cloud-upload {
+    transform: rotate(360deg)
+  }
