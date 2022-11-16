@@ -72,11 +72,9 @@
             </a>
             <a href="{% url 'trash' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
                 <h2>Trash</h2></a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
-                title="My Account">
-                <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle"
-                    style="height:40px;width:42px" alt="Avatar">
-            </a>
+
+            {% include 'profile.html' %}
+
         </div>
     </div>
 
