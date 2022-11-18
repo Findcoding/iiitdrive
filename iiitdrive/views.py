@@ -18,6 +18,8 @@ def indexpage(request):
 def homepage(request):
     return render(request, 'home.html')
 
+def profile(request):
+    return render(request, 'profile.html')
 
 def upload(request):
     return render(request, 'upload.html')
