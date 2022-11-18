@@ -15,6 +15,7 @@
 
     <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/mydrive.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile_card_details.css' %}" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -73,8 +74,10 @@
                 title="Starred"><h2>Starred</h2></a>
             <a href="{% url 'trash' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
                 <h2>Trash</h2></a>
+            <a href="{% url 'profilepage' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Profile">
+                <h2>Profile</h2></a>
                 
-            {% include 'profile.html' %}
+            {% include 'profile_dropdown.html' %}
             
         </div>
     </div>
@@ -91,21 +94,13 @@
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
         <!-- The Grid -->
-        <div class="w3-row">
+        <div class="w3-row" style="padding-top: 50px;">
             <!-- Left Column -->
             <div class="w3-col m3">
                 <!-- Profile -->
-                <div class="w3-card w3-round w3-white">
-                    <div class="w3-container">
-                        <h4 class="w3-center">My Profile</h4>
-                        <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle"
-                                style="height:106px;width:106px" alt="Avatar"></p>
-                        <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
-                    </div>
-                </div>
+                
+                {% include 'profile_card.html' %}
+
                 <br>
 
                 <!-- Upload bottom -->
