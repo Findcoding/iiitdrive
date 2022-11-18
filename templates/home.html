@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <script src="https://kit.fontawesome.com/09f47cf394.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
     <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile_card_details.css' %}" />
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/upload.css' %}" />
     <script type="text/javascript" src="{% static 'js/upload.js' %}"></script>
@@ -80,6 +84,10 @@
                 class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
                 <h2>Trash</h2>
             </a>
+            <a href="{% url 'profilepage' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Profile">
+                <h2>Profile</h2>
+            </a>
+
             <!-- <div class="w3-dropdown-hover w3-hide-small">
                 <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
                         class="w3-badge w3-right w3-small w3-green">3</span></button>
@@ -91,7 +99,7 @@
             </div> -->
 
 
-            {% include 'profile.html' %}
+            {% include 'profile_dropdown.html' %}
 
 
 
@@ -110,125 +118,12 @@
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
         <!-- The Grid -->
-        <div class="w3-row">
+        <div class="w3-row" style="padding-top: 50px;">
             <!-- Left Column -->
             <div class="w3-col m3">
                 <!-- Profile -->
-                <div class="w3-card w3-round w3-white">
-                    <div class="w3-container">
-                        <h4 class="w3-center">My Profile</h4>
-                        <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle"
-                                style="height:106px;width:106px" alt="Avatar"></p>
-                        <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
-                    </div>
-                </div>
+                {% include 'profile_card.html' %}
                 <br>
-
-                <!-- Upload bottom -->
-                <!-- <p><a target="_self" href="{% url 'upload' %}"><i class="fas fa-cloud-upload-alt"
-                                style="font-size: 70px; margin-right: 10px;"></i></a></p> -->
-
-                <button type="button" class="btn btn-primary bottomright icon" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop" style="font-size: 30px; margin-right: 10px; margin-bottom: 10px;">
-                    <i class="fa fa-pencil icon" aria-hidden="true" style="font-size: 25px;"></i><b> Post</b>
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">What's on your mind?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-
-                            <!-- Model body -->
-                            <div class="modal-body">
-
-
-                                <div class="row">
-                                    <div class="container">
-
-                                        <div class="p-5 bg-white shadow" style="border: 2px solid black;">
-                                            <img src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png"
-                                                alt="" width="150" class="d-block mx-auto mb-4 rounded-pill">
-
-                                            <!-- Default bootstrap file upload-->
-                                            <!--     
-                                            <h6 class="text-center mb-4 text-muted">
-                                                You can use default Bootstrap file upload
-                                            </h6> -->
-
-
-
-
-                                            <div class="card gedf-card">
-                                                <div class="card-header">
-                                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link active" id="posts-tab" data-toggle="tab"
-                                                                href="#posts" role="tab" aria-controls="posts"
-                                                                aria-selected="true">
-                                                                Create Post</a>
-                                                        </li>
-
-                                                    </ul>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="tab-content" id="myTabContent">
-                                                        <div class="tab-pane fade show active" id="posts"
-                                                            role="tabpanel" aria-labelledby="posts-tab">
-                                                            <div class="form-group">
-                                                                <label class="sr-only" for="message">post</label>
-                                                                <textarea class="form-control" id="message" rows="3"
-                                                                    placeholder="Write something here..."></textarea>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input"
-                                                                        id="customFile">
-                                                                    <label class="custom-file-label"
-                                                                        for="customFile">Upload image</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="py-4"></div>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-
-
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Model body end -->
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary">Post</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
 
                 <!-- Accordion -->
                 <div class="w3-card w3-round">
@@ -473,6 +368,8 @@
                 </div>
                 <br>
 
+                
+
                 <!-- <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
                     <p>ADS</p>
                 </div>
@@ -500,6 +397,8 @@
     <footer class="w3-container w3-theme-d5">
         <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Template</a></p>
     </footer>
+
+    {% include 'model.html' %}
 
     {% endblock %}
 
