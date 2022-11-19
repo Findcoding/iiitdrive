@@ -32,3 +32,10 @@ function logout(event) {
         return false;
     }
 }
+
+
+function clears() {
+
+    $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");
+
+}
