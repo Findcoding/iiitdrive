@@ -264,3 +264,8 @@ table, td {
     border-width: 2px 1px !important;
 }
 
+/* Usage Bar */
+progress {
+    width: 100%;
+}
+
