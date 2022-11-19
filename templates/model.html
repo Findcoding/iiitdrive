@@ -50,8 +50,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="posts" role="tabpanel"
-                                            aria-labelledby="posts-tab">
+                                        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                                             <div class="form-group">
                                                 <label class="sr-only" for="message">post</label>
                                                 <textarea class="form-control" id="message" rows="3"
@@ -59,13 +58,44 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label" for="customFile">Upload
-                                                        image</label>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered border-dark" id="emptbl">
+                                                        <tr>
+                                                            <td id="col0"><input type="file" class="form-control" value="" accept=".png, .jpg, .jpeg"></td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
                                             </div>
-                                            <div class="py-4"></div>
+
+                                            <div class="form-group">
+                                                <div class="card">
+                                                    <select class="hashtag" name="hashtag" id="hashtag" placeholder="Choose a Hashtag" multiple>
+                                                        <option value="TechFest">TechFest</option>
+                                                        <option value="Neon Night">Neon Night</option>
+                                                        <option value="Odyssey">Odyssey</option>
+                                                        <option value="IPPL">IPPL</option>
+                                                    </select>
+                                                </div>
+
+                                                <script>
+                                                    
+                                                    $(document).ready(function() {
+                                                        if (document.getElementById('hashtag') != null) {
+                                                            var multipleCancelButton = new Choices('#hashtag', {
+                                                                removeItemButton: true,
+                                                                maxItemCount: 1,
+                                                                searchResultLimit: 5,
+                                                                shouldSort: true,
+                                                                removeItemButton: true,
+                                                                duplicateItemsAllowed: false,
+                                                                searchFields: ['label', 'value'],
+                                                                noResultsText: 'No results found'
+                                                            });
+                                                        }
+
+                                                    });
+                                                </script>
+                                            </div>
 
                                         </div>
 
@@ -87,7 +117,7 @@
             <!-- Model body end -->
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="clears();">Cancel</button>
                 <button type="button" class="btn btn-primary">Post</button>
             </div>
 
