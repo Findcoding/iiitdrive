@@ -34,6 +34,18 @@ function logout(event) {
 }
 
 
+
+function validateSize(input) {
+    const fileSize = input.files[0].size / 1024 / 1024;
+    if (fileSize > 1) {
+        alert('File size exceeds 1 MB');
+        input.value = "";
+        return;
+    }
+}
+
+
+
 function clears() {
 
     $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");
