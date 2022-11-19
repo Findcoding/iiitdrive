@@ -256,3 +256,11 @@ hr {
 .icon:hover .fa-cloud-upload {
     transform: rotate(360deg)
 }
+
+
+/* Upload table */
+
+table, td {
+    border-width: 2px 1px !important;
+}
+
