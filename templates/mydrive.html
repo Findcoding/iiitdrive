@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <script src="https://kit.fontawesome.com/09f47cf394.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <script src="https://kit.fontawesome.com/09f47cf394.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/mydrive.css' %}" />
@@ -33,10 +33,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
-
 
 
     {% endblock %}
@@ -70,18 +68,25 @@
                     <h2>IIITDRIVE</h2>
                 </div>
             </a>
-            <a href="{% url 'mydrive' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-theme-d4" title="My Drive">
+            <a href="{% url 'mydrive' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-theme-d4" title="My Drive">
                 <h2 style="color: black;">My Drive</h2>
             </a>
-            <a href="{% url 'starred' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-                title="Starred"><h2>Starred</h2></a>
-            <a href="{% url 'trash' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
-                <h2>Trash</h2></a>
-            <a href="{% url 'profilepage' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Profile">
-                <h2>Profile</h2></a>
-                
+            <a href="{% url 'starred' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Starred">
+                <h2>Starred</h2>
+            </a>
+            <a href="{% url 'trash' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
+                <h2>Trash</h2>
+            </a>
+            <a href="{% url 'profilepage' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Profile">
+                <h2>Profile</h2>
+            </a>
+
             {% include 'profile_dropdown.html' %}
-            
+
         </div>
     </div>
 
@@ -101,7 +106,7 @@
             <!-- Left Column -->
             <div class="w3-col m3">
                 <!-- Profile -->
-                
+
                 {% include 'profile_card.html' %}
 
                 <br>
@@ -110,8 +115,10 @@
                 <!-- <p><a target="_self" href="{% url 'upload' %}"><i class="fas fa-cloud-upload-alt"
                                 style="font-size: 70px; margin-right: 10px;"></i></a></p> -->
 
-                <button type="button" class="btn btn-primary bottomright icon animate__animated animate__bounceInDown animate__slower" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop" style="font-size: 30px; margin-right: 10px; margin-bottom: 10px;">
+                <button type="button"
+                    class="btn btn-primary bottomright icon animate__animated animate__bounceInDown animate__slower"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                    style="font-size: 30px; margin-right: 10px; margin-bottom: 10px;">
                     <i class="fa fa-cloud-upload icon" aria-hidden="true" style="font-size: 30px;"></i><b> Upload</b>
                 </button>
 
@@ -134,45 +141,51 @@
                                     <div class="container">
 
                                         <div class="p-5 bg-white shadow" style="border: 2px solid black;">
-                                            <img src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png" alt=""
-                                                width="150" class="d-block mx-auto mb-4 rounded-pill">
-    
+                                            <img src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png"
+                                                alt="" width="150" class="d-block mx-auto mb-4 rounded-pill">
+
                                             <!-- Default bootstrap file upload-->
-<!--     
+                                            <!--     
                                             <h6 class="text-center mb-4 text-muted">
                                                 You can use default Bootstrap file upload
                                             </h6> -->
 
-                                            
+
 
 
                                             <div class="card gedf-card">
                                                 <div class="card-header">
                                                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">
+                                                            <a class="nav-link active" id="posts-tab" data-toggle="tab"
+                                                                href="#posts" role="tab" aria-controls="posts"
+                                                                aria-selected="true">
                                                                 Browse file</a>
                                                         </li>
-                                                        
+
                                                     </ul>
                                                 </div>
                                                 <div class="card-body">
-                                                    
+
                                                     <div class="table-responsive">
                                                         <table class="table table-bordered border-dark" id="emptbl">
                                                             <tr>
-                                                                <td id="col0"><input type="file" class="form-control" value="" placeholder="" onchange="validateSize(this)"></td>
+                                                                <td id="col0"><input type="file" class="form-control"
+                                                                        value="" placeholder=""
+                                                                        onchange="validateSize(this)"></td>
                                                             </tr>
-                                                            
+
                                                         </table>
                                                     </div>
-                                            
+
                                                 </div>
                                             </div>
 
                                             <div style="padding-top: 10px;">
-                                                <button type="button" class="btn btn-primary" onclick="addRows('emptbl', 'col')">Add Row</button>
-                                                <button type="button" class="btn btn-default" onclick="deleteRows('emptbl')">Delete Row</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="addRows('emptbl', 'col')">Add Row</button>
+                                                <button type="button" class="btn btn-default"
+                                                    onclick="deleteRows('emptbl')">Delete Row</button>
                                             </div>
 
 
@@ -188,7 +201,8 @@
                             <!-- Model body end -->
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="clears(event);">Clear</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                    onclick="clears(event);">Clear</button>
                                 <button type="button" class="btn btn-primary">Upload</button>
                             </div>
 
@@ -200,7 +214,7 @@
 
 
                 <!-- Accordion -->
-                
+
                 <br>
 
                 <!-- Interests -->
@@ -214,7 +228,7 @@
                 <br>
 
                 <!-- Alert Box -->
-                
+
 
                 <!-- End Left Column -->
             </div>
@@ -227,25 +241,147 @@
                         <h3>ALL FILES</h3>
                     </div>
                 </div>
-                
+
 
                 <div class="w3-row-padding">
                     <div class="alert alert-info" style="padding-top: 20px;">
-                        Don't forget to display the console to see the uploaded file !
+                        There is no preview feature yet, but you can download a file.
                     </div>
                 </div>
 
-                
+                <!-- Upload files -->
 
-                
+                <div class="w3-row-padding">
+                    <div class="container">
+                        <div class="gallery">
+                            <a href="{% static "pdf/sample.pdf" %}" style="text-decoration: none;">
+                                <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
+                            </a>
+                            <div class="desc">sample.pdf</div>
+                        </div>
 
-                <!-- End Middle Column -->
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-folder" aria-hidden="true" style="font-size:100px;color:rgb(237, 237, 36)"></i>
+                            </a>
+                            <div class="desc">Folder</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-file" aria-hidden="true" style="font-size:100px;color:rgb(10, 1, 1)"></i>
+                            </a>
+                            <div class="desc">prolog.txt</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-file-archive-o" aria-hidden="true" style="font-size:100px;color:rgb(72, 38, 184)"></i>
+                            </a>
+                            <div class="desc">songs.zip</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-file-code-o" aria-hidden="true" style="font-size:100px;color:rgb(19, 147, 66)"></i>
+                            </a>
+                            <div class="desc">Main.java</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-file-word-o" aria-hidden="true" style="font-size:100px;color:rgb(64, 17, 235)"></i>
+                            </a>
+                            <div class="desc">paper.docx</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-file-powerpoint-o" aria-hidden="true" style="font-size:100px;color:rgb(229, 153, 13)"></i>
+                            </a>
+                            <div class="desc">class.pptx</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-file-audio-o" aria-hidden="true" style="font-size:100px;color:rgb(23, 147, 225)"></i>
+                            </a>
+                            <div class="desc">tarvel.mp3</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-file-video-o" aria-hidden="true" style="font-size:100px;color:rgb(31, 176, 179)"></i>
+                            </a>
+                            <div class="desc">Trailer.mp4</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a href="" style="text-decoration: none;">
+                                <i class="fa fa-file-image-o" aria-hidden="true" style="font-size:100px;color:rgb(205, 24, 145)"></i>
+                            </a>
+                            <div class="desc">kasol.jpg</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Image Galary -->
+
+                <div class="w3-row-padding">
+                    <div class="container">
+                        <div class="gallery">
+                            <a target="_blank" href="https://www.w3schools.com/css/img_5terre.jpg">
+                                <img src="https://www.w3schools.com/css/img_5terre.jpg" alt="Cinque Terre" width="600"
+                                    height="400">
+                            </a>
+                            <div class="desc">Add a description of the image here</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a target="_blank" href="https://www.w3schools.com/css/img_forest.jpg">
+                                <img src="https://www.w3schools.com/css/img_forest.jpg" alt="Forest" width="600"
+                                    height="400">
+                            </a>
+                            <div class="desc">Add a description of the image here</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a target="_blank" href="https://www.w3schools.com/css/img_lights.jpg">
+                                <img src="https://www.w3schools.com/css/img_lights.jpg" alt="Northern Lights"
+                                    width="600" height="400">
+                            </a>
+                            <div class="desc">Add a description of the image here</div>
+                        </div>
+
+                        <div class="gallery">
+                            <a target="_blank" href="https://www.w3schools.com/css/img_mountains.jpg">
+                                <img src="https://www.w3schools.com/css/img_mountains.jpg" alt="Mountains" width="600"
+                                    height="400">
+                            </a>
+                            <div class="desc">Add a description of the image here</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
 
-            <!-- Right Column -->
 
-            <!-- Right Column -->
-            <!-- <div class="w3-col m2">
+
+
+
+            <!-- End Middle Column -->
+        </div>
+
+        <!-- Right Column -->
+
+        <!-- Right Column -->
+        <!-- <div class="w3-col m2">
                 <div class="w3-card w3-round w3-white w3-center">
                     <div class="w3-container">
                         <h4>Usage</h4>
@@ -260,12 +396,12 @@
 
                 
             </div> -->
-            
 
-            <!-- End Grid -->
-        </div>
 
-        <!-- End Page Container -->
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
     </div>
     <br>
 
