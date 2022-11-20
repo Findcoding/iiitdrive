@@ -46,8 +46,28 @@ function validateSize(input) {
 
 
 
-function clears() {
+function clears(event) {
 
-    $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");
+    var record = confirm("Do you want to clear form??");
+
+    if(record == true) {
+        $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");
+        // $('#staticBackdrop').trigger("reset");
+
+    } else {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        return false;
+    }
 
 }
+
+
+
+window.addEventListener("pageshow", function(event) {
+    event.preventDefault();
+    let historyTraversal = event.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2);
+    if (historyTraversal) {
+        window.location.reload();
+    }
+});
