@@ -12,6 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
@@ -34,10 +35,10 @@
             <div class="container py-5">
                 <div class="row h-100 align-items-center py-5">
                     <div class="col-lg-6">
-                        <h1 class="display-4">Welcome to</h1>
+                        <h1 class="display-4 animate__animated animate__bounceInDown animate__slower">Welcome to</h1>
                         <header class="header">
                             <nav class="navbar navbar-expand-lg navbar-light py-3">
-                                <div class="container">
+                                <div class="container animate__animated animate__shakeX animate__slower">
                                     <section>
                                         <div class="content">
                                             <h2>IIITDRIVE</h2>
@@ -54,7 +55,7 @@
 
         </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-top:100px;">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end animate__animated animate__bounceInRight animate__slower" style="padding-top:100px;">
             <a style="text-decoration:none" href="{% url 'home' %}">
                 <button>
                     <svg height="36px" width="36px" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +104,7 @@
 
                 <div class="row text-center" style="padding-left:10px;">
                     <!-- Team item-->
-                    <div class="col-xl-3 col-sm-6 mb-5 zoom1">
+                    <div class="col-xl-3 col-sm-6 mb-5 zoom1 animate__animated animate__bounceInUp animate__slower">
                         <div class="bg-white rounded shadow-sm py-5 px-4" style="border: 2px solid black;"><img
                                 src="{% static "images/biju.jpg" %}" alt="Bijendar Prasad" width="100"
                                 class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm zoom">
@@ -126,7 +127,7 @@
                     <!-- End-->
 
                     <!-- Team item-->
-                    <div class="col-xl-3 col-sm-6 mb-5 zoom1">
+                    <div class="col-xl-3 col-sm-6 mb-5 zoom1 animate__animated animate__bounceInUp animate__slower">
                         <div class="bg-white rounded shadow-sm py-5 px-4" style="border: 2px solid black;"><img
                                 src="{% static "images/abhi.jpg" %}" alt="Abhimanyu Gupta" width="100"
                                 class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm zoom">
