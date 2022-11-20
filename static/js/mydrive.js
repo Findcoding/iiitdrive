@@ -39,3 +39,13 @@ function clears() {
     $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");
 
 }
+
+
+function validateSize(input) {
+    const fileSize = input.files[0].size / 1024 / 1024;
+    if (fileSize > 5) {
+        alert('File size exceeds 5 MB');
+        input.value = "";
+        return;
+    }
+}
