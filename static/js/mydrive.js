@@ -34,9 +34,19 @@ function deleteRows(emptbl) {
 
 
 
-function clears() {
+function clears(event) {
 
-    $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");
+    var record = confirm("Do you want to clear?");
+
+    if(record == true) {
+        $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");
+
+    } else {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        return false;
+    }
+
 
 }
 
