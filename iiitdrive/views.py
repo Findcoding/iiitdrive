@@ -19,6 +19,13 @@ def homepage(request):
     return render(request, 'home.html')
 
 def profile(request):
+    if request.method == 'POST':
+        # post_data = request.POST.dict()
+        post_data = request.POST
+        print(post_data)
+
+        return redirect(homepage)
+
     return render(request, 'profile.html')
 
 def upload(request):
