@@ -258,3 +258,31 @@ hr {
 table, td {
   border-width: 2px 1px !important;
 }
+
+
+/* Countdown Time */
+.countdown {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.countdown span {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 2.5rem;
+  /* margin-left: 0.6rem; */
+}
+
+.countdown span:first-of-type {
+  margin-left: 0;
+}
+
+
+.bg-gradient-4 {
+  background: #007991;
+  background: -webkit-linear-gradient(to right, #007991, #78ffd6);
+  background: linear-gradient(to right, #007991, #78ffd6);
+}
+
+.rounded {
+  border-radius: 1rem !important;
+}

@@ -71,3 +71,25 @@ window.addEventListener("pageshow", function(event) {
         window.location.reload();
     }
 });
+
+
+
+function refreshTime() {
+    var date = new Date();
+    var hour = date.toLocaleString("default", { hour: "2-digit" });
+    const myArray = hour.split(" ");
+    var minute = date.toLocaleString("default", { minute: "2-digit" });
+    var second = date.toLocaleString("default", { second: "2-digit" });
+
+    document.getElementById("hour").textContent = myArray[0] + ":";
+    document.getElementById("min").textContent = minute + ":";
+    document.getElementById("sec").textContent = second + " ";
+    document.getElementById("zone").textContent = myArray[1];
+
+    var datetime = date.toDateString();
+    const arr = datetime.split(" ");
+    document.getElementById("date").textContent = arr[0] + ", " + arr[2] + " " + arr[1] + " " + arr[3];
+
+}
+    
+setInterval(refreshTime, 1000);
