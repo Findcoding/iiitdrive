@@ -1,6 +1,7 @@
 <!-- Upload bottom -->
 <!-- <p><a target="_self" href="{% url 'upload' %}"><i class="fas fa-cloud-upload-alt"
                                 style="font-size: 70px; margin-right: 10px;"></i></a></p> -->
+{% load static %}
 
 <button type="button" class="btn btn-primary bottomright icon animate__animated animate__bounceInDown animate__slower" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
     style="font-size: 30px; margin-right: 10px; margin-bottom: 10px;">
@@ -24,8 +25,8 @@
                 <div class="row">
                     <div class="container">
 
-                        <div class="p-5 bg-white shadow" style="border: 2px solid black;">
-                            <img src="https://bootstrapious.com/i/snippets/sn-file-upload/img.png" alt="" width="150"
+                        <div class="p-5 bg-white shadow" style="border: 2px solid black; border-radius: 10px;">
+                            <img src="{% static "images/post.png" %}" alt="" width="150"
                                 class="d-block mx-auto mb-4 rounded-pill">
 
                             <!-- Default bootstrap file upload-->
