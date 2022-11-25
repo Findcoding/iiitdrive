@@ -27,4 +27,5 @@ urlpatterns = [
     path('mydrive', views.mydrive, name='mydrive'),
     path('starred', views.starred, name='starred'),
     path('trash', views.trash, name='trash'),
+    path('social', views.social, name='social'),
 ]

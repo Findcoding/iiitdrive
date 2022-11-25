@@ -40,3 +40,7 @@ def starred(request):
 
 def trash(request):
     return render(request, 'trash.html')
+
+
+def social(request):
+    return render(request, 'social.html')
