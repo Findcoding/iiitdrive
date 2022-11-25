@@ -293,3 +293,34 @@ div.desc {
     padding: 15px;
     text-align: center;
 }
+
+
+/* card */
+
+.cards {
+    width: 190px;
+    height: 274px;
+    background: white;
+    padding: .4em;
+    border-radius: 6px !important;
+    border: 2px solid black !important;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 60%;
+    border-radius: 6px 6px 0 0;
+    text-align: center;
+  }
+  
+  .card-image:hover {
+    transform: scale(0.98);
+  }
+  
+  .category {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: rgb(63, 121, 230);
+    padding: 10px 7px 0;
+  }
