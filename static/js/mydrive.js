@@ -1,4 +1,3 @@
-
 function addRows(emptbl, col) {
     var table = document.getElementById(emptbl);
     var rowCount = table.rows.length;
@@ -38,7 +37,7 @@ function clears(event) {
 
     var record = confirm("Do you want to clear?");
 
-    if(record == true) {
+    if (record == true) {
         $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");
 
     } else {
@@ -59,3 +58,54 @@ function validateSize(input) {
         return;
     }
 }
+
+
+function click_download() {
+    alert("hello");
+    document.getElementById('download').click();
+}
+
+
+function download() {
+    let downloadButton = document.querySelector('.download');
+    // document.getElementById('download').click();
+    if (downloadButton) {
+        click_download();
+        
+        downloadButton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            /* Start loading process. */
+            downloadButton.classList.add('loading');
+            
+
+            /* Set delay before switching from loading to success. */
+            window.setTimeout(function () {
+                downloadButton.classList.remove('loading');
+                downloadButton.classList.add('success');
+            }, 2000);
+
+           
+
+            /* Reset animation. */
+            window.setTimeout(function () {
+                downloadButton.classList.remove('success');
+            }, 4000);
+
+            
+
+        });
+    };
+}
+
+
+function rename() {
+
+    if(document.getElementById('rename').style.display == "none") {
+        document.getElementById('rename').style.display = "block";
+    } else {
+        document.getElementById('rename').style.display = "none";
+    }
+
+}
+

@@ -140,9 +140,10 @@
                                 <div class="row">
                                     <div class="container">
 
-                                        <div class="p-5 bg-white shadow" style="border: 2px solid black; border-radius: 10px;">
-                                            <img src="{% static "images/upload2.jpg" %}"
-                                                alt="" width="200" class="d-block mx-auto mb-4 rounded-pill">
+                                        <div class="p-5 bg-white shadow"
+                                            style="border: 2px solid black; border-radius: 10px;">
+                                            <img src="{% static "images/upload2.jpg" %}" alt="" width="200"
+                                                class="d-block mx-auto mb-4 rounded-pill">
 
                                             <!-- Default bootstrap file upload-->
                                             <!--     
@@ -262,63 +263,72 @@
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-folder" aria-hidden="true" style="font-size:100px;color:rgb(237, 237, 36)"></i>
+                                <i class="fa fa-folder" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(237, 237, 36)"></i>
                             </a>
                             <div class="desc">Folder</div>
                         </div>
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file" aria-hidden="true" style="font-size:100px;color:rgb(10, 1, 1)"></i>
+                                <i class="fa fa-file" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(10, 1, 1)"></i>
                             </a>
                             <div class="desc">prolog.txt</div>
                         </div>
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-archive-o" aria-hidden="true" style="font-size:100px;color:rgb(72, 38, 184)"></i>
+                                <i class="fa fa-file-archive-o" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(72, 38, 184)"></i>
                             </a>
                             <div class="desc">songs.zip</div>
                         </div>
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-code-o" aria-hidden="true" style="font-size:100px;color:rgb(19, 147, 66)"></i>
+                                <i class="fa fa-file-code-o" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(19, 147, 66)"></i>
                             </a>
                             <div class="desc">Main.java</div>
                         </div>
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-word-o" aria-hidden="true" style="font-size:100px;color:rgb(64, 17, 235)"></i>
+                                <i class="fa fa-file-word-o" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(64, 17, 235)"></i>
                             </a>
                             <div class="desc">paper.docx</div>
                         </div>
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-powerpoint-o" aria-hidden="true" style="font-size:100px;color:rgb(229, 153, 13)"></i>
+                                <i class="fa fa-file-powerpoint-o" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(229, 153, 13)"></i>
                             </a>
                             <div class="desc">class.pptx</div>
                         </div>
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-audio-o" aria-hidden="true" style="font-size:100px;color:rgb(23, 147, 225)"></i>
+                                <i class="fa fa-file-audio-o" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(23, 147, 225)"></i>
                             </a>
                             <div class="desc">tarvel.mp3</div>
                         </div>
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-video-o" aria-hidden="true" style="font-size:100px;color:rgb(31, 176, 179)"></i>
+                                <i class="fa fa-file-video-o" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(31, 176, 179)"></i>
                             </a>
                             <div class="desc">Trailer.mp4</div>
                         </div>
 
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-image-o" aria-hidden="true" style="font-size:100px;color:rgb(205, 24, 145)"></i>
+                                <i class="fa fa-file-image-o" aria-hidden="true"
+                                    style="font-size:100px;color:rgb(205, 24, 145)"></i>
                             </a>
                             <div class="desc">kasol.jpg</div>
                         </div>
@@ -374,15 +384,28 @@
 
                         <div class="card cards">
                             <div class="card-image">
-                                <a href="{% static "pdf/sample.pdf" %}" style="text-decoration: none;">
-                                    <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
-                                </a>
+                                <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
                                 <div class="desc"><b>sample.pdf</b></div>
                             </div>
-                            <div class="category"> Illustration </div>
+                            <div class="d_file" id="before">
+                                <a href="{% static "pdf/sample.pdf" %}" style="text-decoration: none;" class="download"
+                                    id="download" title="Download"><i class="fa" onclick="download();"></i></a>
+                                <a role="" style="text-decoration: none;" class="rename" onclick="rename();">
+                                    <i class="fa" title="Rename"></i></a>
+                            </div>
+        
+                            <div style="padding-top: 10px; display: none;" id="rename">
+                                <input type="text" class="form-control" name="address" value="sample.pdf" placeholder="">
+                            </div>
+                            
+
+                            <!-- <div class="category"> Illustration </div>
                             <div class="heading"> A heading that must span over two lines
                                 <div class="author"> By <span class="name">Abi</span> 4 days ago</div>
-                            </div>
+                            </div> -->
+
+
+
                         </div>
 
                     </div>
