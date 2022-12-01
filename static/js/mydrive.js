@@ -107,5 +107,14 @@ function rename() {
         document.getElementById('rename').style.display = "none";
     }
 
+    document.getElementById('before').style.display = "none";
+    document.getElementById('after').style.display = "block";
 }
 
+
+function before_button() {
+    document.getElementById('before').style.display = "block";
+    document.getElementById('after').style.display = "none";
+
+    document.getElementById('rename').style.display = "none";
+}
