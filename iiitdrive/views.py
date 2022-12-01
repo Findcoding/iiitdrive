@@ -33,6 +33,12 @@ def upload(request):
 
 
 def mydrive(request):
+    if request.method == 'POST':
+        post_data = request.POST
+        print(post_data)
+
+        return render(request, 'mydrive.html')
+
     return render(request, 'mydrive.html')
 
 def starred(request):
