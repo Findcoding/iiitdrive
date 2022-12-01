@@ -61,7 +61,6 @@ function validateSize(input) {
 
 
 function click_download() {
-    alert("hello");
     document.getElementById('download').click();
 }
 
@@ -99,28 +98,34 @@ function download() {
 }
 
 
-function rename() {
+function rename(after, before, rename) {
+    document.getElementById(after).style.display = "block";
+    document.getElementById(before).style.display = "none";
+    document.getElementById(rename).style.display = "block";
+}
 
-    if(document.getElementById('rename').style.display == "none") {
-        document.getElementById('rename').style.display = "block";
+
+function before_button(after, before, rename) {
+    document.getElementById(after).style.display = "none";
+    document.getElementById(before).style.display = "block";
+    document.getElementById(rename).style.display = "none";
+
+}
+
+
+
+function submitNewFileName(event, form_id) {
+
+    var record = confirm("Do you want rename the file?");
+
+    if(record == true) {
+        let form = document.getElementById(form_id);
+        form.submit();
+
     } else {
-        document.getElementById('rename').style.display = "none";
+        before_button();
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        return false;
     }
-
-    document.getElementById('before').style.display = "none";
-    document.getElementById('after').style.display = "block";
-}
-
-
-function before_button() {
-    document.getElementById('before').style.display = "block";
-    document.getElementById('after').style.display = "none";
-
-    document.getElementById('rename').style.display = "none";
-}
-
-
-function submitNewFileName() {
-    let form = document.getElementById("newfilename_submit");
-    form.submit();
 }

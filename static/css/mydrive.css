@@ -273,15 +273,18 @@ progress {
 /* galary */
 
 div.gallery {
-  margin: 5px;
-  border: 1px solid #ccc;
+  margin: 15px;
+  /* border: 1px solid #ccc; */
   float: left;
-  width: 175px;
+  /* width: 175px; */
   text-align: center;
 }
 
 div.gallery:hover {
-  border: 1px solid #777;
+  /* border: 1px solid #777; */
+  /* border: 2px solid black;
+  border-radius: 6px; */
+
 }
 
 div.gallery img {

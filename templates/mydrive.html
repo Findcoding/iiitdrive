@@ -252,23 +252,131 @@
 
                 <!-- Upload files -->
 
+
                 <div class="w3-row-padding">
                     <div class="container">
                         <div class="gallery">
-                            <a href="{% static "pdf/sample.pdf" %}" style="text-decoration: none;">
-                                <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
-                            </a>
-                            <div class="desc">sample.pdf</div>
+                            <div class="card cards">
+                                <div class="card-image">
+                                    <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
+                                    <div class="desc"><b>sample.pdf</b></div>
+                                </div>
+                                <div class="d_file" id="before1">
+                                    <a href="{% static "pdf/sample.pdf" %}" style="text-decoration: none;" class="download"
+                                        id="download" title="Download"><i class="fa" onclick="download();"></i></a>
+                                    <a role="" style="text-decoration: none;" class="rename" onclick="rename('after1', 'before1', 'rename1',);">
+                                        <i class="fa" title="Rename"></i></a>
+                                </div>
+                                <div class="d_file" id="after1" style="display: none;">
+                                    <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName(event, 'newfilename_submit1')"
+                                        id="submit" title="Submit"><i class="fa"></i></a>
+                                    <a role="" style="text-decoration: none;" class="cancel" onclick="before_button('after1', 'before1', 'rename1')">
+                                        <i class="fa" title="Cancel"></i></a>
+                                </div>
+                                <form id="newfilename_submit1" method='post'>
+                                    {% csrf_token %}
+                                    <div style="padding-top: 10px; display: none;" id="rename1">
+                                        <input type="text" class="form-control" name="address" value="sample.pdf" placeholder="">
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
 
                         <div class="gallery">
-                            <a href="" style="text-decoration: none;">
-                                <i class="fa fa-folder" aria-hidden="true"
-                                    style="font-size:100px;color:rgb(237, 237, 36)"></i>
-                            </a>
-                            <div class="desc">Folder</div>
+                            <div class="card cards">
+                                <div class="card-image">
+                                    <i class="fa fa-file-code-o" aria-hidden="true" style="font-size:100px;color:rgb(19, 147, 66)"></i>
+                                    <div class="desc"><b>Main.java</b></div>
+                                </div>
+                                <div class="d_file" id="before2">
+                                    <a href="" style="text-decoration: none;" class="download"
+                                        id="download" title="Download"><i class="fa" onclick="download();"></i></a>
+                                    <a role="" style="text-decoration: none;" class="rename" onclick="rename('after2', 'before2', 'rename2');">
+                                        <i class="fa" title="Rename"></i></a>
+                                </div>
+                                <div class="d_file" id="after2" style="display: none;">
+                                    <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName(event, 'newfilename_submit2')"
+                                        id="submit" title="Submit"><i class="fa"></i></a>
+                                    <a role="" style="text-decoration: none;" class="cancel" onclick="before_button('after2', 'before2', 'rename2')">
+                                        <i class="fa" title="Cancel"></i></a>
+                                </div>
+                                <form id="newfilename_submit2" method='post'>
+                                    {% csrf_token %}
+                                    <div style="padding-top: 10px; display: none;" id="rename2">
+                                        <input type="text" class="form-control" name="address" value="Main.java" placeholder="">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
 
+
+                        <div class="gallery">
+                            <div class="card cards">
+                                <div class="card-image">
+                                    <i class="fa fa-file-word-o" aria-hidden="true" style="font-size:100px;color:rgb(64, 17, 235)"></i>
+                                    <div class="desc"><b>Paper.docx</b></div>
+                                </div>
+                                <div class="d_file" id="before3">
+                                    <a href="" style="text-decoration: none;" class="download"
+                                        id="download" title="Download"><i class="fa" onclick="download();"></i></a>
+                                    <a role="" style="text-decoration: none;" class="rename" onclick="rename('after3', 'before3', 'rename3');">
+                                        <i class="fa" title="Rename"></i></a>
+                                </div>
+                                <div class="d_file" id="after3" style="display: none;">
+                                    <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName(event, 'newfilename_submit3')"
+                                        id="submit" title="Submit"><i class="fa"></i></a>
+                                    <a role="" style="text-decoration: none;" class="cancel" onclick="before_button('after3', 'before3', 'rename3')">
+                                        <i class="fa" title="Cancel"></i></a>
+                                </div>
+                                <form id="newfilename_submit3" method='post'>
+                                    {% csrf_token %}
+                                    <div style="padding-top: 10px; display: none;" id="rename3">
+                                        <input type="text" class="form-control" name="address" value="Paper.docx" placeholder="">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="gallery">
+                            <div class="card cards">
+                                <div class="card-image">
+                                    <i class="fa fa-file-powerpoint-o" aria-hidden="true" style="font-size:100px;color:rgb(229, 153, 13)"></i>
+                                    <div class="desc"><b>Class.pptx</b></div>
+                                </div>
+                                <div class="d_file" id="before4">
+                                    <a href="" style="text-decoration: none;" class="download"
+                                        id="download" title="Download"><i class="fa" onclick="download();"></i></a>
+                                    <a role="" style="text-decoration: none;" class="rename" onclick="rename('after4', 'before4', 'rename4');">
+                                        <i class="fa" title="Rename"></i></a>
+                                </div>
+                                <div class="d_file" id="after4" style="display: none;">
+                                    <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName(event, 'newfilename_submit4')"
+                                        id="submit" title="Submit"><i class="fa"></i></a>
+                                    <a role="" style="text-decoration: none;" class="cancel" onclick="before_button('after4', 'before4', 'rename4')">
+                                        <i class="fa" title="Cancel"></i></a>
+                                </div>
+                                <form id="newfilename_submit4" method='post'>
+                                    {% csrf_token %}
+                                    <div style="padding-top: 10px; display: none;" id="rename4">
+                                        <input type="text" class="form-control" name="address" value="Class.pptx" placeholder="">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+
+
+                <div class="w3-row-padding" style="padding-top: 40px; display: none;">
+                    <div class="container">
+                        
                         <div class="gallery">
                             <a href="" style="text-decoration: none;">
                                 <i class="fa fa-file" aria-hidden="true"
@@ -283,30 +391,6 @@
                                     style="font-size:100px;color:rgb(72, 38, 184)"></i>
                             </a>
                             <div class="desc">songs.zip</div>
-                        </div>
-
-                        <div class="gallery">
-                            <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-code-o" aria-hidden="true"
-                                    style="font-size:100px;color:rgb(19, 147, 66)"></i>
-                            </a>
-                            <div class="desc">Main.java</div>
-                        </div>
-
-                        <div class="gallery">
-                            <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-word-o" aria-hidden="true"
-                                    style="font-size:100px;color:rgb(64, 17, 235)"></i>
-                            </a>
-                            <div class="desc">paper.docx</div>
-                        </div>
-
-                        <div class="gallery">
-                            <a href="" style="text-decoration: none;">
-                                <i class="fa fa-file-powerpoint-o" aria-hidden="true"
-                                    style="font-size:100px;color:rgb(229, 153, 13)"></i>
-                            </a>
-                            <div class="desc">class.pptx</div>
                         </div>
 
                         <div class="gallery">
@@ -341,84 +425,7 @@
 
                 <!-- Image Galary -->
 
-                <div class="w3-row-padding">
-                    <div class="container">
-                        <div class="gallery">
-                            <a target="_blank" href="https://www.w3schools.com/css/img_5terre.jpg">
-                                <img src="https://www.w3schools.com/css/img_5terre.jpg" alt="Cinque Terre" width="600"
-                                    height="400">
-                            </a>
-                            <div class="desc">Add a description of the image here</div>
-                        </div>
-
-                        <div class="gallery">
-                            <a target="_blank" href="https://www.w3schools.com/css/img_forest.jpg">
-                                <img src="https://www.w3schools.com/css/img_forest.jpg" alt="Forest" width="600"
-                                    height="400">
-                            </a>
-                            <div class="desc">Add a description of the image here</div>
-                        </div>
-
-                        <div class="gallery">
-                            <a target="_blank" href="https://www.w3schools.com/css/img_lights.jpg">
-                                <img src="https://www.w3schools.com/css/img_lights.jpg" alt="Northern Lights"
-                                    width="600" height="400">
-                            </a>
-                            <div class="desc">Add a description of the image here</div>
-                        </div>
-
-                        <div class="gallery">
-                            <a target="_blank" href="https://www.w3schools.com/css/img_mountains.jpg">
-                                <img src="https://www.w3schools.com/css/img_mountains.jpg" alt="Mountains" width="600"
-                                    height="400">
-                            </a>
-                            <div class="desc">Add a description of the image here</div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="w3-row-padding">
-                    <div class="container" style="padding-top: 20px;">
-
-                        <div class="card cards">
-                            <div class="card-image">
-                                <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
-                                <div class="desc"><b>sample.pdf</b></div>
-                            </div>
-                            <div class="d_file" id="before">
-                                <a href="{% static "pdf/sample.pdf" %}" style="text-decoration: none;" class="download"
-                                    id="download" title="Download"><i class="fa" onclick="download();"></i></a>
-                                <a role="" style="text-decoration: none;" class="rename" onclick="rename();">
-                                    <i class="fa" title="Rename"></i></a>
-                            </div>
-                            <div class="d_file" id="after" style="display: none;">
-                                <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName()"
-                                    id="submit" title="Submit"><i class="fa"></i></a>
-                                <a role="" style="text-decoration: none;" class="cancel" onclick="before_button()">
-                                    <i class="fa" title="Cancel"></i></a>
-                            </div>
-                            <form id="newfilename_submit" method='post'>
-								{% csrf_token %}
-                                <div style="padding-top: 10px; display: none;" id="rename">
-                                    <input type="text" class="form-control" name="address" value="sample.pdf" placeholder="">
-                                </div>
-                            </form>
-                            
-
-                            <!-- <div class="category"> Illustration </div>
-                            <div class="heading"> A heading that must span over two lines
-                                <div class="author"> By <span class="name">Abi</span> 4 days ago</div>
-                            </div> -->
-
-
-
-                        </div>
-
-                    </div>
-                </div>
-
+                
 
             </div>
 
