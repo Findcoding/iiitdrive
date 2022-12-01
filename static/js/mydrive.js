@@ -118,3 +118,9 @@ function before_button() {
 
     document.getElementById('rename').style.display = "none";
 }
+
+
+function submitNewFileName() {
+    let form = document.getElementById("newfilename_submit");
+    form.submit();
+}

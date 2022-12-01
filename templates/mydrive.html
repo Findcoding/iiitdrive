@@ -394,14 +394,17 @@
                                     <i class="fa" title="Rename"></i></a>
                             </div>
                             <div class="d_file" id="after" style="display: none;">
-                                <a role="" style="text-decoration: none;" class="submit"
+                                <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName()"
                                     id="submit" title="Submit"><i class="fa"></i></a>
                                 <a role="" style="text-decoration: none;" class="cancel" onclick="before_button()">
                                     <i class="fa" title="Cancel"></i></a>
                             </div>
-                            <div style="padding-top: 10px; display: none;" id="rename">
-                                <input type="text" class="form-control" name="address" value="sample.pdf" placeholder="">
-                            </div>
+                            <form id="newfilename_submit" method='post'>
+								{% csrf_token %}
+                                <div style="padding-top: 10px; display: none;" id="rename">
+                                    <input type="text" class="form-control" name="address" value="sample.pdf" placeholder="">
+                                </div>
+                            </form>
                             
 
                             <!-- <div class="category"> Illustration </div>
