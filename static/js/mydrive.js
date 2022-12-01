@@ -114,7 +114,7 @@ function before_button(after, before, rename) {
 
 
 
-function submitNewFileName(event, form_id) {
+function submitNewFileName(event, form_id, after, before, rename) {
 
     var record = confirm("Do you want rename the file?");
 
@@ -123,7 +123,7 @@ function submitNewFileName(event, form_id) {
         form.submit();
 
     } else {
-        before_button();
+        before_button(after, before, rename);
         event.stopImmediatePropagation();
         event.preventDefault();
         return false;
