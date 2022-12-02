@@ -16,6 +16,3 @@ pip install -r requirement.txt
 ```sh
 python manage.py runserver
 ```
-
-## Stats
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Findcoding)](https://github.com/anuraghazra/github-readme-stats)
