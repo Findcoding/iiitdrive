@@ -1,0 +1,13 @@
+
+<div class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">
+
+    <div class="w3-dropdown-hover w3-hide-small">
+        <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:40px;width:42px"
+            alt="Avatar">
+        <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+            <a href="{% url 'profilepage' %}" style="text-decoration:none" class="w3-bar-item w3-button">Profile</a>
+            <a href="{% url 'index' %}" style="text-decoration:none" class="w3-bar-item w3-button"
+                onclick="logout(event)">Logout</a>
+        </div>
+    </div>
+</div>

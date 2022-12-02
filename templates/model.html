@@ -1,0 +1,127 @@
+<!-- Upload bottom -->
+<!-- <p><a target="_self" href="{% url 'upload' %}"><i class="fas fa-cloud-upload-alt"
+                                style="font-size: 70px; margin-right: 10px;"></i></a></p> -->
+{% load static %}
+
+<button type="button" class="btn btn-primary bottomright icon animate__animated animate__bounceInDown animate__slower" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+    style="font-size: 30px; margin-right: 10px; margin-bottom: 10px;">
+    <i class="fa fa-pencil icon" aria-hidden="true" style="font-size: 25px;"></i><b> Post</b>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">What's on your mind?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Model body -->
+            <div class="modal-body" id="form">
+
+
+                <div class="row">
+                    <div class="container">
+
+                        <div class="p-5 bg-white shadow" style="border: 2px solid black; border-radius: 10px;">
+                            <img src="{% static "images/post.png" %}" alt="" width="150"
+                                class="d-block mx-auto mb-4 rounded-pill">
+
+                            <!-- Default bootstrap file upload-->
+                            <!--     
+                                                        <h6 class="text-center mb-4 text-muted">
+                                                            You can use default Bootstrap file upload
+                                                        </h6> -->
+
+
+
+
+                            <div class="card gedf-card">
+                                <div class="card-header">
+                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts"
+                                                role="tab" aria-controls="posts" aria-selected="true">
+                                                Create Post</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="message">post</label>
+                                                <textarea class="form-control" id="message" rows="3"
+                                                    placeholder="Write something here..."></textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered border-dark" id="emptbl">
+                                                        <tr>
+                                                            <td id="col0"><input type="file" class="form-control" value="" accept=".png, .jpg, .jpeg" onchange="validateSize(this)"></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="card">
+                                                    <select class="hashtag" name="hashtag" id="hashtag" placeholder="Choose a Hashtag" multiple>
+                                                        <option value="TechFest">TechFest</option>
+                                                        <option value="Neon Night">Neon Night</option>
+                                                        <option value="Odyssey">Odyssey</option>
+                                                        <option value="IPPL">IPPL</option>
+                                                    </select>
+                                                </div>
+
+                                                <script>
+                                                    
+                                                    $(document).ready(function() {
+                                                        if (document.getElementById('hashtag') != null) {
+                                                            var multipleCancelButton = new Choices('#hashtag', {
+                                                                removeItemButton: true,
+                                                                maxItemCount: 1,
+                                                                searchResultLimit: 5,
+                                                                shouldSort: true,
+                                                                removeItemButton: true,
+                                                                duplicateItemsAllowed: false,
+                                                                searchFields: ['label', 'value'],
+                                                                noResultsText: 'No results found'
+                                                            });
+                                                        }
+
+                                                    });
+                                                </script>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Model body end -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="clears(event);">Clear</button>
+                <button type="button" class="btn btn-primary">Post</button>
+            </div>
+
+        </div>
+    </div>
+</div>
