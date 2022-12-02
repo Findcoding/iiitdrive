@@ -22,17 +22,20 @@ function openNav() {
 
 
 function view_more() {
+
     var dots = document.getElementById("dots");
     var moreText = document.getElementById("more");
-    var btnText = document.getElementById("myBtn");
+    var content = document.getElementById("content");
+
   
     if (dots.style.display === "none") {
-      dots.style.display = "inline";
-      btnText.innerHTML = "Read more"; 
+      dots.style.display = "block";
       moreText.style.display = "none";
+      content.innerHTML = "Read More";
+
     } else {
       dots.style.display = "none";
-      btnText.innerHTML = "Read less"; 
-      moreText.style.display = "inline";
+      moreText.style.display = "block";
+      content.innerHTML = "Read Less";
     }
 }
