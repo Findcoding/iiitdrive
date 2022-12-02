@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="w3-card w3-round w3-white" style="border-radius: 10px;">
     <div class="w3-container">
 
@@ -6,7 +8,7 @@
                 <div class="col-lg-3 order-lg-2">
                     <div class="card-profile-image">
                         <a href="#">
-                            <img src="https://www.w3schools.com/w3images/avatar3.png" class="rounded-circle">
+                            <img src="{% static "images/biju1.jpg" %}" class="rounded-circle">
                         </a>
                     </div>
                 </div>
@@ -55,21 +57,18 @@
 
         <div class="text-center" style="padding-top: 10px;">
             <h3>
-                Jessica Jones<span class="font-weight-light">, 27</span>
+                Bijendar Prasad<span class="font-weight-light"></span>
             </h3>
             <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                <i class="ni location_pin mr-2"></i>CSAM | 2023
             </div>
-            <div class="h5 mt-4">
-                <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-            </div>
-            <div>
-                <i class="ni education_hat mr-2"></i>University of Computer Science
-            </div>
+            <img src="{% static "images/iiitd4.png" %}" class="center_img" alt="IIITD" width="300px">
+            
             <hr class="my-4">
-            <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes,
-                performs and records all of his own music.</p>
-            <!-- <a href="#">Show more</a> -->
+            <p style="text-align: center;">I'm a full-stack software engineer with a passion for learning and creating. 
+                I have experience with a variety of languages and technologies, and always looking for ways to improve my skills.
+                 I'm currently focusing on web development using JavaScript, Django, React, and Node.js.</p>
+            
         </div>
     </div>
 
