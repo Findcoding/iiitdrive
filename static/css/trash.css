@@ -55,6 +55,17 @@ body {
   background-color: transparent;
 }
 
+
+@media (min-width: 601px) {
+  .w3-col.m7 {
+    width: 66.33333% !important;
+  }
+}
+
+.w3-col {
+  padding-left: 30px !important;
+}
+
 .content {
   position: absolute;
   /* margin: 100px; */
@@ -109,3 +120,142 @@ body {
         0% 100%);
   }
 }
+
+
+/* Notice card */
+
+.with-chevron[aria-expanded='true'] i {
+  display: block;
+  transform: rotate(180deg) !important;
+}
+
+
+
+/* card */
+
+
+div.gallery {
+  margin: 11px;
+  float: left;
+  text-align: center;
+}
+
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.cards {
+  width: 190px;
+  /* height: 274px; */
+  background: white;
+  padding: .4em;
+  border-radius: 6px !important;
+  border: 2px solid black !important;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px 6px 0 0;
+  text-align: center;
+}
+
+.card-image:hover {
+  transform: scale(0.98);
+}
+
+
+.d_file {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+
+@media screen and (max-height: 255px) {
+  .d_file {
+    margin: 25px auto
+  }
+}
+
+@-webkit-keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+.remove {
+  display: inline-block;
+  padding: 10px 10px 10px;
+  border: 0;
+  border-radius: 3px;
+  background: #ea2020;
+  text-decoration: none;
+  transition: all 1.2s ease-in-out;
+}
+
+
+.remove i::after {
+  content: "\f057";
+  font-size: 40px;
+  color: #fff;
+}
+
+.remove:hover {
+  -webkit-animation: pulse 0.2s 2 both;
+  animation: pulse 0.2s 2 both;
+}
+
+
+
+.restore {
+  display: inline-block;
+  padding: 10px 10px 10px;
+  border: 0;
+  border-radius: 3px;
+  background: #aaea20;
+  text-decoration: none;
+  transition: all 1.2s ease-in-out;
+}
+
+
+.restore i::after {
+  content: "\f0e2";
+  font-size: 40px;
+  color: #fff;
+}
+
+.restore:hover {
+  -webkit-animation: pulse 0.2s 2 both;
+  animation: pulse 0.2s 2 both;
+}
+
