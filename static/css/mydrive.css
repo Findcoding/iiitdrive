@@ -63,6 +63,16 @@ body {
   background-color: transparent;
 }
 
+@media (min-width: 601px) {
+  .w3-col.m7 {
+    width: 66.33333% !important;
+  }
+}
+
+.w3-col {
+  padding-left: 30px !important;
+}
+
 .content {
   position: absolute;
   /* margin: 100px; */
@@ -273,7 +283,7 @@ progress {
 /* galary */
 
 div.gallery {
-  margin: 15px;
+  margin: 11px;
   /* border: 1px solid #ccc; */
   float: left;
   /* width: 175px; */
