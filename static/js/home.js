@@ -1,17 +1,4 @@
 
-function logout(event) {
-    let val = confirm('Do you want to logout?');
-
-    if (val == true) {
-        return true;
-    } else {
-        event.stopImmediatePropagation();
-        event.preventDefault();
-        return false;
-    }
-}
-
-
 
 function validateSize(input) {
     const fileSize = input.files[0].size / 1024 / 1024;
@@ -26,7 +13,7 @@ function validateSize(input) {
 
 function clears(event) {
 
-    var record = confirm("Do you want to clear form??");
+    var record = confirm("Do you want to clear form?");
 
     if(record == true) {
         $("#staticBackdrop").load(location.href + " #staticBackdrop>*", "");

@@ -1,3 +1,15 @@
+function logout(event) {
+    let val = confirm('Do you want to logout?');
+
+    if (val == true) {
+        return true;
+    } else {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        return false;
+    }
+}
+
 function myFunction(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
