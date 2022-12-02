@@ -250,7 +250,15 @@ hr {
   box-shadow: none
 }
 
+.form-control:invalid:focus {
+  border-color: red;
+  border: 3px solid red;
+}
 
+.form-control:valid:focus {
+  border-color: green;
+  border: 3px solid green;
+}
 
 
 /* Rotate Icon */
