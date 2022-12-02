@@ -55,6 +55,18 @@ body {
   background-color: transparent;
 }
 
+
+@media (min-width: 601px) {
+  .w3-col.m7 {
+    width: 66.33333% !important;
+  }
+}
+
+.w3-col {
+  padding-left: 30px !important;
+}
+
+
 .content {
   position: absolute;
   /* margin: 100px; */
@@ -111,9 +123,199 @@ body {
 }
 
 
-/* card */
+/* Notice card */
 
 .with-chevron[aria-expanded='true'] i {
   display: block;
   transform: rotate(180deg) !important;
 }
+
+
+
+/* card */
+
+
+div.gallery {
+  margin: 11px;
+  float: left;
+  text-align: center;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.cards {
+  width: 190px;
+  /* height: 274px; */
+  background: white;
+  padding: .4em;
+  border-radius: 6px !important;
+  border: 2px solid black !important;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px 6px 0 0;
+  text-align: center;
+}
+
+.card-image:hover {
+  transform: scale(0.98);
+}
+
+
+/* downolad button */
+
+.d_file {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+@media screen and (max-height: 255px) {
+  .d_file {
+    margin: 25px auto
+  }
+}
+
+.download {
+  display: inline-block;
+  padding: 10px 10px 10px;
+  border: 0;
+  border-radius: 3px;
+  background: #1df3bd;
+  text-decoration: none;
+  transition: all 1.2s ease-in-out;
+}
+
+.download i::after {
+  content: "\f019";
+  font-size: 40px;
+  color: #fff;
+}
+
+.download:hover {
+  -webkit-animation: pulse 0.2s 2 both;
+  animation: pulse 0.2s 2 both;
+}
+
+.download.loading i {
+  -webkit-animation: loading 2s infinite linear;
+  animation: loading 2s infinite linear;
+}
+
+.download.loading i::after {
+  content: "\f1ce";
+}
+
+.download.success {
+  border-radius: 50%;
+  background: #26ec2d;
+}
+
+.download.success i::after {
+  content: "\f00c";
+  color: transparent;
+  -webkit-animation: change-icon 1s 0.6s linear both;
+  animation: change-icon 1s 0.6s linear both;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+@-webkit-keyframes change-icon {
+  0% {
+    color: transparent;
+  }
+
+  100% {
+    color: #fff;
+  }
+}
+
+@keyframes change-icon {
+  0% {
+    color: transparent;
+  }
+
+  100% {
+    color: #fff;
+  }
+}
+
+@-webkit-keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+.unstarred {
+  display: inline-block;
+  padding: 10px 10px 10px;
+  border: 0;
+  border-radius: 3px;
+  background: #ea209d;
+  text-decoration: none;
+  transition: all 1.2s ease-in-out;
+}
+
+
+.unstarred i::after {
+  content: "\f05e";
+  font-size: 40px;
+  color: #fff;
+}
+
+.unstarred:hover {
+  -webkit-animation: pulse 0.2s 2 both;
+  animation: pulse 0.2s 2 both;
+}
+
+
