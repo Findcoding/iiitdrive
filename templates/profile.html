@@ -14,7 +14,7 @@
 
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
-	<!-- <script type="text/javascript" src="{% static 'js/index.js' %}"></script> -->
+	<script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
@@ -158,7 +158,7 @@
 										<h6 class="mb-0"><b>Programme</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<select id="programme" class="form-control" name="programme" required>
+										<select id="programme" class="form-control" name="programme" required onclick="programmes()">
 											<option id="select" value="none">Select</option>
 											<option id="btech" value="B.Tech">B.Tech</option>
 											<option id="mtech" value="M.Tech">M.Tech</option>
@@ -171,8 +171,25 @@
 										<h6 class="mb-0"><b>Branch</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" name="branch" value=""
-											placeholder="CSAM" required>
+										<select id="branch" class="form-control" name="branch" required>
+											<option value="none">Select</option>
+										</select>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-sm-3">
+										<h6 class="mb-0"><b>Batch Year</b></h6>
+									</div>
+									<div class="col-sm-9 text-secondary">
+										<select id="batch_year" class="form-control" name="batch_year" required>
+											<option id="select" value="none">Select</option>
+											<option id="btech" value="2018">2018</option>
+											<option id="btech" value="2019">2019</option>
+											<option id="btech" value="2020">2020</option>
+											<option id="btech" value="2021">2021</option>
+											<option id="btech" value="2022">2022</option>
+											<option id="btech" value="2023">2023</option>
+										</select>
 									</div>
 								</div>
 								<div class="row mb-3">
