@@ -70,13 +70,13 @@ function download() {
     // document.getElementById('download').click();
     if (downloadButton) {
         click_download();
-        
+
         downloadButton.addEventListener('click', function (event) {
             event.preventDefault();
 
             /* Start loading process. */
             downloadButton.classList.add('loading');
-            
+
 
             /* Set delay before switching from loading to success. */
             window.setTimeout(function () {
@@ -84,14 +84,14 @@ function download() {
                 downloadButton.classList.add('success');
             }, 2000);
 
-           
+
 
             /* Reset animation. */
             window.setTimeout(function () {
                 downloadButton.classList.remove('success');
             }, 4000);
 
-            
+
 
         });
     };
@@ -118,7 +118,7 @@ function submitNewFileName(event, form_id, after, before, rename) {
 
     var record = confirm("Do you want rename the file?");
 
-    if(record == true) {
+    if (record == true) {
         let form = document.getElementById(form_id);
         form.submit();
 
@@ -127,5 +127,17 @@ function submitNewFileName(event, form_id, after, before, rename) {
         event.stopImmediatePropagation();
         event.preventDefault();
         return false;
+    }
+}
+
+
+
+function add_to_favourite(checked) {
+
+    if (document.getElementById(checked).style.color == "") {
+        document.getElementById(checked).style.color = "orange";
+
+    } else {
+        document.getElementById(checked).style.color = "";
     }
 }
