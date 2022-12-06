@@ -245,14 +245,90 @@
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white">
                             <div class="w3-container w3-padding">
-                                <h6 class="w3-opacity">Social Media template</h6>
-                                <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
+                                <h6 class="w3-opacity">What are you doing?...</h6>
+                                <p contenteditable="true" class="w3-border w3-padding">Doing Assignment.. :)</p>
                                 <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>
                                      Post</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                
+
+                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                    <img src="https://www.w3schools.com/w3images/avatar5.png" alt="Avatar"
+                        class="w3-left w3-circle w3-margin-right" style="width:60px">
+                    <span class="w3-right w3-opacity">16 min ago
+                        <!-- <i class="fa fa-ellipsis-h"></i> -->
+                    </span>
+                    <h4>Jane Doe</h4><a href="{% url 'social' %}" style="text-decoration: none;"><small class="text-primary"><b>@Collegues</b></small><br></a>
+                    <hr class="w3-clear">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                    <div>
+                        <span class="badge badge-primary">JavaScript</span>
+                        <span class="badge badge-primary">Android</span>
+                        <span class="badge badge-primary">PHP</span>
+                        <span class="badge badge-primary">Node.js</span>
+                        <span class="badge badge-primary">Ruby</span>
+                        <span class="badge badge-primary">Python</span>
+                    </div>
+                    <br>
+                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                         Like</button>
+                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" onclick="comment_section('comment_section1')"><i class="fa fa-comment icon"></i>
+                         Comment</button>
+                    <hr>
+
+                    <div class="comments">
+                        <div class="container" style="text-align: right;"> <span><i class="fa fa-thumbs-up total_like"></i> 2</span> <span
+                            class="ml-2"><i class="fa fa-comments total_comments"></i> 2</span> 
+                        </div>
+                        
+                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40"
+                                class="rounded-image">
+                            <div class="d-flex flex-column ml-2"> <span class="name">Daniel Frozer</span> <small
+                                    class="comment-text">I like this alot! thanks alot</small>
+                                <div class="d-flex flex-row align-items-center status"> <small>Like</small>
+                                    <small>Reply</small> 
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40"
+                                class="rounded-image">
+                            <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span>
+                                <small class="comment-text">Thanks for sharing!</small>
+                                <div class="d-flex flex-row align-items-center status"> <small>Like</small>
+                                    <small>Reply</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+                         <div class="timeline-comment-box" id="comment_section1" style="display: none;">
+                               <form action="">
+                                  <div class="input-group">
+                                    <img class="comment_img" src="https://www.w3schools.com/w3images/avatar5.png">
+                                     <input type="text" class="form-control rounded-corner" placeholder="Write a comment..." required style="margin-left: 10px;">
+                                     <span class="input-group-btn p-l-10" style="padding-left: 10px;">
+                                     <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
+                                     </span>
+                                  </div>
+                               </form>
+                         </div>
+
+                    </div>
+                    <div class="container" style="padding-top: 10px;"></div>
+
+                </div>
+
+
+
 
                 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
                     <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar"
@@ -277,54 +353,6 @@
                             class="fa fa-thumbs-up"></i> Like</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
                          Comment</button>
-                </div>
-
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="https://www.w3schools.com/w3images/avatar5.png" alt="Avatar"
-                        class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">16 min <i
-                        class="fa fa-ellipsis-h"></i></span>
-                    <h4>Jane Doe</h4><small class="text-primary">Collegues</small><br>
-                    <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                         Like</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                         Comment</button>
-                    <hr>
-
-                    <div class="comments">
-                        <div class="container" style="text-align: right;"> <span>2 Likes</span> <span
-                            class="ml-2">2 Comments</span> 
-                        </div>
-                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40"
-                                class="rounded-image">
-                            <div class="d-flex flex-column ml-2"> <span class="name">Daniel Frozer</span> <small
-                                    class="comment-text">I like this alot! thanks alot</small>
-                                <div class="d-flex flex-row align-items-center status"> <small>Like</small>
-                                    <small>Reply</small> 
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40"
-                                class="rounded-image">
-                            <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span>
-                                <small class="comment-text">Thanks for sharing!</small>
-                                <div class="d-flex flex-row align-items-center status"> <small>Like</small>
-                                    <small>Reply</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-input"> <input type="text" class="form-control">
-                            <div class="fonts"> <i class="fa fa-camera">Submit</i> </div>
-                        </div>
-
-                    </div>
-                    <div class="container" style="padding-top: 10px;"></div>
-
                 </div>
 
 

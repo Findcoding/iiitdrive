@@ -82,3 +82,13 @@ async function refreshTime() {
     
 setInterval(refreshTime, 1000);
 
+
+function comment_section(comment) {
+
+    if(document.getElementById(comment).style.display == "none") {
+        document.getElementById(comment).style.display = "block";
+    } else {
+        document.getElementById(comment).style.display = "none";
+    }
+}
+
