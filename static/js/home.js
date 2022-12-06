@@ -60,9 +60,12 @@ async function refreshTime() {
         var minute = date.toLocaleString("default", { minute: "2-digit" });
         var second = date.toLocaleString("default", { second: "2-digit" });
 
+        let min = minute < 10 ? '0'+minute : minute
+        let sec = second < 10 ? '0'+second : second
+
         document.getElementById("hour").textContent = myArray[0] + ":";
-        document.getElementById("min").textContent = minute + ":";
-        document.getElementById("sec").textContent = second + " ";
+        document.getElementById("min").textContent = min + ":";
+        document.getElementById("sec").textContent = sec + " ";
         document.getElementById("zone").textContent = myArray[1];
 
         var datetime = date.toDateString();
