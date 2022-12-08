@@ -134,11 +134,22 @@ body {
 
 /* card */
 
-
 div.gallery {
   margin: 11px;
   float: left;
   text-align: center;
+  -webkit-transition: opacity 1s, -webkit-transform .5s;
+  transition: opacity 1s, -webkit-transform .5s;
+  transition: transform .5s, opacity 1s;
+  transition: transform .5s, opacity 1s, -webkit-transform .5s;
+  /* width: 100% */
+}
+
+div.gallery:hover,
+div.gallery:focus {
+  /* border: 2px solid black; */
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px)
 }
 
 div.gallery img {
