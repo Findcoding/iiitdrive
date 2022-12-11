@@ -42,7 +42,7 @@ body {
 }
 
 .w3-theme-d2 {
-  background-color: #5eee5e !important
+  background-color: #44bc90 !important
 }
 
 .w3-theme-d4 {
@@ -82,7 +82,7 @@ body {
 }
 
 .content h2:nth-child(2) {
-  color: #06f806;
+  color: #10f09e;
   animation: animate 4s ease-in-out infinite;
 }
 
