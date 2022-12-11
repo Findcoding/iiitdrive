@@ -47,7 +47,7 @@ function programmes() {
 
     } else {
         document.getElementById("branch").innerHTML = "";
-        
+
         let select = document.getElementById("branch");
         let el = document.createElement("option");
         el.textContent = "Select";
@@ -56,3 +56,27 @@ function programmes() {
     }
 
 }
+
+
+$(document).ready(function() {
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+
+    $(".upload-button").on('click', function() {
+       $(".file-upload").click();
+    });
+});
