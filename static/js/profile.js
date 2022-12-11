@@ -80,3 +80,15 @@ $(document).ready(function() {
        $(".file-upload").click();
     });
 });
+
+
+function upload_photo() {
+	let photo = document.getElementById('profile_image').value;
+
+	if(photo == "") {
+		alert("Select a profile photo");
+		return false;
+	}
+
+	return true;
+}
