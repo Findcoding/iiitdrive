@@ -15,11 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as authviews
 
 from . import views
+from .forms import UserLoginForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+	path('signup', views.signup, name = 'signup'),
+	path('login', authviews.LoginView.as_view(template_name = "registration/login.html", authentication_form = UserLoginForm), name = 'login'),
+	path('logout', authviews.LogoutView.as_view(), name = 'logout'),
+
+    path('activate/<slug:token>/', views.verify_email, name='verify_email'),
+
     path('', views.indexpage, name='index'),
     path('home', views.homepage, name='home'),
     path('profile', views.profile, name='profilepage'),
@@ -28,6 +37,6 @@ urlpatterns = [
     path('starred', views.starred, name='starred'),
     path('trash', views.trash, name='trash'),
     path('social', views.social, name='social'),
-    path('login', views.loginpage, name='login'),
+    path('login', views.loginpage, name='login_2'),
 
 ]
