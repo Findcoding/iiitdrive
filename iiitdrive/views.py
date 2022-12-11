@@ -37,7 +37,7 @@ def signup(request):
 			})
 			send_email(subject, user.email, message)
 
-			return redirect('home')
+			return redirect('login')
 	else:
 		form = NewUserCreationForm()
 	return render(request, 'registration/signup.html', {'form': form})
