@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'iiitdrive',   # include IIITDrive app
+	'widget_tweaks', # customized Django Form
 ]
 
 MIDDLEWARE = [
