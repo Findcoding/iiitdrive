@@ -13,7 +13,7 @@ setTimeout(() => {
 
 
 function show() {
-    var password = document.getElementById("password");
+    var password = document.getElementById("id_password");
     var icon = document.querySelector(".fas");
 
     // ========== Checking type of password ===========
