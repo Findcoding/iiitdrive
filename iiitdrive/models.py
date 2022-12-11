@@ -16,6 +16,15 @@ class AllowlistEmailValidator(EmailValidator):
     def __eq__(self, other):
         return isinstance(other, AllowlistEmailValidator) and super().__eq__(other)
 
+#https://stackoverflow.com/a/58495709/12512406
+class LowercaseEmailField(models.EmailField):
+	def to_python(self, value):
+		value = super(LowercaseEmailField, self).to_python(value)
+		if isinstance(value, str):
+			return value.lower()
+		return value
+
+
 
 class CustomUserManager(BaseUserManager):
 	def create_user(self, email, username, password = None, is_active = False, is_admin = False):
@@ -30,7 +39,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser):
 	uid = models.UUIDField(default = uuid.uuid4, unique = True, primary_key = True, editable = False)
-	email = models.EmailField(verbose_name = 'Email address', help_text = 'only IIITD emails', unique = True, max_length = 50, validators = [AllowlistEmailValidator(allowlist=['iiitd.ac.in']), ])
+	email = LowercaseEmailField(verbose_name = 'Email address', help_text = 'only IIITD emails', unique = True, max_length = 50, validators = [AllowlistEmailValidator(allowlist=['iiitd.ac.in']), ])
 	username = models.CharField(unique = True, max_length = 30, blank = False)
 
 	email_verified = models.BooleanField(verbose_name = 'Email Verified?', default = False)
