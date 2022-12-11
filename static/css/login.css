@@ -122,6 +122,16 @@ body {
     color: #339a74;
 }
 
+ul.errorlist {
+	list-style-type: circle;
+	color: red;
+	font-size: 10px;
+	/* display: flex; */
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+}
+
 .flex-col {
     flex-direction: column;
 }
@@ -362,7 +372,7 @@ body {
     /* border-radius: 0px 5px 5px 0px; */
 
     top: 50%;
-  
+
     float: right !important;
     transform: translateY(-160%) !important;
     position: relative !important;

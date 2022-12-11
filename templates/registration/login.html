@@ -6,7 +6,7 @@
 
 <head>
     {% block linkfile %}
-    <title>Login/Sign Up</title>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600" rel="stylesheet" type="text/css" />
@@ -26,48 +26,12 @@
 
 
 {% block content %}
-	<!-- <h2>Log In</h2> -->
-	<!-- <form method = "post">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button type = "submit">Log In</button>
-	</form> -->
 
 	<div id="container1" class="container">
 
         <div class="row">
             <div class="col align-items-center flex-col sign-up">
-                <div class="form-wrapper1 align-items-center">
-                    <form method='post'>
-                        {% csrf_token %}
-                        <div class="form sign-up">
-                            <div class="input-group">
-                                <i class='bx bxs-user'></i>
-                                <input type="text" name="fullname" value="" placeholder="Full Name" required>
-                            </div>
-                            <div class="input-group">
-                                <i class='bx bx-mail-send'></i>
-                                <input type="email" name="email" value="" placeholder="Email" required>
-                            </div>
-                            <div class="input-group">
-                                <i class='bx bxs-lock-alt'></i>
-                                <input type="password" name="password" id="psw" value="" placeholder="Password" autocomplete="on" required>
-                            </div>
-                            <div class="input-group">
-                                <i class='bx bxs-lock-alt'></i>
-                                <input type="password" name="confirm_password" id="confirm_psw" value="" placeholder="Confirm Password" autocomplete="on" required>
-                            </div>
-                            <button type="button" id="sign_up" onclick="return Validate()"> Sign up </button>
-                            <p>
-                                <span> Already have an account? </span>
-                                <b onclick="toggle()" class="pointer"> Sign in here </b>
-                            </p>
-
-                        </div>
-                    </form>
-
-                </div>
-
+                <div class="form-wrapper1 align-items-center"></div>
             </div>
 
 
@@ -75,35 +39,8 @@
                 <div class="form-wrapper align-items-center">
                     <form method='post'>
                         {% csrf_token %}
+
                         <div class="form sign-in">
-
-							<!--
-                            <div class="input-group">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <input type="email" value="" name="email" placeholder="Email Address" required>
-                            </div>
-                            <div class="input-group">
-                                <span>
-                                    <i class='bx bxs-lock-alt'></i>
-                                    <input type="password" value="" name="password" id="password" placeholder="Password" autocomplete="on" required>
-                                    <i class="fas fa-eye" onclick="show()" id="eye" type="button"></i>
-                                </span>
-                            </div>
-
-
-                            <p>
-								<label for="id_username">Username:</label>
-								<input type="text" name="username" class="form-control" placeholder="" autocapitalize="none" autocomplete="username" maxlength="30" required="" id="id_username">
-							</p>
-
-							<p>
-								<label for="id_password">Password:</label>
-								<input type="password" name="password" class="form-control" placeholder="" required="" id="id_password">
-							</p>
-
-							 -->
-
-							<!-- {{ form.as_p }} -->
 
 							{% load widget_tweaks %}
 
@@ -111,12 +48,14 @@
 							   <i class='bx bxs-user'></i>
 							   {% render_field form.username type="text" class="form-control" id="id_username" placeholder="Username" autocapitalize="none" autocomplete="username" maxlength="30" %}
 							</div>
+							{{ form.username.errors }}
 
 							<div class="form-group input-group">
 								<i class='bx bxs-lock-alt'></i>
-							   {% render_field form.password type="password" class="form-control" id="id_password" placeholder="Password" autocomplete="on" %}
-							   <i class="fas fa-eye" onclick="show()" id="eye" type="button"></i>
+								{% render_field form.password type="password" class="form-control" id="id_password" placeholder="Password" autocomplete="on" %}
+								<i class="fas fa-eye" onclick="show()" id="eye" type="button"></i>
 							</div>
+							{{ form.password.errors }}
 
                             <button type="submit" style="padding-top: 10px;"> Sign in </button>
 
@@ -126,9 +65,16 @@
                                 <span>
                                     Don't have an account?
                                 </span>
-                                <b onclick="toggle()" class="pointer"> Sign up here </b>
+                                <a href="{% url 'signup' %}" style="text-decoration: none;"><b onclick="toggle()" class="pointer"> Sign up here </b></a>
                             </p>
+
+							<p>
+								<span>
+									<b> {{ form.non_field_errors }} </b>
+								</span>
+							</p>
                         </div>
+
                     </form>
 
                 </div>
