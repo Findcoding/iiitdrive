@@ -29,7 +29,7 @@ class CustomUserManager(BaseUserManager):
 		return self.create_user(email = email, username = username, password = password, is_active = True, is_admin = True)
 
 class CustomUser(AbstractBaseUser):
-	uid = models.UUIDField(default = uuid.uuid4, unique = True, editable = False)
+	uid = models.UUIDField(default = uuid.uuid4, unique = True, primary_key = True, editable = False)
 	email = models.EmailField(verbose_name = 'Email address', help_text = 'only IIITD emails', unique = True, max_length = 50, validators = [AllowlistEmailValidator(allowlist=['iiitd.ac.in']), ])
 	username = models.CharField(unique = True, max_length = 30, blank = False)
 
