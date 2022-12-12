@@ -171,6 +171,15 @@ h2 {
 
 /* upload profile pic */
 
+
+.zoom {
+    transition: all 1.5s ease;
+}
+
+.zoom:hover {
+    transform: scale(1.3);
+}
+
 .profile-pic {
     width: 200px;
     max-height: 200px;
