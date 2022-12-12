@@ -6,8 +6,9 @@ from django.urls import reverse
 from django.conf import settings
 from django.conf.urls.static import static
 from django.template.loader import render_to_string
-
-from django.contrib.auth import login, get_user_model
+from django.contrib import messages
+from django.contrib.auth import get_user_model, login as auth_login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 from .forms import NewUserCreationForm
@@ -37,7 +38,9 @@ def signup(request):
 			})
 			send_email(subject, user.email, message)
 
-			return redirect('login')
+			request.method = 'GET'
+			context = {'alert_message' : 'Account Created Successfully, Check Email Inbox for Verification Link'}
+			return login(request, **context)
 	else:
 		form = NewUserCreationForm()
 	return render(request, 'registration/signup.html', {'form': form})
@@ -54,8 +57,27 @@ def verify_email(request, token) :
 		user.email_verified = True
 		user.is_active = True
 		user.save()
-		login(request, user)
+		auth_login(request, user)
 		return redirect('home')
+
+def login(request, *args, **kwargs):
+	context = kwargs
+
+	form = AuthenticationForm()
+	context.update({'form' : form})
+	if request.method == 'POST':
+		form = AuthenticationForm(request.POST)
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(username = username, password = password)
+		if user:
+			if user.is_active:
+				auth_login(request, user)
+				return redirect('home')
+		else:
+			messages.error(request, 'Username or Password Incorrect')
+
+	return render(request, 'registration/login.html', context)
 
 
 @login_required

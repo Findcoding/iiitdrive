@@ -34,15 +34,23 @@
                 <div class="form-wrapper1 align-items-center"></div>
             </div>
 
-
             <div class="col align-items-center flex-col sign-in">
                 <div class="form-wrapper align-items-center">
                     <form method='post'>
                         {% csrf_token %}
 
+
                         <div class="form sign-in">
 
 							{% load widget_tweaks %}
+
+							{% if messages %}
+								<ul class="messages">
+								{% for message in messages %}
+									<li class="{{ message.tags }}">{{ message }}</li>
+								{% endfor %}
+								</ul>
+							{% endif %}
 
 							<div class="form-group input-group">
 							   <i class='bx bxs-user'></i>
@@ -107,4 +115,9 @@
     </div>
 
     <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+	{% if alert_message %}
+	<script>
+		alert("{{alert_message}}");
+	</script>
+	{% endif %}
 {% endblock %}
