@@ -118,5 +118,4 @@ def social(request):
     return render(request, 'social.html')
 
 
-def loginpage(request):
-    return render(request, 'login.html')
+
