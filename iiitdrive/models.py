@@ -1,29 +1,31 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
+from django.contrib.auth import get_user_model
 from django.core.validators import EmailValidator
 from django.utils.deconstruct import deconstructible
 
 import uuid
+import os
 
 from .utils import get_email_verification_token
+from .model_fields import LowercaseCharField, LowercaseEmailField, RestrictedFileField
 
+# https://stackoverflow.com/a/61854214/12512406
 @deconstructible
 class AllowlistEmailValidator(EmailValidator):
-# https://stackoverflow.com/a/61854214/12512406
-    def validate_domain_part(self, domain_part):
-        return False
+	def validate_domain_part(self, domain_part):
+		return False
 
-    def __eq__(self, other):
-        return isinstance(other, AllowlistEmailValidator) and super().__eq__(other)
+	def __eq__(self, other):
+		return isinstance(other, AllowlistEmailValidator) and super().__eq__(other)
 
-#https://stackoverflow.com/a/58495709/12512406
-class LowercaseEmailField(models.EmailField):
-	def to_python(self, value):
-		value = super(LowercaseEmailField, self).to_python(value)
-		if isinstance(value, str):
-			return value.lower()
-		return value
 
+def change_filename(instance, filename) :
+	path = str(instance.user.uid)
+	format = str(uuid.uuid4()) + '.' + filename.split('.')[-1]
+	return os.path.join(path, format)
 
 
 class CustomUserManager(BaseUserManager):
@@ -70,3 +72,27 @@ class CustomUser(AbstractBaseUser):
 	@property
 	def is_superuser(self):
 		return self.is_admin
+
+class UserDetails(models.Model) :
+	user = models.OneToOneField(get_user_model(), related_name = 'details', on_delete = models.CASCADE, null = False, blank = False, editable = False)
+	profile_picture = RestrictedFileField(upload_to = change_filename, null = True, blank = True, content_types = ['image/jpg', 'image/jpeg'], max_upload_size = 1 * 1024 * 1024)
+	about_me = models.CharField(max_length = 200, default = '', blank = True)
+	hobbies = models.ManyToManyField('Hobby', related_name = 'users')
+
+	def __str__(self):
+		return f'{self.user.username}'
+
+
+@receiver(post_save, sender = get_user_model())
+def create_user_profile(sender, instance, created, *args, **kwargs):
+	if created:
+		UserDetails.objects.get_or_create(user = instance)
+	instance.details.save()
+
+
+class Hobby(models.Model) :
+	title = LowercaseCharField(max_length = 25, null = False, blank = False, unique = True)
+	description = models.CharField(max_length = 200, default = '', blank = True)
+
+	def __str__(self):
+		return f'{self.title}'
