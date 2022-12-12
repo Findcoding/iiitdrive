@@ -122,7 +122,7 @@ body {
     color: #339a74;
 }
 
-ul.errorlist {
+ul.messages {
 	list-style-type: circle;
 	color: red;
 	font-size: 10px;

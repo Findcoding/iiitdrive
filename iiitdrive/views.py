@@ -75,7 +75,8 @@ def login(request, *args, **kwargs):
 				auth_login(request, user)
 				return redirect('home')
 		else:
-			messages.error(request, 'Username or Password Incorrect')
+
+			messages.error(request, 'Incorrect Username or Password. Please enter a correct Username and Password.')
 
 	return render(request, 'registration/login.html', context)
 

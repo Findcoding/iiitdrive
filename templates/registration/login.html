@@ -44,14 +44,6 @@
 
 							{% load widget_tweaks %}
 
-							{% if messages %}
-								<ul class="messages">
-								{% for message in messages %}
-									<li class="{{ message.tags }}">{{ message }}</li>
-								{% endfor %}
-								</ul>
-							{% endif %}
-
 							<div class="form-group input-group">
 							   <i class='bx bxs-user'></i>
 							   {% render_field form.username type="text" class="form-control" id=form.username.id_for_label placeholder="Username" autocapitalize="none" autocomplete="username" %}
@@ -76,11 +68,21 @@
                                 <a href="{% url 'signup' %}" style="text-decoration: none;"><b onclick="toggle()" class="pointer"> Sign up here </b></a>
                             </p>
 
+							{% if messages %}
 							<p>
 								<span>
-									<b> {{ form.non_field_errors }} </b>
+									<b>
+										<ul class="messages">
+											{% for message in messages %}
+												<li class="{{ message.tags }}">{{ message }}</li>
+											{% endfor %}
+										</ul>
+									</b>
 								</span>
 							</p>
+							{% endif %}
+
+
                         </div>
 
                     </form>
@@ -115,9 +117,11 @@
     </div>
 
     <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+
 	{% if alert_message %}
 	<script>
 		alert("{{alert_message}}");
 	</script>
 	{% endif %}
+
 {% endblock %}
