@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col align-items-center flex-col sign-up">
                 <div class="form-wrapper1 align-items-center">
-                    <form method='post'>
+                    <form method='post' id="form_data">
                         {% csrf_token %}
                         <div class="form sign-up">
 
@@ -40,29 +40,30 @@
 
 							<div class="form-group input-group">
 							   <i class='bx bxs-user'></i>
-							   {% render_field form.username type="text" class="form-control" id="id_username" placeholder="Username" autocapitalize="none" maxlength="30" %}
+							   {% render_field form.username type="text" class="form-control" id=form.username.id_for_label placeholder="Username" autocapitalize="none" %}
 							</div>
 							{{ form.username.errors }}
 
 							<div class="form-group input-group">
 								<i class='bx bx-mail-send'></i>
-								{% render_field form.email type="email" class="form-control" id="id_email" placeholder="Email Address" maxlength="50" autocomplete="on" %}
+								{% render_field form.email type="email" class="form-control" id=form.email.id_for_label placeholder="Email Address" autocomplete="on" %}
 							</div>
+							<p><span>{{ form.email.help_text }}</span></p>
 							{{ form.email.errors }}
 
 							<div class="form-group input-group">
 								<i class='bx bxs-lock-alt'></i>
-								{% render_field form.password1 type="password" class="form-control" id="id_password1" placeholder="Password" autocomplete="new-password" %}
+								{% render_field form.password1 type="password" class="form-control" id=form.password1.id_for_label placeholder="Password" autocomplete="new-password" %}
 							</div>
 							{{ form.password1.errors }}
 
 							<div class="form-group input-group">
 								<i class='bx bxs-lock-alt'></i>
-								{% render_field form.password2 type="password" class="form-control" id="id_password2" placeholder=" Confirm Password" autocomplete="new-password" %}
+								{% render_field form.password2 type="password" class="form-control" id=form.password2.id_for_label placeholder=" Confirm Password" autocomplete="new-password" %}
 							</div>
 							{{ form.password2.errors }}
 
-                            <button type="submit" style="margin-top: 10px;"> Sign up </button>
+                            <button type="submit" style="margin-top: 10px;" id="sign_up_btn"> Sign up </button>
 
                             <p>
                                 <span> Already have an account? </span>

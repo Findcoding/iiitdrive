@@ -11,15 +11,15 @@ setTimeout(() => {
 }, 200)
 
 
-function Validate() {
-    var password = document.getElementById("psw").value;
-    var confirmPassword = document.getElementById("confirm_psw").value;
-    if (password != confirmPassword) {
-        alert("Password do not match.");
-        return false;
-    }
-    var sign_up = document.getElementById("sign_up");
-    alert("Account successfully created.");
-    sign_up.type = "submit"
-    return true;
-}
+
+
+$('#sign_btn').on("click", function(){
+	let valid = true;
+	$('[required]').each(function() {
+	  if ($(this).is(':invalid') || !$(this).val()) valid = false;
+	})
+	if (!valid) alert("error please fill all fields!");
+	else alert('valid');
+
+})
+

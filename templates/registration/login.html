@@ -46,13 +46,13 @@
 
 							<div class="form-group input-group">
 							   <i class='bx bxs-user'></i>
-							   {% render_field form.username type="text" class="form-control" id="id_username" placeholder="Username" autocapitalize="none" autocomplete="username" maxlength="30" %}
+							   {% render_field form.username type="text" class="form-control" id=form.username.id_for_label placeholder="Username" autocapitalize="none" autocomplete="username" %}
 							</div>
 							{{ form.username.errors }}
 
 							<div class="form-group input-group">
 								<i class='bx bxs-lock-alt'></i>
-								{% render_field form.password type="password" class="form-control" id="id_password" placeholder="Password" autocomplete="on" %}
+								{% render_field form.password type="password" class="form-control" id=form.password.id_for_label placeholder="Password" autocomplete="on" %}
 								<i class="fas fa-eye" onclick="show()" id="eye" type="button"></i>
 							</div>
 							{{ form.password.errors }}
