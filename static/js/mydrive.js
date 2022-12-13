@@ -116,18 +116,22 @@ function before_button(after, before, rename) {
 
 function submitNewFileName(event, form_id, after, before, rename) {
 
-    var record = confirm("Do you want rename the file?");
+	if(document.getElementById(rename).style.display == "block") {
+		var record = confirm("Do you want rename the file?");
 
-    if (record == true) {
-        let form = document.getElementById(form_id);
-        form.submit();
+		if (record == true) {
+			let form = document.getElementById(form_id);
+			form.submit();
 
-    } else {
-        before_button(after, before, rename);
-        event.stopImmediatePropagation();
-        event.preventDefault();
-        return false;
-    }
+		} else {
+			before_button(after, before, rename);
+			event.stopImmediatePropagation();
+			event.preventDefault();
+			return false;
+		}
+
+	}
+
 }
 
 
@@ -161,4 +165,40 @@ function delete_file(deleted, file_id, csrf_token) {
 		trash_id: file_id,
 		csrfmiddlewaretoken: csrf_token
 	});
+}
+
+
+function share(after, before, share) {
+    document.getElementById(after).style.display = "block";
+    document.getElementById(before).style.display = "none";
+    document.getElementById(share).style.display = "block";
+}
+
+
+function before_button1(after, before, share) {
+    document.getElementById(after).style.display = "none";
+    document.getElementById(before).style.display = "block";
+    document.getElementById(share).style.display = "none";
+
+}
+
+function submitNewOwnerName(event, form_id, after, before, share) {
+
+	if(document.getElementById(share).style.display == "block") {
+		var record = confirm("Do you want share the file?");
+
+		if (record == true) {
+			let form = document.getElementById(form_id);
+			form.submit();
+
+		} else {
+			before_button1(after, before, share);
+			event.stopImmediatePropagation();
+			event.preventDefault();
+			return false;
+		}
+
+	}
+
+
 }
