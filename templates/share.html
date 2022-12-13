@@ -155,55 +155,25 @@
 
                 <div class="container">
 					{% for file in files %}
-                    <div class="gallery">
+
+					<div class="gallery">
                         <div class="card cards">
-							<div class="inline">
-							{% if file.is_starred %}
-								<span class="fa fa-star" style="text-align: right; font-size: 1.5em;" title="Star" id="checked_{{forloop.counter}}" onclick="add_to_favourite('checked_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
-								<script>
-									document.getElementById('checked_{{forloop.counter}}').style.color = "orange";
-								</script>
-							{% else %}
-								<span class="fa fa-star" style="text-align: right; font-size: 1.5em;" title="Star" id="checked_{{forloop.counter}}" onclick="add_to_favourite('checked_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
-							{% endif %}
-								<span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file('delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
-							</div>
+
+							<span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file('delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
 
 							<div class="card-image">
                                 {% include 'file_type.html' %}
                                 <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
                             </div>
-                            <div class="d_file" id="before_{{forloop.counter}}">
+                            <div class="d_file">
                                 <a href="{{file.file.file.url}}" style="text-decoration: none;" class="download"
                                     id="download_{{forloop.counter}}" download="proposed_file_name" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
-                                <a role="" style="text-decoration: none;" class="rename" onclick="rename('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}',);">
-                                    <i class="fa" title="Rename"></i></a>
-								<a role="" style="text-decoration: none;" class="share" onclick="share('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}');">
-									<i class="fa" title="Share"></i></a>
+
                             </div>
-
-                            <div class="d_file" id="after_{{forloop.counter}}" style="display: none;">
-                                <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName(event, 'newfilename_submit_{{forloop.counter}}', 'after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}'); submitNewOwnerName(event, 'newfilename_submit_{{forloop.counter}}', 'after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}')"
-                                    id="submit" title="Submit"><i class="fa"></i></a>
-                                <a role="" style="text-decoration: none;" class="cancel" onclick="before_button('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}'); before_button1('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}')">
-                                    <i class="fa" title="Cancel"></i></a>
-                            </div>
-
-                            <form id="newfilename_submit_{{forloop.counter}}" method='post'>
-                                {% csrf_token %}
-                                <div style="padding-top: 10px; display: none;" id="rename_{{forloop.counter}}">
-                                    <input type="text" class="form-control" name="rename" value="{{file.file.name}}">
-									<input type="text" class="form-control" name="rename_id" value="{{file.file.uid}}" hidden>
-                                </div>
-
-								<div style="padding-top: 10px; display: none;" id="share_{{forloop.counter}}">
-                                    <input type="text" class="form-control" name="share" value="" placeholder="Owner Name">
-									<input type="text" class="form-control" name="share_id" value="{{file.file.uid}}" hidden>
-                                </div>
-                            </form>
 
                         </div>
                     </div>
+
 					{% endfor %}
             	</div>
 
