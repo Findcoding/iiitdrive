@@ -167,7 +167,7 @@
                             </div>
                             <div class="d_file">
                                 <a href="{{file.file.file.url}}" style="text-decoration: none;" class="download"
-                                    id="download_{{forloop.counter}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
+                                    id="download_{{forloop.counter}}" download="proposed_file_name" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
                                 <a role="" style="text-decoration: none;" class="unstarred">
                                     <i class="fa" title="Unstarred" onclick="remove_from_favourite('{{file.file.uid}}', '{{csrf_token}}')"></i></a>
                             </div>

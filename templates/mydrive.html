@@ -292,7 +292,7 @@
                             </div>
                             <div class="d_file" id="before_{{forloop.counter}}">
                                 <a href="{{file.file.file.url}}" style="text-decoration: none;" class="download"
-                                    id="download_{{forloop.counter}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
+                                    id="download_{{forloop.counter}}" download="proposed_file_name" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
                                 <a role="" style="text-decoration: none;" class="rename" onclick="rename('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}',);">
                                     <i class="fa" title="Rename"></i></a>
                             </div>
