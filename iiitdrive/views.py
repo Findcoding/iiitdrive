@@ -148,7 +148,12 @@ def mydrive(request):
 	return render(request, 'mydrive.html', context)
 
 def starred(request):
-    return render(request, 'starred.html')
+	user = request.user
+	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_trashed=False))
+
+	context = {'files' : files}
+
+	return render(request, 'starred.html', context)
 
 def trash(request):
     return render(request, 'trash.html')

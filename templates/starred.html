@@ -154,42 +154,34 @@
                 </div>
 
 
-
-
-                <div class="container">
-
-                    <div class="gallery">
-                        <div class="card cards">
-                            <div class="card-image">
-                                <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
-                                <div class="desc"><b>Sample.pdf</b></div>
-                            </div>
-                            <div class="d_file">
-                                <a href="{% static "pdf/sample.pdf" %}" style="text-decoration: none;" class="download"
-                                    id="download" title="Download"><i class="fa" onclick="download();"></i></a>
-                                <a role="" style="text-decoration: none;" class="unstarred">
-                                    <i class="fa" title="Unstarred"></i></a>
-                            </div>
-                        </div>
-                    </div>
+				<div class="container">
+					{% for file in files %}
+					{% if file.is_starred %}
 
                     <div class="gallery">
                         <div class="card cards">
-                            <div class="card-image">
-                                <i class="fa fa-file-code-o" aria-hidden="true" style="font-size:100px;color:rgb(19, 147, 66)"></i>
-                                <div class="desc"><b>Main.java</b></div>
+
+							<span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file('delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+
+							<div class="card-image">
+                                {% include 'file_type.html' %}
+                                <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
                             </div>
                             <div class="d_file">
-                                <a href="" style="text-decoration: none;" class="download"
-                                    id="download" title="Download"><i class="fa" onclick="download();"></i></a>
+                                <a href="{{file.file.url}}" style="text-decoration: none;" class="download"
+                                    id="download_{{forloop.counter}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
                                 <a role="" style="text-decoration: none;" class="unstarred">
-                                    <i class="fa" title="Unstarred"></i></a>
+                                    <i class="fa" title="Unstarred" onclick="remove_from_favourite('{{file.file.uid}}', '{{csrf_token}}')"></i></a>
                             </div>
+
                         </div>
                     </div>
+					{% endif %}
+
+					{% endfor %}
+            	</div>
 
 
-                </div>
 
 
 
