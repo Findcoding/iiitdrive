@@ -275,12 +275,19 @@
                     <div class="gallery">
                         <div class="card cards">
 							{% if file.is_starred %}
+							<div class="inline">
 								<span class="fa fa-star" style="text-align: right; font-size: 1.5em;" title="Star" id="checked_{{forloop.counter}}" onclick="add_to_favourite('checked_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+								<span class="fa fa-trash" style="text-align: left; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file('delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
 								<script>
 									document.getElementById('checked_{{forloop.counter}}').style.color = "orange";
 								</script>
+							</div>
 							{% else %}
+							<div class="inline">
 								<span class="fa fa-star" style="text-align: right; font-size: 1.5em;" title="Star" id="checked_{{forloop.counter}}" onclick="add_to_favourite('checked_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+								<span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file('delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+							</div>
+
 							{% endif %}
 
 							<div class="card-image">

@@ -311,7 +311,7 @@ div.gallery:focus {
   transform: translateY(-5px)
 }
 
-/* 
+/*
 div.gallery:hover {
   border: 1px solid #777;
   border: 2px solid black;
@@ -567,7 +567,7 @@ div.desc {
   color: #000;
   font-weight: 700;
   font-size: 20px;
-  margin-right: 10px; 
+  margin-right: 10px;
   margin-bottom: 10px;
   text-decoration: none;
   padding: 0.5em 1.0em;
@@ -631,4 +631,18 @@ div.desc {
 
 .c-button--gooey:hover .c-button__blobs div {
   transform: scale(1.4) translateY(0) translateZ(0);
+}
+
+
+.inline {
+	display: inline-block;
+}
+
+
+.fa-star {
+    float: right;
+}
+
+.fa-trash {
+    float: left;
 }

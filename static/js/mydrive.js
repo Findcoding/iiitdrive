@@ -152,3 +152,13 @@ function upload_files(form_id) {
 	let form = document.getElementById(form_id);
     form.submit();
 }
+
+
+function delete_file(deleted, file_id, csrf_token) {
+	document.getElementById(deleted).style.color = "red";
+
+	$.post("", {
+		star_id: file_id,
+		csrfmiddlewaretoken: csrf_token
+	});
+}
