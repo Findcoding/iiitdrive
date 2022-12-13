@@ -83,6 +83,11 @@ def login(request, *args, **kwargs):
 
 @login_required
 def homepage(request):
+	if request.method == 'POST':
+		post_data = request.POST
+		print(post_data)
+		return render(request, 'home.html')
+
 	return render(request, 'home.html')
 
 @login_required
