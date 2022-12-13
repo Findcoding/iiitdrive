@@ -210,5 +210,10 @@ def social(request):
     return render(request, 'social.html')
 
 
+@login_required
 def share(request):
-	return render(request, 'share.html')
+	user = request.user
+	files = user.shared_files.filter(models.Q(is_trashed=False) & models.Q(is_deleted=False))
+
+	context = {'files' : files}
+	return render(request, 'share.html', context)
