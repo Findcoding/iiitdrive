@@ -153,38 +153,38 @@
                                 <div class="row">
                                     <div class="container">
 
-                                        <div class="p-5 bg-white shadow"
-                                            style="border: 2px solid black; border-radius: 10px;">
-                                            <img src="{% static "images/upload2.jpg" %}" alt="" width="200"
-                                                class="d-block mx-auto mb-4 rounded-pill">
+										<form method="post" action="" enctype="multipart/form-data">
+											{% csrf_token %}
 
-                                            <!-- Default bootstrap file upload-->
-                                            <!--
-                                            <h6 class="text-center mb-4 text-muted">
-                                                You can use default Bootstrap file upload
-                                            </h6> -->
+											<div class="p-5 bg-white shadow"
+												style="border: 2px solid black; border-radius: 10px;">
+												<img src="{% static "images/upload2.jpg" %}" alt="" width="200"
+													class="d-block mx-auto mb-4 rounded-pill">
 
-
-
-
-                                            <div class="card gedf-card">
-                                                <div class="card-header">
-                                                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link active" id="posts-tab" data-toggle="tab"
-                                                                href="#posts" role="tab" aria-controls="posts"
-                                                                aria-selected="true">
-                                                                Browse file</a>
-                                                        </li>
-
-                                                    </ul>
-                                                </div>
+												<!-- Default bootstrap file upload-->
+												<!--
+												<h6 class="text-center mb-4 text-muted">
+													You can use default Bootstrap file upload
+												</h6> -->
 
 
-                                                <div class="card-body">
 
-													<form method="post" action="" enctype="multipart/form-data">
-														{% csrf_token %}
+
+												<div class="card gedf-card">
+													<div class="card-header">
+														<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+															<li class="nav-item">
+																<a class="nav-link active" id="posts-tab" data-toggle="tab"
+																	href="#posts" role="tab" aria-controls="posts"
+																	aria-selected="true">
+																	Browse file</a>
+															</li>
+
+														</ul>
+													</div>
+
+
+													<div class="card-body">
 														<div class="table-responsive">
 															<table class="table table-bordered border-dark" id="emptbl">
 																<tr>
@@ -195,22 +195,19 @@
 
 															</table>
 														</div>
-													</form>
 
-                                                </div>
-                                            </div>
+													</div>
+												</div>
 
-                                            <div style="padding-top: 10px;">
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="addRows('emptbl', 'col')">Add Row</button>
-                                                <button type="button" class="btn btn-default"
-                                                    onclick="deleteRows('emptbl')">Delete Row</button>
-                                            </div>
+												<div style="padding-top: 10px;">
+													<button type="button" class="btn btn-primary"
+														onclick="addRows('emptbl', 'col')">Add Row</button>
+													<button type="button" class="btn btn-default"
+														onclick="deleteRows('emptbl')">Delete Row</button>
+												</div>
 
-
-
-
-                                        </div>
+											</div>
+										</form>
 
                                     </div>
                                 </div>
