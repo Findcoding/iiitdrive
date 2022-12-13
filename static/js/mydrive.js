@@ -60,16 +60,16 @@ function validateSize(input) {
 }
 
 
-function click_download() {
-    document.getElementById('download').click();
+function click_download(download_id) {
+    document.getElementById(download_id).click();
 }
 
 
-function download() {
+function download(download_id) {
     let downloadButton = document.querySelector('.download');
     // document.getElementById('download').click();
     if (downloadButton) {
-        click_download();
+        click_download(download_id);
 
         downloadButton.addEventListener('click', function (event) {
             event.preventDefault();
