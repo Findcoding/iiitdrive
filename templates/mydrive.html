@@ -82,6 +82,10 @@
                 class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
                 <h2>Trash</h2>
             </a>
+			<a href="{% url 'share' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Shared">
+                <h2>Shared</h2>
+            </a>
             <a href="{% url 'profilepage' %}" style="text-decoration:none"
                 class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Profile">
                 <h2>Profile</h2>
@@ -300,7 +304,7 @@
                             </div>
 
                             <div class="d_file" id="after_{{forloop.counter}}" style="display: none;">
-                                <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName(event, 'newfilename_submit_{{forloop.counter}}', 'after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}'); submitNewOwnerName(event, 'newfilename_submit_{{forloop.counter}}', 'after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}')"
+                                <a role="" style="text-decoration: none;" class="submit" onclick="submitNewFileName(event, 'newfilename_submit_{{forloop.counter}}', 'after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}'); submitNewOwnerName(event, 'newownername_submit_{{forloop.counter}}', 'after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}')"
                                     id="submit" title="Submit"><i class="fa"></i></a>
                                 <a role="" style="text-decoration: none;" class="cancel" onclick="before_button('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}'); before_button1('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}')">
                                     <i class="fa" title="Cancel"></i></a>
@@ -312,7 +316,10 @@
                                     <input type="text" class="form-control" name="rename" value="{{file.file.name}}">
 									<input type="text" class="form-control" name="rename_id" value="{{file.file.uid}}" hidden>
                                 </div>
+                            </form>
 
+							<form id="newownername_submit_{{forloop.counter}}" method='post'>
+                                {% csrf_token %}
 								<div style="padding-top: 10px; display: none;" id="share_{{forloop.counter}}">
                                     <input type="text" class="form-control" name="share" value="" placeholder="Owner Name">
 									<input type="text" class="form-control" name="share_id" value="{{file.file.uid}}" hidden>
