@@ -118,15 +118,22 @@ def profile(request):
 @login_required
 def mydrive(request):
 	user = request.user
+	files = UserFiles.objects.filter(owner = user)
 	if request.method == 'POST':
 		if 'document' in request.FILES :
 			for f in request.FILES.getlist('document'):
 				r_file = ResourceFile.objects.create(file = f)
 				UserFiles.objects.create(owner=user, file=r_file)
+		elif 'rename_id' in request.POST and 'rename' in request.POST :
+			file = files.filter(file__uid = request.POST['rename_id']).first()
+			if file is not None :
+				file.file.name = request.POST['rename']
+				file.file.save()
 
-		return render(request, 'mydrive.html')
+	print(files)
+	context = {'files' : files}
 
-	return render(request, 'mydrive.html')
+	return render(request, 'mydrive.html', context)
 
 def starred(request):
     return render(request, 'starred.html')

@@ -108,12 +108,14 @@ class Social(models.Model) :
 
 
 class ResourceFile(models.Model) :
+	uid = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
 	file = models.FileField(upload_to=change_filename, null=True, blank=True)
 	name = models.CharField(max_length=30, null=False, blank=False)
 	type = models.CharField(max_length=15, null=False, blank=False)
 
 	def save(self, *args, **kwargs):
-		self.name, self.type = self.file.name.rsplit('.', 1)
+		if self._state.adding is True :
+			self.name, self.type = self.file.name.rsplit('.', 1)
 		super(ResourceFile, self).save(*args, **kwargs)
 
 	def __str__(self):
