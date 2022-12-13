@@ -179,18 +179,23 @@
 
                                                     </ul>
                                                 </div>
+
+
                                                 <div class="card-body">
 
-                                                    <div class="table-responsive">
-                                                        <table class="table table-bordered border-dark" id="emptbl">
-                                                            <tr>
-                                                                <td id="col0"><input type="file" class="form-control"
-                                                                        value="" placeholder=""
-                                                                        onchange="validateSize(this)"></td>
-                                                            </tr>
+													<form method="post" action="" enctype="multipart/form-data">
+														{% csrf_token %}
+														<div class="table-responsive">
+															<table class="table table-bordered border-dark" id="emptbl">
+																<tr>
+																	<td id="col0"><input type="file" class="form-control"
+																			value="" placeholder=""
+																			onchange="validateSize(this)"></td>
+																</tr>
 
-                                                        </table>
-                                                    </div>
+															</table>
+														</div>
+													</form>
 
                                                 </div>
                                             </div>
