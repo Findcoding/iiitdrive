@@ -91,14 +91,10 @@ def profile(request):
 	if request.method == 'POST':
 		if 'profile_image' in request.FILES :
 			user_details.profile_picture = request.FILES['profile_image']
-			print("Chaning user image")
-			print(user_details.profile_picture.url)
 			user_details.save()
-
-		return redirect(homepage)
-
-	print(user_details.profile_picture)
-	print(vars(user_details.profile_picture))
+		elif 'about_me' in request.POST :
+			user_details.about_me = request.POST['about_me']
+			user_details.save()
 
 	return render(request, 'profile.html')
 

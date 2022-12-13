@@ -173,7 +173,11 @@
 										<h6 class="mb-0"><b>About Me</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<textarea rows="4" class="form-control form-control-alternative" name="about_me" value="{{request.user.details.about_me}}" placeholder="A few words about you ..." required></textarea>
+										{% if request.user.details.about_me %}
+											<textarea rows="4" class="form-control form-control-alternative" name="about_me" placeholder="{{request.user.details.about_me}}" required></textarea>
+										{% else %}
+											<textarea rows="4" class="form-control form-control-alternative" name="about_me" placeholder="A few words about you ..." style="font-style:italic" required></textarea>
+										{% endif %}
 									</div>
 								</div>
 
