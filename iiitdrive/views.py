@@ -123,6 +123,8 @@ def mydrive(request):
 	user = request.user
 	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_trashed=False) & models.Q(is_deleted=False))
 
+	print(request.POST)
+
 	if request.method == 'POST':
 		if 'document' in request.FILES :
 			for f in request.FILES.getlist('document'):
@@ -145,6 +147,13 @@ def mydrive(request):
 			file = files.filter(file__uid = request.POST['trash_id']).first()
 			if file is not None :
 				file.is_trashed = True
+				file.save()
+			return redirect(mydrive)
+		elif 'share' in request.POST and 'share_id' in request.POST :
+			shared_user = get_user_model().objects.filter(username = request.POST['share']).first()
+			file = files.filter(file__uid = request.POST['share_id']).first()
+			if shared_user is not None and file is not None :
+				file.shared_with.add(shared_user)
 				file.save()
 			return redirect(mydrive)
 
