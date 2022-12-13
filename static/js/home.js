@@ -103,3 +103,10 @@ function post(event, form_id, massage_details) {
     }
 
 }
+
+
+
+function post_method(form_id) {
+	let form = document.getElementById(form_id);
+    form.submit();
+}

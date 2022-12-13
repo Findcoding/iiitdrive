@@ -34,21 +34,12 @@
             <!-- Model body -->
             <div class="modal-body" id="form">
 
-
                 <div class="row">
                     <div class="container">
 
                         <div class="p-5 bg-white shadow" style="border: 2px solid black; border-radius: 10px;">
                             <img src="{% static "images/post.png" %}" alt="" width="150"
                                 class="d-block mx-auto mb-4 rounded-pill">
-
-                            <!-- Default bootstrap file upload-->
-                            <!--
-                                                        <h6 class="text-center mb-4 text-muted">
-                                                            You can use default Bootstrap file upload
-                                                        </h6> -->
-
-
 
 
                             <div class="card gedf-card">
@@ -62,8 +53,10 @@
 
                                     </ul>
                                 </div>
+
                                 <div class="card-body">
-									<form action="" method="post" enctype="multipart/form-data">
+
+									<form action="" method="post" enctype="multipart/form-data" id="form_id">
 										{% csrf_token %}
 
 										<div class="tab-content" id="myTabContent">
@@ -120,10 +113,12 @@
 
 									</form>
 
+
                                 </div>
+
+
+
                             </div>
-
-
 
 
                         </div>
@@ -137,9 +132,10 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="clears(event);">Clear</button>
-                <button type="button" class="btn btn-primary">Post</button>
+                <button type="submit" class="btn btn-primary" onclick="post_method('form_id')">Post</button>
             </div>
 
         </div>
+
     </div>
 </div>
