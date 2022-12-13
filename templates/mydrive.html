@@ -153,7 +153,7 @@
                                 <div class="row">
                                     <div class="container">
 
-										<form method="post" action="" enctype="multipart/form-data">
+										<form method="post" action="" enctype="multipart/form-data" id="upload_data">
 											{% csrf_token %}
 
 											<div class="p-5 bg-white shadow"
@@ -205,8 +205,8 @@
 													<button type="button" class="btn btn-default"
 														onclick="deleteRows('emptbl')">Delete Row</button>
 												</div>
-
 											</div>
+
 										</form>
 
                                     </div>
@@ -219,7 +219,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
                                     onclick="clears(event);">Clear</button>
-                                <button type="button" class="btn btn-primary">Upload</button>
+                                <button type="submit" class="btn btn-primary" onclick="upload_files('upload_data')">Upload</button>
                             </div>
 
                         </div>

@@ -141,3 +141,9 @@ function add_to_favourite(checked) {
         document.getElementById(checked).style.color = "";
     }
 }
+
+
+function upload_files(form_id) {
+	let form = document.getElementById(form_id);
+    form.submit();
+}
