@@ -42,44 +42,37 @@ const date_url = "http://worldtimeapi.org/api/timezone/Asia/Kolkata";
 
 async function refreshTime() {
 
-    try {
-        const response = await fetch(date_url);
-        const data = await response.json();
+    const response = await fetch(date_url);
+	const data = await response.json();
 
-        const dateTimeInParts = data.datetime.split("T");
+	const dateTimeInParts = data.datetime.split("T");
 
-        const t = new Date(dateTimeInParts);
-        // console.log(t);
-        // const date = dateTimeInParts[0];
-        // const time = dateTimeInParts[1];
+	const t = new Date(dateTimeInParts);
+	// console.log(t);
+	// const date = dateTimeInParts[0];
+	// const time = dateTimeInParts[1];
 
-        var date = new Date(dateTimeInParts);
-        // console.log(date);
-        var hour = date.toLocaleString("default", { hour: "2-digit" });
-        const myArray = hour.split(" ");
-        var minute = date.toLocaleString("default", { minute: "2-digit" });
-        var second = date.toLocaleString("default", { second: "2-digit" });
+	var date = new Date(dateTimeInParts);
+	// console.log(date);
+	var hour = date.toLocaleString("default", { hour: "2-digit" });
+	const myArray = hour.split(" ");
+	var minute = date.toLocaleString("default", { minute: "2-digit" });
+	var second = date.toLocaleString("default", { second: "2-digit" });
 
-        let min = minute < 10 ? '0'+minute : minute
-        let sec = second < 10 ? '0'+second : second
+	let min = minute < 10 ? '0'+minute : minute
+	let sec = second < 10 ? '0'+second : second
 
-        document.getElementById("hour").textContent = myArray[0] + ":";
-        document.getElementById("min").textContent = min + ":";
-        document.getElementById("sec").textContent = sec + " ";
-        document.getElementById("zone").textContent = myArray[1];
+	document.getElementById("hour").textContent = myArray[0] + ":";
+	document.getElementById("min").textContent = min + ":";
+	document.getElementById("sec").textContent = sec + " ";
+	document.getElementById("zone").textContent = myArray[1];
 
-        var datetime = date.toDateString();
-        const arr = datetime.split(" ");
-        document.getElementById("date").textContent = arr[0] + ", " + arr[2] + " " + arr[1] + " " + arr[3];
-
-
-    } catch (err) {
-        alert("Something went wrong!! Please reload this page...");
-        location.reload();
-    }
+	var datetime = date.toDateString();
+	const arr = datetime.split(" ");
+	document.getElementById("date").textContent = arr[0] + ", " + arr[2] + " " + arr[1] + " " + arr[3];
 
 }
-    
+
 setInterval(refreshTime, 1000);
 
 
@@ -92,3 +85,21 @@ function comment_section(comment) {
     }
 }
 
+
+
+function post(event, form_id, massage_details) {
+
+    var record = confirm("Do you want post?");
+
+    if(record == true && document.getElementById(massage_details).value != "") {
+		let form = document.getElementById(form_id);
+        form.submit();
+
+    } else {
+		alert("Please fill the details.")
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        return false;
+    }
+
+}
