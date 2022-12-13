@@ -77,7 +77,6 @@ class UserDetails(models.Model) :
 	user = models.OneToOneField(get_user_model(), related_name = 'details', on_delete = models.CASCADE, null = False, blank = False, editable = False)
 	profile_picture = RestrictedFileField(upload_to = change_filename, null = True, blank = True, content_types = ['image/jpg', 'image/jpeg'], max_upload_size = 1 * 1024 * 1024)
 	about_me = models.CharField(max_length = 200, default = '', blank = True)
-	hobbies = models.ManyToManyField('Hobby', related_name = 'users')
 
 	def __str__(self):
 		return f'{self.user.username}'
@@ -88,11 +87,3 @@ def create_user_profile(sender, instance, created, *args, **kwargs):
 	if created:
 		UserDetails.objects.get_or_create(user = instance)
 	instance.details.save()
-
-
-class Hobby(models.Model) :
-	title = LowercaseCharField(max_length = 25, null = False, blank = False, unique = True)
-	description = models.CharField(max_length = 200, default = '', blank = True)
-
-	def __str__(self):
-		return f'{self.title}'
