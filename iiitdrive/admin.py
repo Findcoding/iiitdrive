@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 
-from .models import CustomUser
+from .models import *
 
 class CustomUserAdmin(UserAdmin):
 	list_filter = ('is_admin', 'is_active')
@@ -34,3 +34,8 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.unregister(Group)
+
+admin.site.register(UserDetails)
+admin.site.register(Social)
+admin.site.register(ResourceFile)
+admin.site.register(UserFiles)
