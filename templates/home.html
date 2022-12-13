@@ -266,12 +266,17 @@
 
 
                 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="https://www.w3schools.com/w3images/avatar5.png" alt="Avatar"
-                        class="w3-left w3-circle w3-margin-right" style="width:60px">
+
+					{% if request.user.details.profile_picture %}
+					<img class="w3-left w3-circle w3-margin-right" src = "{{request.user.details.profile_picture.url}}" style="width:60px">
+					{% else %}
+						<img class="w3-left w3-circle w3-margin-right" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" style="width:60px">
+					{% endif %}
                     <span class="w3-right w3-opacity">16 min ago
                         <!-- <i class="fa fa-ellipsis-h"></i> -->
                     </span>
-                    <h4>Jane Doe</h4><a href="{% url 'social' %}" style="text-decoration: none;"><small class="text-primary"><b>@Collegues</b></small><br></a>
+                    <a href="{% url 'social' %}" style="text-decoration: none;"><h4 class="text-primary"><b>@{{request.user.username}}</b></h4></a>
+					<small><b>IIITD Student</b></small><br>
                     <hr class="w3-clear">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -323,11 +328,16 @@
                                <form method="post">
 								  {% csrf_token %}
                                   <div class="input-group">
-                                    <img class="comment_img" src="https://www.w3schools.com/w3images/avatar5.png">
-                                     <input type="text" class="form-control rounded-corner" placeholder="Write a comment..." required style="margin-left: 10px;">
-                                     <span class="input-group-btn p-l-10" style="padding-left: 10px;">
-                                     <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
-                                     </span>
+									{% if request.user.details.profile_picture %}
+									<img class="comment_img" src = "{{request.user.details.profile_picture.url}}">
+									{% else %}
+										<img class="comment_img" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+									{% endif %}
+									<input type="text" class="form-control rounded-corner" placeholder="Write a comment..." required style="margin-left: 10px;">
+									<span class="input-group-btn p-l-10" style="padding-left: 10px;">
+									<button class="btn btn-primary f-s-12 rounded-corner" type="submit">Comment</button>
+									</span>
+
                                   </div>
                                </form>
                          </div>
