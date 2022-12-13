@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import NewUserCreationForm
 from .utils import send_email
-from .models import UserDetails
+from .models import UserDetails, Social
 
 User = get_user_model()
 
@@ -92,9 +92,20 @@ def profile(request):
 		if 'profile_image' in request.FILES :
 			user_details.profile_picture = request.FILES['profile_image']
 			user_details.save()
-		elif 'about_me' in request.POST :
-			user_details.about_me = request.POST['about_me']
-			user_details.save()
+		else:
+			if 'about_me' in request.POST :
+				user_details.about_me = request.POST['about_me']
+				user_details.save()
+			for social in ['github', 'linkedin', 'twitter', 'instagram', 'facebook', 'reddit'] :
+				if social in request.POST :
+					if Social.objects.filter(user_details = user_details, name = social).exists() :
+						user_social = Social.objects.get(user_details = user_details, name = social)
+					else :
+						user_social = Social()
+						user_social.user_details = user_details
+						user_social.name = social
+					user_social.link = request.POST[social]
+					user_social.save()
 
 	return render(request, 'profile.html')
 

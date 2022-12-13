@@ -87,3 +87,15 @@ def create_user_profile(sender, instance, created, *args, **kwargs):
 	if created:
 		UserDetails.objects.get_or_create(user = instance)
 	instance.details.save()
+
+
+class Social(models.Model) :
+	user_details = models.ForeignKey('UserDetails', related_name='socials', on_delete=models.CASCADE)
+	name = models.CharField(max_length=20, null=False, blank=False)
+	link = models.URLField(max_length=200, null=False, blank=False)
+
+	class Meta :
+		unique_together = ('user_details', 'name')
+
+	def __str__(self) :
+		return f'{self.user_details}-{self.name}'

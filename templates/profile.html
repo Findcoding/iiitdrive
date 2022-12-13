@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load my_tags %}
 
 <head>
 	{% block linkfile %}
@@ -174,7 +175,7 @@
 									</div>
 									<div class="col-sm-9 text-secondary">
 										{% if request.user.details.about_me %}
-											<textarea rows="4" class="form-control form-control-alternative" name="about_me" placeholder="{{request.user.details.about_me}}" required></textarea>
+											<textarea rows="4" class="form-control form-control-alternative" name="about_me" placeholder="{{request.user.details.about_me}}" readonly></textarea>
 										{% else %}
 											<textarea rows="4" class="form-control form-control-alternative" name="about_me" placeholder="A few words about you ..." style="font-style:italic" required></textarea>
 										{% endif %}
@@ -185,36 +186,27 @@
 									<table class="table table-bordered border-dark" border=1>
 										<tr>
 											<td class="col-sm-3"><i class="fa fa-github"></i> Github</td>
-											<td><input type="url" class="form-control" name="github" value=""
-													placeholder="Type link here"></td>
+											<td><input type="url" class="form-control" name="github" value="{{request.user.details.socials|get_social_link:'github'}}" placeholder="Type link here"></td>
 										</tr>
 										<tr>
-											<td class="col-sm-3"><i class="fa fa-linkedin-square"
-													aria-hidden="true"></i> LinkedIn</td>
-											<td><input type="url" class="form-control" name="linkedin" value=""
-													placeholder="Type link here"></td>
+											<td class="col-sm-3"><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn</td>
+											<td><input type="url" class="form-control" name="linkedin" value="{{request.user.details.socials|get_social_link:'linkedin'}}" placeholder="Type link here"></td>
 										</tr>
 										<tr>
 											<td class="col-sm-3"><i class="fa fa-twitter"></i> Twitter</td>
-											<td><input type="url" class="form-control" name="twitter" value=""
-													placeholder="Type link here"></td>
+											<td><input type="url" class="form-control" name="twitter" value="{{request.user.details.socials|get_social_link:'twitter'}}" placeholder="Type link here"></td>
 										</tr>
 										<tr>
 											<td class="col-sm-3"><i class="fa fa-instagram"></i> Instagram</td>
-											<td><input type="url" class="form-control" name="instagram" value=""
-													placeholder="Type link here"></td>
+											<td><input type="url" class="form-control" name="instagram" value="{{request.user.details.socials|get_social_link:'instagram'}}" placeholder="Type link here"></td>
 										</tr>
 										<tr>
-											<td class="col-sm-3"><i class="fa fa-facebook-square"
-													aria-hidden="true"></i> Facebook</td>
-											<td><input type="url" class="form-control" name="facebook" value=""
-													placeholder="Type link here"></td>
+											<td class="col-sm-3"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</td>
+											<td><input type="url" class="form-control" name="facebook" value="{{request.user.details.socials|get_social_link:'facebook'}}" placeholder="Type link here"></td>
 										</tr>
 										<tr>
-											<td class="col-sm-3"><i class="fa fa-reddit-square"
-													aria-hidden="true"></i> Reddit</td>
-											<td><input type="url" class="form-control" name="reddit" value=""
-													placeholder="Type link here"></td>
+											<td class="col-sm-3"><i class="fa fa-reddit-square"	aria-hidden="true"></i> Reddit</td>
+											<td><input type="url" class="form-control" name="reddit" value="{{request.user.details.socials|get_social_link:'reddit'}}" placeholder="Type link here"></td>
 										</tr>
 
 									</table>
