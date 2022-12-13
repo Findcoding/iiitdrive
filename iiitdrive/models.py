@@ -23,6 +23,12 @@ class AllowlistEmailValidator(EmailValidator):
 
 
 def change_filename(instance, filename) :
+	path = 'Resources'
+	format = str(uuid.uuid4()) + '.' + filename.split('.')[-1]
+	return os.path.join(path, format)
+
+
+def change_filename_with_user(instance, filename) :
 	path = str(instance.user.uid)
 	format = str(uuid.uuid4()) + '.' + filename.split('.')[-1]
 	return os.path.join(path, format)
@@ -75,7 +81,7 @@ class CustomUser(AbstractBaseUser):
 
 class UserDetails(models.Model) :
 	user = models.OneToOneField(get_user_model(), related_name = 'details', on_delete = models.CASCADE, null = False, blank = False, editable = False)
-	profile_picture = RestrictedFileField(upload_to = change_filename, null = True, blank = True, content_types = ['image/jpg', 'image/jpeg'], max_upload_size = 1 * 1024 * 1024)
+	profile_picture = RestrictedFileField(upload_to = change_filename_with_user, null = True, blank = True, content_types = ['image/jpg', 'image/jpeg'], max_upload_size = 1 * 1024 * 1024)
 	about_me = models.CharField(max_length = 200, default = '', blank = True)
 
 	def __str__(self):
@@ -99,3 +105,29 @@ class Social(models.Model) :
 
 	def __str__(self) :
 		return f'{self.user_details}-{self.name}'
+
+
+class ResourceFile(models.Model) :
+	file = models.FileField(upload_to=change_filename, null=True, blank=True)
+	name = models.CharField(max_length=30, null=False, blank=False)
+	type = models.CharField(max_length=15, null=False, blank=False)
+
+	def save(self, *args, **kwargs):
+		self.name, self.type = self.file.name.rsplit('.', 1)
+		super(ResourceFile, self).save(*args, **kwargs)
+
+	def __str__(self):
+		return f'{self.name}.{self.type}'
+
+class UserFiles(models.Model):
+	owner = models.ForeignKey(get_user_model(), related_name='owned_files', on_delete=models.SET_NULL, null=True)
+	file = models.OneToOneField('ResourceFile', on_delete=models.CASCADE, null=False, blank=False)
+
+	is_starred = models.BooleanField(default=False)
+	is_trashed = models.BooleanField(default=False)
+	is_deleted = models.BooleanField(default=False)
+
+	shared_with = models.ManyToManyField(get_user_model(), related_name='shared_files')
+
+	def __str__(self):
+		return f'{self.owner} - {self.file}'

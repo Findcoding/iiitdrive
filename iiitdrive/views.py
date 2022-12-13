@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import NewUserCreationForm
 from .utils import send_email
-from .models import UserDetails, Social
+from .models import UserDetails, Social, ResourceFile, UserFiles
 
 User = get_user_model()
 
@@ -115,14 +115,18 @@ def profile(request):
 	return render(request, 'profile.html')
 
 
+@login_required
 def mydrive(request):
-    if request.method == 'POST':
-        post_data = request.POST
-        print(post_data)
+	user = request.user
+	if request.method == 'POST':
+		if 'document' in request.FILES :
+			for f in request.FILES.getlist('document'):
+				r_file = ResourceFile.objects.create(file = f)
+				UserFiles.objects.create(owner=user, file=r_file)
 
-        return render(request, 'mydrive.html')
+		return render(request, 'mydrive.html')
 
-    return render(request, 'mydrive.html')
+	return render(request, 'mydrive.html')
 
 def starred(request):
     return render(request, 'starred.html')
