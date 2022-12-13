@@ -87,12 +87,16 @@
 						<img src="{% static "images/iiitd.png" %}" alt="IIITD">
 
 						<div class="card-body" style="padding-top: 100px;">
-							<form method="post">
+							<form method="post" enctype="multipart/form-data">
 								{% csrf_token %}
 								<div class="d-flex flex-column align-items-center text-center">
 
 									<div class="circle">
-										<img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm zoom profile-pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+										{% if request.user.details.profile_picture %}
+											<img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm zoom profile-pic" src = "{{request.user.details.profile_picture.url}}">
+										{% else %}
+											<img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm zoom profile-pic" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+										{% endif %}
 									</div>
 									<div class="p-image">
 										<i class="fa fa-camera upload-button"></i>
@@ -152,8 +156,7 @@
 										<h6 class="mb-0"><b>User Name</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" name="name" value="Bijendar Prasad"
-											readonly>
+										<input type="text" class="form-control" name="name" value="{{request.user.username}}" readonly>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -161,8 +164,7 @@
 										<h6 class="mb-0"><b>Email</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<input type="email" class="form-control" name="email"
-											value="bijendar19238@iiitd.ac.in" readonly>
+										<input type="email" class="form-control" name="email" value="{{request.user.email}}" readonly>
 									</div>
 								</div>
 
@@ -171,8 +173,7 @@
 										<h6 class="mb-0"><b>About Me</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<textarea rows="4" class="form-control form-control-alternative" name="about_me"
-											value="" placeholder="A few words about you ..." required></textarea>
+										<textarea rows="4" class="form-control form-control-alternative" name="about_me" value="{{request.user.details.about_me}}" placeholder="A few words about you ..." required></textarea>
 									</div>
 								</div>
 

@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import NewUserCreationForm
 from .utils import send_email
+from .models import UserDetails
 
 User = get_user_model()
 
@@ -75,7 +76,6 @@ def login(request, *args, **kwargs):
 				auth_login(request, user)
 				return redirect('home')
 		else:
-
 			messages.error(request, 'Incorrect Username or Password. Please enter a correct Username and Password.')
 
 	return render(request, 'registration/login.html', context)
@@ -85,15 +85,27 @@ def login(request, *args, **kwargs):
 def homepage(request):
 	return render(request, 'home.html')
 
+@login_required
 def profile(request):
-    if request.method == 'POST':
-        # post_data = request.POST.dict()
-        post_data = request.POST
-        print(post_data)
+	user_details = UserDetails.objects.get(user = request.user)
+	if request.method == 'POST':
+		if 'profile_image' in request.FILES :
+			user_details.profile_picture = request.FILES['profile_image']
+			print("Chaning user image")
+			print(user_details.profile_picture.url)
+			user_details.save()
 
-        return redirect(homepage)
+		return redirect(homepage)
 
-    return render(request, 'profile.html')
+	print(user_details.profile_picture)
+	print(vars(user_details.profile_picture))
+
+	return render(request, 'profile.html')
+
+'''
+media\f82b2b02-b9bc-48ef-9be7-c1a18838e97d\9638c304-8d18-42b7-b90b-fa1163f5dea4.jpg
+f82b2b02-b9bc-48ef-9be7-c1a18838e97d/9638c304-8d18-42b7-b90b-fa1163f5dea4.jpg
+'''
 
 def upload(request):
     return render(request, 'upload.html')
