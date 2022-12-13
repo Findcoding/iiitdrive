@@ -132,7 +132,7 @@ function submitNewFileName(event, form_id, after, before, rename) {
 
 
 
-function add_to_favourite(checked) {
+function add_to_favourite(checked, file_id, csrf_token) {
 
     if (document.getElementById(checked).style.color == "") {
         document.getElementById(checked).style.color = "orange";
@@ -140,6 +140,11 @@ function add_to_favourite(checked) {
     } else {
         document.getElementById(checked).style.color = "";
     }
+
+	$.post("", {
+		star_id: file_id,
+		csrfmiddlewaretoken: csrf_token
+	});
 }
 
 

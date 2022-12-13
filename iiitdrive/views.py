@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, login as auth_login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.db import models
 
 from .forms import NewUserCreationForm
 from .utils import send_email
@@ -118,7 +119,7 @@ def profile(request):
 @login_required
 def mydrive(request):
 	user = request.user
-	files = UserFiles.objects.filter(owner = user)
+	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_trashed=False))
 	if request.method == 'POST':
 		if 'document' in request.FILES :
 			for f in request.FILES.getlist('document'):
@@ -129,8 +130,19 @@ def mydrive(request):
 			if file is not None :
 				file.file.name = request.POST['rename']
 				file.file.save()
+		elif 'star_id' in request.POST :
+			file = files.filter(file__uid = request.POST['star_id']).first()
+			print(file)
+			if file is not None :
+				file.is_starred = not(file.is_starred)
+				file.save()
+		# elif 'trash_id' in request.POST :
+		# 	file = files.filter(file__uid = request.POST['trash_id']).first()
+		# 	print(file)
+		# 	if file is not None :
+		# 		file.is_trashed = not(file.is_trashed)
+		# 		file.save()
 
-	print(files)
 	context = {'files' : files}
 
 	return render(request, 'mydrive.html', context)

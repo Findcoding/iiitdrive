@@ -263,9 +263,11 @@
 				{% comment %} <h2>{{files}}</h2> {% endcomment %}
 				{% for f in files %}
 					{{f.owner}}
+					{{f.file.uid}}
 					{{f.file.name}}
 					{{f.file.type}}
-					{{f.file.file}}
+					{{f.is_starred}}
+					{{f.is_trashed}}
 					<br>
 				{% empty %}
 				Nothing to show
@@ -276,8 +278,13 @@
 					{% for file in files %}
                     <div class="gallery">
                         <div class="card cards">
-                            <span class="fa fa-star" style="text-align: right; font-size: 1.5em;" title="Star" id="checked_{{forloop.counter}}" onclick="add_to_favourite('checked_{{forloop.counter}}')"></span>
-                            <div class="card-image">
+							{% if file.is_starred %}
+								This is starred
+								<span class="fa fa-star" style="text-align: right; font-size: 1.5em;" style="color:orange;" title="Star" id="checked_{{forloop.counter}}" onclick="add_to_favourite('checked_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+							{% else %}
+								<span class="fa fa-star" style="text-align: right; font-size: 1.5em;" title="Star" id="checked_{{forloop.counter}}" onclick="add_to_favourite('checked_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+							{% endif %}
+							<div class="card-image">
                                 <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
                                 <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
                             </div>
