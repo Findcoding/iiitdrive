@@ -102,11 +102,6 @@ def profile(request):
 
 	return render(request, 'profile.html')
 
-'''
-media\f82b2b02-b9bc-48ef-9be7-c1a18838e97d\9638c304-8d18-42b7-b90b-fa1163f5dea4.jpg
-f82b2b02-b9bc-48ef-9be7-c1a18838e97d/9638c304-8d18-42b7-b90b-fa1163f5dea4.jpg
-'''
-
 def upload(request):
     return render(request, 'upload.html')
 
