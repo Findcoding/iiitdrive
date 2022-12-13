@@ -156,8 +156,6 @@
 
 				<div class="container">
 					{% for file in files %}
-					{% if file.is_starred %}
-
                     <div class="gallery">
                         <div class="card cards">
 
@@ -168,7 +166,7 @@
                                 <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
                             </div>
                             <div class="d_file">
-                                <a href="{{file.file.url}}" style="text-decoration: none;" class="download"
+                                <a href="{{file.file.file.url}}" style="text-decoration: none;" class="download"
                                     id="download_{{forloop.counter}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
                                 <a role="" style="text-decoration: none;" class="unstarred">
                                     <i class="fa" title="Unstarred" onclick="remove_from_favourite('{{file.file.uid}}', '{{csrf_token}}')"></i></a>
@@ -176,8 +174,6 @@
 
                         </div>
                     </div>
-					{% endif %}
-
 					{% endfor %}
             	</div>
 

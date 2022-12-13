@@ -16,7 +16,9 @@
 
     <script type="text/javascript" src="{% static 'js/sidebar.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/trash.css' %}" />
+    <script type="text/javascript" src="{% static 'js/trash.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile_card_details.css' %}" />
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -168,37 +170,22 @@
 
 
                     <div class="container">
-                        <div class="gallery">
+                        {% for file in files %}
+						<div class="gallery">
                             <div class="card cards">
                                 <div class="card-image">
-                                    <i class="fa fa-file-pdf-o" style="font-size:100px;color:rgb(216, 18, 18)"></i>
-                                    <div class="desc"><b>Sample.pdf</b></div>
+                                    {% include 'file_type.html' %}
+                                    <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
                                 </div>
                                 <div class="d_file">
-                                    <a role="" style="text-decoration: none;" class="remove"
-                                        id="download" title="Remove"><i class="fa"></i></a>
-                                    <a role="" style="text-decoration: none;" class="restore">
-                                        <i class="fa" title="Restore"></i></a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="gallery">
-                            <div class="card cards">
-                                <div class="card-image">
-                                    <i class="fa fa-file-code-o" aria-hidden="true" style="font-size:100px;color:rgb(19, 147, 66)"></i>
-                                    <div class="desc"><b>Main.java</b></div>
-                                </div>
-                                <div class="d_file" id="before2">
-                                    <a href="" style="text-decoration: none;" class="remove"
-                                        id="download" title="Remove"><i class="fa"></i></a>
-                                    <a role="" style="text-decoration: none;" class="restore">
+                                    <a role="" style="text-decoration: none;" class="remove" id="remove_{{forloop.counter}}" onclick="delete_file('{{file.file.uid}}', '{{csrf_token}}')" title="Remove">
+										<i class="fa"></i></a>
+                                    <a role="" style="text-decoration: none;" class="restore" id="restore_{{forloop.counter}}" onclick="restore_file('{{file.file.uid}}', '{{csrf_token}}')" title="Restore">
                                         <i class="fa" title="Restore"></i></a>
                                 </div>
                             </div>
                         </div>
-
+						{% endfor %}
                     </div>
 
 

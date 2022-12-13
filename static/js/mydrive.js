@@ -158,7 +158,7 @@ function delete_file(deleted, file_id, csrf_token) {
 	document.getElementById(deleted).style.color = "red";
 
 	$.post("", {
-		star_id: file_id,
+		trash_id: file_id,
 		csrfmiddlewaretoken: csrf_token
 	});
 }

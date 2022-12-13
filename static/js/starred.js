@@ -2,7 +2,6 @@ function click_download(download_id) {
     document.getElementById(download_id).click();
 }
 
-
 function download(download_id) {
     let downloadButton = document.querySelector('.download');
     // document.getElementById('download').click();
@@ -35,12 +34,10 @@ function download(download_id) {
 
 
 function remove_from_favourite(file_id, csrf_token) {
-
 	$.post("", {
-		star_id: file_id,
+		unstar_id: file_id,
 		csrfmiddlewaretoken: csrf_token
 	});
-
 }
 
 
@@ -49,7 +46,7 @@ function delete_file(deleted, file_id, csrf_token) {
 	document.getElementById(deleted).style.color = "red";
 
 	$.post("", {
-		star_id: file_id,
+		trash_id: file_id,
 		csrfmiddlewaretoken: csrf_token
 	});
 }

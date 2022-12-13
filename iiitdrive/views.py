@@ -98,6 +98,7 @@ def profile(request):
 		if 'profile_image' in request.FILES :
 			user_details.profile_picture = request.FILES['profile_image']
 			user_details.save()
+			return redirect(profile)
 		else:
 			if 'about_me' in request.POST :
 				user_details.about_me = request.POST['about_me']
@@ -112,6 +113,7 @@ def profile(request):
 						user_social.name = social
 					user_social.link = request.POST[social]
 					user_social.save()
+			return redirect(profile)
 
 	return render(request, 'profile.html')
 
@@ -119,44 +121,80 @@ def profile(request):
 @login_required
 def mydrive(request):
 	user = request.user
-	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_trashed=False))
+	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_trashed=False) & models.Q(is_deleted=False))
+
 	if request.method == 'POST':
 		if 'document' in request.FILES :
 			for f in request.FILES.getlist('document'):
 				r_file = ResourceFile.objects.create(file = f)
 				UserFiles.objects.create(owner=user, file=r_file)
+			return redirect(mydrive)
 		elif 'rename_id' in request.POST and 'rename' in request.POST :
 			file = files.filter(file__uid = request.POST['rename_id']).first()
 			if file is not None :
 				file.file.name = request.POST['rename']
 				file.file.save()
+			return redirect(mydrive)
 		elif 'star_id' in request.POST :
 			file = files.filter(file__uid = request.POST['star_id']).first()
-			print(file)
 			if file is not None :
 				file.is_starred = not(file.is_starred)
 				file.save()
-		# elif 'trash_id' in request.POST :
-		# 	file = files.filter(file__uid = request.POST['trash_id']).first()
-		# 	print(file)
-		# 	if file is not None :
-		# 		file.is_trashed = not(file.is_trashed)
-		# 		file.save()
+			return redirect(mydrive)
+		elif 'trash_id' in request.POST :
+			file = files.filter(file__uid = request.POST['trash_id']).first()
+			if file is not None :
+				file.is_trashed = True
+				file.save()
+			return redirect(mydrive)
 
 	context = {'files' : files}
-
 	return render(request, 'mydrive.html', context)
 
+@login_required
 def starred(request):
 	user = request.user
-	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_trashed=False))
+	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_starred=True) & models.Q(is_trashed=False) & models.Q(is_deleted=False))
+
+	if request.method == 'POST' :
+		if 'unstar_id' in request.POST :
+			file = files.filter(file__uid = request.POST['unstar_id']).first()
+			if file is not None :
+				file.is_starred = False
+				file.save()
+			return redirect(mydrive)
+		elif 'trash_id' in request.POST :
+			file = files.filter(file__uid = request.POST['trash_id']).first()
+			if file is not None :
+				file.is_trashed = True
+				file.save()
+			return redirect(mydrive)
 
 	context = {'files' : files}
-
 	return render(request, 'starred.html', context)
 
+
+@login_required
 def trash(request):
-    return render(request, 'trash.html')
+	user = request.user
+	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_trashed=True) & models.Q(is_deleted=False))
+	print(request.POST)
+	if request.method == 'POST' :
+		if 'delete_id' in request.POST :
+			file = files.filter(file__uid = request.POST['delete_id']).first()
+			if file is not None :
+				file.is_deleted = True
+				file.save()
+			return redirect(mydrive)
+		elif 'restore_id' in request.POST :
+			file = files.filter(file__uid = request.POST['restore_id']).first()
+			if file is not None :
+				file.is_trashed = False
+				file.save()
+			return redirect(mydrive)
+
+	context = {'files' : files}
+	return render(request, 'trash.html', context)
 
 
 def social(request):
