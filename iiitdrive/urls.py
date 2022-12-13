@@ -36,5 +36,6 @@ urlpatterns = [
     path('mydrive', views.mydrive, name='mydrive'),
     path('starred', views.starred, name='starred'),
     path('trash', views.trash, name='trash'),
+	path('share', views.share, name='share'),
     path('social', views.social, name='social')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

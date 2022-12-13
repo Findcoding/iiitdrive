@@ -201,4 +201,5 @@ def social(request):
     return render(request, 'social.html')
 
 
-
+def share(request):
+	return render(request, 'share.html')
