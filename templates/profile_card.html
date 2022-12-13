@@ -7,9 +7,12 @@
             <div class="row justify-content-center">
                 <div class="col-lg-3 order-lg-2">
                     <div class="card-profile-image">
-                        <a href="#">
-                            <img src="{% static "images/biju1.jpg" %}" class="rounded-circle">
-                        </a>
+						{% if request.user.details.profile_picture %}
+							<img class="rounded-circle" src = "{{request.user.details.profile_picture.url}}">
+						{% else %}
+							<img class="rounded-circle" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+						{% endif %}
+
                     </div>
                 </div>
             </div>
@@ -63,9 +66,9 @@
                 <i class="ni location_pin mr-2"></i>CSAM | 2023
             </div>
             <img src="{% static "images/iiitd4.png" %}" class="center_img" alt="IIITD" width="300px">
-            
+
             <hr class="my-4">
-            <p>I'm a full-stack software engineer with a passion for learning and creating. 
+            <p>I'm a full-stack software engineer with a passion for learning and creating.
                 I have experience with a variety of <span id="dots">...</span>
             <span id="more">languages and technologies, and always looking for ways to improve my skills.
                 I'm currently focusing on web development using JavaScript, Django, React, and Node.js.</span></p>
@@ -76,7 +79,7 @@
                 </span>
                 <span class="button-text" id="content">Read More</span>
             </button>
-            
+
 
         </div>
     </div>
