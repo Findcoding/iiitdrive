@@ -173,7 +173,7 @@
                     </div>
 
 
-                    <div class="container">
+                    <div class="container" id="all_deleted_files">
                         {% for file in files %}
 						<div class="gallery">
                             <div class="card cards">
@@ -182,9 +182,9 @@
                                     <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
                                 </div>
                                 <div class="d_file">
-                                    <a role="" style="text-decoration: none;" class="remove" id="remove_{{forloop.counter}}" onclick="delete_file('{{file.file.uid}}', '{{csrf_token}}')" title="Remove">
+                                    <a role="" style="text-decoration: none;" class="remove" id="remove_{{forloop.counter}}" onclick="delete_file(event, '{{file.file.uid}}', '{{csrf_token}}')" title="Remove">
 										<i class="fa"></i></a>
-                                    <a role="" style="text-decoration: none;" class="restore" id="restore_{{forloop.counter}}" onclick="restore_file('{{file.file.uid}}', '{{csrf_token}}')" title="Restore">
+                                    <a role="" style="text-decoration: none;" class="restore" id="restore_{{forloop.counter}}" onclick="restore_file(event, '{{file.file.uid}}', '{{csrf_token}}')" title="Restore">
                                         <i class="fa" title="Restore"></i></a>
                                 </div>
                             </div>
