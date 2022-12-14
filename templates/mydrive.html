@@ -274,7 +274,7 @@
 
                 <!-- Upload files -->
 
-                <div class="container">
+                <div class="container" id="all_upload_files">
 					{% for file in files %}
                     <div class="gallery">
                         <div class="card cards">
@@ -287,7 +287,7 @@
 							{% else %}
 								<span class="fa fa-star" style="text-align: right; font-size: 1.5em;" title="Star" id="checked_{{forloop.counter}}" onclick="add_to_favourite('checked_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
 							{% endif %}
-								<span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file('delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+								<span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file(event, 'delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
 							</div>
 
 							<div class="card-image">

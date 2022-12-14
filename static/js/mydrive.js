@@ -149,6 +149,7 @@ function add_to_favourite(checked, file_id, csrf_token) {
 		star_id: file_id,
 		csrfmiddlewaretoken: csrf_token
 	});
+
 }
 
 
@@ -158,13 +159,27 @@ function upload_files(form_id) {
 }
 
 
-function delete_file(deleted, file_id, csrf_token) {
-	document.getElementById(deleted).style.color = "red";
+function delete_file(event, deleted, file_id, csrf_token) {
 
-	$.post("", {
-		trash_id: file_id,
-		csrfmiddlewaretoken: csrf_token
-	});
+	var record = confirm("Do you want delete the file?");
+
+	if (record == true) {
+		document.getElementById(deleted).style.color = "red";
+
+		$.post("", {
+			trash_id: file_id,
+			csrfmiddlewaretoken: csrf_token
+		});
+
+		$("#all_upload_files").load(location.href + " #all_upload_files>*", "");
+		$("#all_upload_files").load(location.href + " #all_upload_files>*", "");
+
+	} else {
+		event.stopImmediatePropagation();
+		event.preventDefault();
+		return false;
+	}
+
 }
 
 
