@@ -24,13 +24,6 @@
             </div>
         </div>
 
-        <!-- <h4 class="w3-center" style="padding-top: 20px;">My Profile</h4> -->
-        <!-- <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle"
-                style="height:106px;width:106px" alt="Avatar"></p> -->
-        <!-- <hr> -->
-        <!-- <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p> -->
     </div>
 
     <div class="card-body pt-0 pt-md-4">
@@ -54,49 +47,40 @@
         </div>
 
         <div class="w3-center" style="padding-top: 5px;">
-            <a href="{% url 'social' %}" style="text-decoration: none;"><button class="edit_profile"> Social Profile
+            <a href="{% url 'social' %}" style="text-decoration: none;"><button class="edit_profile">
+				<b>{{request.user.username}} </b><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px">
                 </button></a>
         </div>
 
         <div class="text-center" style="padding-top: 10px;">
-            <h3>
-                Bijendar Prasad<span class="font-weight-light"></span>
-            </h3>
+
+			<span class="font-weight-light">{{request.user.email}}</span>
+			<br>
+
             <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>CSAM | 2023
+                <i class="ni location_pin mr-2"></i><b>IIITD | STUDENT </b>
             </div>
             <img src="{% static "images/iiitd4.png" %}" class="center_img" alt="IIITD" width="300px">
 
             <hr class="my-4">
-            <p>I'm a full-stack software engineer with a passion for learning and creating.
-                I have experience with a variety of <span id="dots">...</span>
-            <span id="more">languages and technologies, and always looking for ways to improve my skills.
-                I'm currently focusing on web development using JavaScript, Django, React, and Node.js.</span></p>
 
-            <button class="read-more" id="more_btn" onclick="view_more()">
-                <span class="circle" aria-hidden="true">
-                <span class="icon arrow"></span>
+            {% if request.user.details.about_me %}
+			<p>{{request.user.details.about_me}}</p>
+            <button class="read-more" id="more_btn">
+				<span class="circle" aria-hidden="true">
+					<span class="icon arrow"></span>
                 </span>
                 <span class="button-text" id="content">Read More</span>
             </button>
+
+			{% endif %}
 
 
         </div>
     </div>
 
     <div class="w3-center" style="padding-top: 10px;">
-        <button type="button" class="btn btn-outline-primary btn-floating">
-            <i class="fa fa-github fa-lg"></i>
-        </button>
-        <button type="button" class="btn btn-outline-primary btn-floating">
-            <i class="fa fa-linkedin fa-lg"></i>
-        </button>
-        <button type="button" class="btn btn-outline-primary btn-floating">
-            <i class="fa fa-twitter fa-lg"></i>
-        </button>
-        <button type="button" class="btn btn-outline-primary btn-floating">
-            <i class="fa fa-facebook-f fa-lg"></i>
-        </button>
+        {% include 'social_profile_links.html' %}
     </div>
 
     <div class="w3-center" style="padding-top: 20px;"></div>

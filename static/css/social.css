@@ -2,7 +2,7 @@
 body::-webkit-scrollbar {
     display: none;
   }
-  
+
   /* Hide scrollbar for IE, Edge and Firefox */
   body {
     -ms-overflow-style: none;
@@ -10,58 +10,57 @@ body::-webkit-scrollbar {
     scrollbar-width: none;
     /* Firefox */
   }
-  
+
   .bottomright {
     position: fixed;
     right: 0px;
     bottom: 0px;
-  
+
   }
 
 
-  
 .profile-header {
     transform: translateY(5rem);
 }
 
 
-  
-  
-  
+
+
+
   /* logo */
-  
+
   @import url(https://fonts.googleapis.com/css?family=Cabin+Condensed);
-  
+
   @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
-  
-  
+
+
   .w3-bar .w3-bar-item {
     width: 178px;
     height: 59px;
   }
-  
+
   .w3-theme-d2 {
-    background-color: #5eee5e !important
+    background-color: #44bc90 !important
   }
-  
+
   .w3-theme-d4 {
     background-color: #fff !important
   }
-  
+
   .iiitd {
-    background-color: #5eee5e !important
+    background-color: #44bc90 !important
   }
-  
+
   .w3-theme-d4:hover {
     background-color: #fff !important
   }
-  
-  
+
+
   .w3-dropdown-hover:first-child,
   .w3-dropdown-click:hover {
     background-color: transparent;
   }
-  
+
   .content {
     position: absolute;
     /* margin: 100px; */
@@ -70,7 +69,7 @@ body::-webkit-scrollbar {
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
   }
-  
+
   .content h2 {
     color: #06f806;
     /* font-size: 12em; */
@@ -78,19 +77,19 @@ body::-webkit-scrollbar {
     width: max-content;
     /* transform: translate(-50%, -50%); */
   }
-  
+
   .content h2:nth-child(1) {
     /* color: transparent; */
     -webkit-text-stroke: 2px #0e100e;
   }
-  
+
   .content h2:nth-child(2) {
     color: #fff;
     animation: animate 4s ease-in-out infinite;
   }
-  
+
   @keyframes animate {
-  
+
     0%,
     100% {
       clip-path: polygon(0% 45%,
@@ -103,7 +102,7 @@ body::-webkit-scrollbar {
           100% 100%,
           0% 100%);
     }
-  
+
     50% {
       clip-path: polygon(0% 60%,
           15% 65%,

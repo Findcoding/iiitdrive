@@ -73,6 +73,10 @@
             <a href="{% url 'trash' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
                 <h2>Trash</h2>
             </a>
+			<a href="{% url 'share' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Shared">
+                <h2>Shared</h2>
+            </a>
             <a href="{% url 'profilepage' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Profile">
                 <h2>Profile</h2></a>
 
@@ -81,24 +85,31 @@
         </div>
     </div>
 
-    
-    
-    
+
+
+
     <div class="container" style="padding-top: 100px;">
-    
+
             <!-- Profile widget -->
             <div class="bg-white shadow rounded overflow-hidden">
                 <div class="px-4 pt-0 pb-4 bg-dark">
                     <div class="media align-items-end profile-header">
-                        <div class="profile mr-3"><img src="https://bootstrapious.com/i/snippets/sn-profile/teacher.jpg" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="{% url 'profilepage' %}" style="text-decoration: none;" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+                        <div class="profile mr-3">
+							{% if request.user.details.profile_picture %}
+								<img width="130" class="rounded mb-2 img-thumbnail" src = "{{request.user.details.profile_picture.url}}">
+							{% else %}
+								<img width="130" class="rounded mb-2 img-thumbnail" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+							{% endif %}
+							<a href="{% url 'profilepage' %}" style="text-decoration: none;" class="btn btn-dark btn-sm btn-block">Edit profile</a>
+						</div>
                         <div class="media-body mb-5 text-white">
-                            <h4 class="mt-0 mb-0">Manuella Tarly <img src="{% static "images/bluetick.png" %}" alt="Verified"
+                            <h4 class="mt-0 mb-0"> {{request.user.username}} <img src="{% static "images/bluetick.png" %}" alt="Verified"
                                 width="17px"></h4>
-                            <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>San Farcisco</p>
+                            <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>IIITD | STUDENT</p>
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="bg-light p-4 d-flex justify-content-end text-center">
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
@@ -112,7 +123,7 @@
                         </li>
                     </ul>
                 </div>
-    
+
                 <div class="py-4 px-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
@@ -126,17 +137,17 @@
                     <div class="py-4">
                         <h5 class="mb-3">Recent posts</h5>
                         <div class="p-4 bg-light rounded shadow-sm">
-                            <p class="font-italic mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                            <p class="font-italic mb-0">Coming Soon......</p>
                             <ul class="list-inline small text-muted mt-3 mb-0">
                                 <li class="list-inline-item"><i class="fa fa-comment-o mr-2"></i>12 Comments</li>
-                                <li class="list-inline-item"><i class="fa fa-heart-o mr-2"></i>200 Likes</li>
+                                <li class="list-inline-item"><i class="fa fa-heart-o mr-2"></i>20 Likes</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- End profile widget -->
-    
+
     </div>
 
 
