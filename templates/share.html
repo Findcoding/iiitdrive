@@ -153,18 +153,18 @@
 
                 <!-- Shared files -->
 
-                <div class="container">
+                <div class="container" id="all_shared_files">
 					{% for file in files %}
 
 					<div class="gallery">
                         <div class="card cards">
 
-							<span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file('delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+							<!-- <span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file(event, 'delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span> -->
 
 							<div class="card-image">
                                 {% include 'file_type.html' %}
                                 <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
-								<div class="desc">Shared By {{file.owner.username}}</div>
+								<h6 class="display-6 font-weight-light title desc"> Shared by <b>{{file.owner.username}} </b></h6>
                             </div>
                             <div class="d_file">
                                 <a href="{{file.file.file.url}}" style="text-decoration: none;" class="download"
