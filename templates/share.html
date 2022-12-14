@@ -137,17 +137,23 @@
                     <h2 class="display-4 font-weight-light title"> ALL SHARED <b>FILES </b></h2>
                 </div>
 
+				<div class="container">
+                    <div class="alert alert-success" style="padding-top: 20px;">
+                        <b>View all of the files that people have shared with you.</b>
+                    </div>
+                </div>
+
 
                 <div class="container">
-                    <div class="alert alert-info" style="padding-top: 20px;">
+                    <div class="alert alert-warning" style="padding-top: 20px;">
                         <b>There is no preview feature yet, but you can download a file.</b>
                     </div>
                 </div>
 
 				{% for f in files %}
 				{% empty %}
-				<div class="container" style="width: 100%;">
-                    <h2 class="display-4 font-weight-light title"> NOTHING TO <b>SHOW </b></h2>
+				<div class="container">
+					<img src="{% static "images/nothing.gif" %}" alt="Nothing to show" style="margin-left: 18%;">
                 </div>
 				{% endfor %}
 

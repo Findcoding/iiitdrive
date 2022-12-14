@@ -267,8 +267,8 @@
 
 				{% for f in files %}
 				{% empty %}
-				<div class="container" style="width: 100%;">
-                    <h2 class="display-4 font-weight-light title"> NOTHING TO <b>SHOW </b></h2>
+				<div class="container">
+					<img src="{% static "images/nothing.gif" %}" alt="Nothing to show" style="margin-left: 18%;">
                 </div>
 				{% endfor %}
 
@@ -321,7 +321,7 @@
 							<form id="newownername_submit_{{forloop.counter}}" method='post'>
                                 {% csrf_token %}
 								<div style="padding-top: 10px; display: none;" id="share_{{forloop.counter}}">
-                                    <input type="text" class="form-control" name="share" value="" placeholder="Owner Name">
+                                    <input type="text" class="form-control" name="share" value="" placeholder="User Name">
 									<input type="text" class="form-control" name="share_id" value="{{file.file.uid}}" hidden>
                                 </div>
                             </form>

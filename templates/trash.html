@@ -172,6 +172,13 @@
 
                     </div>
 
+					{% for f in files %}
+					{% empty %}
+					<div class="container">
+						<img src="{% static "images/nothing.gif" %}" alt="Nothing to show" style="margin-left: 18%;">
+					</div>
+					{% endfor %}
+
 
                     <div class="container" id="all_deleted_files">
                         {% for file in files %}
