@@ -205,7 +205,7 @@ def trash(request):
 	context = {'files' : files}
 	return render(request, 'trash.html', context)
 
-
+@login_required
 def social(request):
     return render(request, 'social.html')
 
