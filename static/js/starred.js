@@ -33,20 +33,48 @@ function download(download_id) {
 }
 
 
-function remove_from_favourite(file_id, csrf_token) {
-	$.post("", {
-		unstar_id: file_id,
-		csrfmiddlewaretoken: csrf_token
-	});
+function remove_from_favourite(event, file_id, csrf_token) {
+
+	var record = confirm("Do you want unstar the file?");
+
+	if (record == true) {
+		$.post("", {
+			unstar_id: file_id,
+			csrfmiddlewaretoken: csrf_token
+		});
+
+		$("#all_starred_files").load(location.href + " #all_starred_files>*", "");
+		$("#all_starred_files").load(location.href + " #all_starred_files>*", "");
+
+	} else {
+		event.stopImmediatePropagation();
+		event.preventDefault();
+		return false;
+	}
+
 }
 
 
 
-function delete_file(deleted, file_id, csrf_token) {
-	document.getElementById(deleted).style.color = "red";
+function delete_file(event, deleted, file_id, csrf_token) {
+	var record = confirm("Do you want delete the file?");
 
-	$.post("", {
-		trash_id: file_id,
-		csrfmiddlewaretoken: csrf_token
-	});
+	if (record == true) {
+		document.getElementById(deleted).style.color = "red";
+
+		$.post("", {
+			trash_id: file_id,
+			csrfmiddlewaretoken: csrf_token
+		});
+
+		$("#all_starred_files").load(location.href + " #all_starred_files>*", "");
+		$("#all_starred_files").load(location.href + " #all_starred_files>*", "");
+
+	} else {
+		event.stopImmediatePropagation();
+		event.preventDefault();
+		return false;
+	}
+
+
 }
