@@ -31,15 +31,15 @@
             <div class="col">
                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                        <span class="heading">22</span>
+                        <span class="heading">{{request.user.likes.count}}</span>
                         <span class="description">Likes</span>
                     </div>
                     <div>
-                        <span class="heading">10</span>
-                        <span class="description">Photos</span>
+                        <span class="heading">{{request.user.posts.count}}</span>
+                        <span class="description">Posts</span>
                     </div>
                     <div>
-                        <span class="heading">89</span>
+                        <span class="heading">{{request.user.comments.count}}</span>
                         <span class="description">Comments</span>
                     </div>
                 </div>

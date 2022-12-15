@@ -139,7 +139,7 @@ class UserFiles(models.Model):
 
 class Post(models.Model):
 	uid = models.UUIDField(default=uuid.uuid4, editable=False)
-	owner = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
+	owner = models.ForeignKey(get_user_model(), related_name='posts', on_delete=models.SET_NULL, null=True)
 	text = models.CharField(max_length=300, null=False, blank=False)
 	file = models.OneToOneField('ResourceFile', on_delete=models.CASCADE, null=True, blank=True)
 	tags = models.ManyToManyField('Tag', related_name='posts')
@@ -157,7 +157,7 @@ class Tag(models.Model):
 
 
 class Like(models.Model):
-	user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
+	user = models.ForeignKey(get_user_model(), related_name='likes', on_delete=models.SET_NULL, null=True)
 	post = models.ForeignKey('Post', related_name='likes', on_delete=models.CASCADE)
 
 	class Meta :
@@ -168,7 +168,7 @@ class Like(models.Model):
 
 
 class Comment(models.Model):
-	user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
+	user = models.ForeignKey(get_user_model(), related_name='comments', on_delete=models.SET_NULL, null=True)
 	post = models.ForeignKey('Post', related_name='comments', on_delete=models.CASCADE)
 	comment = models.CharField(max_length=50, null=False, blank=False)
 	created_at = models.DateTimeField(auto_now_add=True)
