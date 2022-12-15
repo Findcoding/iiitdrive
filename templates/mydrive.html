@@ -36,6 +36,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     {% endblock %}
 
@@ -295,8 +296,8 @@
                                 <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
                             </div>
                             <div class="d_file" id="before_{{forloop.counter}}">
-                                <a href="{{file.file.file.url}}" style="text-decoration: none;" class="download"
-                                    id="download_{{forloop.counter}}" download="proposed_file_name" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
+                                <a href="" style="text-decoration: none;" class="download"
+                                    id="download_{{forloop.counter}}" download="{{file.file.name}}.{{file.file.type}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
                                 <a role="" style="text-decoration: none;" class="rename" onclick="rename('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}',);">
                                     <i class="fa" title="Rename"></i></a>
 								<a role="" style="text-decoration: none;" class="share" onclick="share('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}');">

@@ -3,7 +3,7 @@ function click_download(download_id) {
 }
 
 function download(download_id) {
-    let downloadButton = document.querySelector('.download');
+    let downloadButton = document.getElementById(download_id);
     // document.getElementById('download').click();
     if (downloadButton) {
         click_download(download_id);
@@ -26,6 +26,7 @@ function download(download_id) {
             /* Reset animation. */
             window.setTimeout(function () {
                 downloadButton.classList.remove('success');
+				$("#all_starred_files").load(location.href + " #all_starred_files>*", "");
             }, 4000);
 
         });
