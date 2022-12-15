@@ -14,7 +14,7 @@ from django.db import models
 
 from .forms import NewUserCreationForm
 from .utils import send_email, get_storage_used
-from .models import UserDetails, Social, ResourceFile, UserFiles
+from .models import UserDetails, Social, ResourceFile, UserFiles, Post, Tag, Like, Comment
 
 User = get_user_model()
 
@@ -84,10 +84,27 @@ def login(request, *args, **kwargs):
 
 @login_required
 def homepage(request):
+	user = request.user
 	if request.method == 'POST':
-		post_data = request.POST
-		print(post_data)
-		return render(request, 'home.html')
+		if 'message' in request.POST:
+			text = request.POST['message']
+			tags = request.POST.getlist('hashtag', [])
+			file = request.FILES.get('img_file', None)
+
+			post = Post()
+			post.owner = request.user
+			post.text = text
+			if file is not None :
+				r = ResourceFile.objects.create(file=file)
+				post.file = r
+			post.save()
+
+			for tag in tags:
+				t, is_created = Tag.objects.get_or_create(name = tag)
+				post.tags.add(t)
+			post.save()
+
+			return redirect(homepage)
 
 	return render(request, 'home.html')
 

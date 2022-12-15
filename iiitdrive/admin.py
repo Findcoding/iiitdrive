@@ -39,3 +39,8 @@ admin.site.register(UserDetails)
 admin.site.register(Social)
 admin.site.register(ResourceFile)
 admin.site.register(UserFiles)
+
+admin.site.register(Post)
+admin.site.register(Tag)
+admin.site.register(Like)
+admin.site.register(Comment)

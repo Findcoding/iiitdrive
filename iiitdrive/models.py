@@ -79,6 +79,7 @@ class CustomUser(AbstractBaseUser):
 	def is_superuser(self):
 		return self.is_admin
 
+
 class UserDetails(models.Model) :
 	user = models.OneToOneField(get_user_model(), related_name = 'details', on_delete = models.CASCADE, null = False, blank = False, editable = False)
 	profile_picture = RestrictedFileField(upload_to = change_filename_with_user, null = True, blank = True, content_types = ['image/jpg', 'image/jpeg'], max_upload_size = 1 * 1024 * 1024)
@@ -121,6 +122,7 @@ class ResourceFile(models.Model) :
 	def __str__(self):
 		return f'{self.name}.{self.type}'
 
+
 class UserFiles(models.Model):
 	owner = models.ForeignKey(get_user_model(), related_name='owned_files', on_delete=models.SET_NULL, null=True)
 	file = models.OneToOneField('ResourceFile', on_delete=models.CASCADE, null=False, blank=False)
@@ -133,3 +135,44 @@ class UserFiles(models.Model):
 
 	def __str__(self):
 		return f'{self.owner} - {self.file}'
+
+
+class Post(models.Model):
+	uid = models.UUIDField(default=uuid.uuid4, editable=False)
+	owner = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
+	text = models.CharField(max_length=300, null=False, blank=False)
+	file = models.OneToOneField('ResourceFile', on_delete=models.CASCADE, null=True, blank=True)
+	tags = models.ManyToManyField('Tag', related_name='posts')
+
+	def __str__(self):
+		return f'{self.owner} - {self.uid}'
+
+
+class Tag(models.Model):
+	name = LowercaseCharField(max_length=20, unique=True)
+
+	def __str__(self):
+		return f'{self.name}'
+
+
+class Like(models.Model):
+	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
+	post = models.OneToOneField('Post', on_delete=models.CASCADE)
+
+	class Meta :
+		unique_together = ('user', 'post')
+
+	def __str__(self):
+		return f'{self.user} - {self.post}'
+
+
+class Comment(models.Model):
+	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
+	post = models.OneToOneField('Post', on_delete=models.CASCADE)
+	comment = models.CharField(max_length=50)
+
+	class Meta :
+		unique_together = ('user', 'post')
+
+	def __str__(self):
+		return f'{self.user} - {self.post}'
