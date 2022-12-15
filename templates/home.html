@@ -268,116 +268,97 @@
                 </div>
 
 
+				{% for post in posts %}
+                <div class="w3-container w3-card w3-white w3-round w3-margin">
+					<br>
 
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-
-					{% if request.user.details.profile_picture %}
-					<img class="w3-left w3-circle w3-margin-right" src = "{{request.user.details.profile_picture.url}}" style="width:60px">
+					{% if post.owner.details.profile_picture %}
+						<img class="w3-left w3-circle w3-margin-right" src = "{{post.owner.details.profile_picture.url}}" style="width:60px">
 					{% else %}
 						<img class="w3-left w3-circle w3-margin-right" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" style="width:60px">
 					{% endif %}
-                    <span class="w3-right w3-opacity">16 min ago
-                        <!-- <i class="fa fa-ellipsis-h"></i> -->
-                    </span>
+                    <span class="w3-right w3-opacity"><i>{{post.created_at|timesince}} ago</i></span>
                     <a href="{% url 'social' %}" style="text-decoration: none;"><h4 class="text-primary"><b>@{{request.user.username}}</b></h4></a>
-					<small><b>IIITD Student</b></small><br>
-                    <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<hr class="w3-clear">
+
+					<p>{{post.text}}</p>
+
+					{% if post.file %}
+					<div class="w3-row-padding" style="margin:0 -16px">
+                        <div class="w3-half">
+                            <img src="{{post.file.file.url}}" style="width:100%" alt="{{post.file.name}}" class="w3-margin-bottom">
+                        </div>
+                    </div>
+					{% endif %}
 
                     <div>
-                        <span class="badge badge-primary">JavaScript</span>
-                        <span class="badge badge-primary">Android</span>
-                        <span class="badge badge-primary">PHP</span>
-                        <span class="badge badge-primary">Node.js</span>
-                        <span class="badge badge-primary">Ruby</span>
-                        <span class="badge badge-primary">Python</span>
+						{% for tag in post.tags.all%}
+                        <span class="badge badge-primary">{{tag.name}}</span>
+						{% endfor %}
                     </div>
+
                     <br>
-                    <button type="button" class="like like-btn w3-margin-bottom"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                         Like</button>
-                    <button type="button" class="comment comment-btn w3-margin-bottom" onclick="comment_section('comment_section1')"><i class="fa fa-comment icon"></i>
-                         Comment</button>
+
+					<button type="button" class="like like-btn w3-margin-bottom">
+						<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+						Like
+					</button>
+                    <button type="button" class="comment comment-btn w3-margin-bottom" onclick="comment_section('comment_section_{{forloop.counter}}')">
+						<i class="fa fa-comment icon"></i> 
+						Comment
+					</button>
                     <hr>
 
                     <div class="comments">
-                        <div class="container" style="text-align: right;"> <span><i class="fa fa-thumbs-up total_like"></i> 2</span> <span
-                            class="ml-2"><i class="fa fa-comments total_comments"></i> 2</span>
+                        <div class="container" style="text-align: right;"> <span><i class="fa fa-thumbs-up total_like"></i>{{post.likes.all.count}}</span>
+							<span class="ml-2"><i class="fa fa-comments total_comments"></i>{{post.comments.all.count}}</span>
                         </div>
 
-                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40"
-                                class="rounded-image">
-                            <div class="d-flex flex-column ml-2"> <span class="name">Daniel Frozer</span> <small
-                                    class="comment-text">I like this alot! thanks alot</small>
-                                <div class="d-flex flex-row align-items-center status"> <small>Like</small>
-                                    <small>Reply</small>
-                                </div>
-                            </div>
+						{% for comment in post.comments.all|dictsort:"created_at" %}
+						<div class="d-flex flex-row mb-2">
+							{% if request.user.details.profile_picture %}
+								<img class="rounded-image" src = "{{comment.user.details.profile_picture.url}}">
+							{% else %}
+								<img class="rounded-image" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+							{% endif %}
+							<div class="d-flex flex-column ml-2"> <span class="name">{{comment.user}}</span>
+								<small class="comment-text">{{comment.comment}}</small>
+								<small class="comment-text"><i>{{comment.created_at|timesince}} ago</i></small>
+								<div class="d-flex flex-row align-items-center status">
+									<small>Reply</small>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
 
-                        </div>
-                        <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40"
-                                class="rounded-image">
-                            <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span>
-                                <small class="comment-text">Thanks for sharing!</small>
-                                <div class="d-flex flex-row align-items-center status"> <small>Like</small>
-                                    <small>Reply</small>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                         <div class="timeline-comment-box" id="comment_section1" style="display: none;">
-                               <form method="post">
-								  {% csrf_token %}
-                                  <div class="input-group">
-									{% if request.user.details.profile_picture %}
-									<img class="comment_img" src = "{{request.user.details.profile_picture.url}}">
-									{% else %}
-										<img class="comment_img" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
-									{% endif %}
-									<input type="text" class="form-control rounded-corner" placeholder="Write a comment..." required style="margin-left: 10px;">
-									<span class="input-group-btn p-l-10" style="padding-left: 10px;">
-									<button class="btn btn-primary f-s-12 rounded-corner" type="submit">Comment</button>
-									</span>
-
-                                  </div>
-                               </form>
-                         </div>
+						<div class="timeline-comment-box" id="comment_section_{{forloop.counter}}" style="display: none;">
+							<form method="post">
+								{% csrf_token %}
+								<div class="input-group">
+								{% if request.user.details.profile_picture %}
+									<img class="comment_img" src="{{request.user.details.profile_picture.url}}">
+								{% else %}
+									<img class="comment_img" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+								{% endif %}
+								<input type="text" class="form-control rounded-corner" name="comment" placeholder="Write a comment..." required style="margin-left: 10px;">
+								<input type="text" class="form-control rounded-corner" name="comment_post" value="{{post.uid}}" style="margin-left: 10px;" hidden>
+								<span class="input-group-btn p-l-10" style="padding-left: 10px;">
+									<button class="btn btn-primary f-s-12 rounded-corner" type="submit">
+									Comment
+									</button>
+								</span>
+								</div>
+							</form>
+						</div>
 
                     </div>
                     <div class="container" style="padding-top: 10px;"></div>
 
                 </div>
+				{% endfor %}
 
 
 
-
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar"
-                        class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">1 min</span>
-                    <h4>John Doe</h4><br>
-                    <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <div class="w3-row-padding" style="margin:0 -16px">
-                        <div class="w3-half">
-                            <img src="https://www.w3schools.com/w3images/lights.jpg" style="width:100%"
-                                alt="Northern Lights" class="w3-margin-bottom">
-                        </div>
-                        <div class="w3-half">
-                            <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%" alt="Nature"
-                                class="w3-margin-bottom">
-                        </div>
-                    </div>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
-                            class="fa fa-thumbs-up"></i> Like</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                         Comment</button>
-                </div>
 
 
                 <!-- End Middle Column -->

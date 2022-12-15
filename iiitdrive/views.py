@@ -105,8 +105,30 @@ def homepage(request):
 			post.save()
 
 			return redirect(homepage)
+		elif 'comment' in request.POST and 'comment_post' in request.POST :
+			post = Post.objects.filter(uid = request.POST['comment_post']).first()
+			if post is not None :
+				comment = Comment()
+				comment.user=user
+				comment.post=post
+				comment.comment=request.POST['comment']
+				comment.save()
 
-	return render(request, 'home.html')
+			return redirect(homepage)
+		elif 'liked_post' in request.POST :
+			post = Post.objects.filter(uid = request.POST['liked_post']).first()
+			if post is not None :
+				like = Like()
+				like.user=user
+				like.post=post
+				like.save()
+
+			return redirect(homepage)
+
+	posts = Post.objects.all().order_by('-created_at')
+	context = {'posts': posts}
+
+	return render(request, 'home.html', context)
 
 @login_required
 def profile(request):

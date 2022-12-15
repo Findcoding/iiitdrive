@@ -150,15 +150,15 @@ class Post(models.Model):
 
 
 class Tag(models.Model):
-	name = LowercaseCharField(max_length=20, unique=True)
+	name = LowercaseCharField(max_length=20, unique=True, null=False, blank=False)
 
 	def __str__(self):
 		return f'{self.name}'
 
 
 class Like(models.Model):
-	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
-	post = models.OneToOneField('Post', on_delete=models.CASCADE)
+	user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
+	post = models.ForeignKey('Post', related_name='likes', on_delete=models.CASCADE)
 
 	class Meta :
 		unique_together = ('user', 'post')
@@ -168,13 +168,10 @@ class Like(models.Model):
 
 
 class Comment(models.Model):
-	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
-	post = models.OneToOneField('Post', on_delete=models.CASCADE)
-	comment = models.CharField(max_length=50)
-	created_at = models.DateTimeField(auto_now_add = True)
-
-	class Meta :
-		unique_together = ('user', 'post')
+	user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
+	post = models.ForeignKey('Post', related_name='comments', on_delete=models.CASCADE)
+	comment = models.CharField(max_length=50, null=False, blank=False)
+	created_at = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return f'{self.user} - {self.post}'
