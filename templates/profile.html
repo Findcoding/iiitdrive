@@ -116,18 +116,19 @@
 							</form>
 
 							<div class="w3-center" style="padding-top: 30px;">
-								<a href="{% url 'social' %}" style="text-decoration: none;"><button class="edit_profile">
-									<b>{{request.user.username}} </b><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px">
-									</button></a>
+								<a href="{% url 'social' %}" style="text-decoration: none;">
+									<button class="edit_profile" style="width: 50%;">Social Profile </button>
+								</a>
 							</div>
+							<br>
 
 							<div class="w3-center" style="padding-top: 5px;">
-								<span class="font-weight-light">{{request.user.email}}</span>
 
 								<div class="h5 font-weight-300">
-									<i class="ni location_pin mr-2"></i><b>IIITD | STUDENT </b>
+									<b>{{request.user.username}} </b><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px">
 								</div>
 
+								<span class="font-weight-light">{{request.user.email}}</span>
 							</div>
 
 							<hr class="my-4">
