@@ -143,6 +143,7 @@ class Post(models.Model):
 	text = models.CharField(max_length=300, null=False, blank=False)
 	file = models.OneToOneField('ResourceFile', on_delete=models.CASCADE, null=True, blank=True)
 	tags = models.ManyToManyField('Tag', related_name='posts')
+	created_at = models.DateTimeField(auto_now_add = True)
 
 	def __str__(self):
 		return f'{self.owner} - {self.uid}'
@@ -170,6 +171,7 @@ class Comment(models.Model):
 	user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
 	post = models.OneToOneField('Post', on_delete=models.CASCADE)
 	comment = models.CharField(max_length=50)
+	created_at = models.DateTimeField(auto_now_add = True)
 
 	class Meta :
 		unique_together = ('user', 'post')
