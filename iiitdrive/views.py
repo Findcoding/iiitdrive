@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import models
 
 from .forms import NewUserCreationForm
-from .utils import send_email
+from .utils import send_email, get_storage_used
 from .models import UserDetails, Social, ResourceFile, UserFiles
 
 User = get_user_model()
@@ -123,8 +123,6 @@ def mydrive(request):
 	user = request.user
 	files = UserFiles.objects.filter(models.Q(owner=user) & models.Q(is_trashed=False) & models.Q(is_deleted=False))
 
-	print(request.POST)
-
 	if request.method == 'POST':
 		if 'document' in request.FILES :
 			for f in request.FILES.getlist('document'):
@@ -157,7 +155,9 @@ def mydrive(request):
 				file.save()
 			return redirect(mydrive)
 
-	context = {'files' : files}
+	storage_used = get_storage_used(user.username)
+
+	context = {'files' : files, 'storage_used' : storage_used}
 	return render(request, 'mydrive.html', context)
 
 @login_required

@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail, EmailMessage
+from django.db import models
 
 import threading
 
@@ -29,3 +30,15 @@ def send_email(subject, to_email, message):
         to_email = [to_email, ]
     from_email = settings.EMAIL_HOST_USER
     EmailThread(subject, message, to_email, from_email).start()
+
+
+def get_storage_used(username) :
+	from .models import UserFiles
+	user_files = UserFiles.objects.filter(models.Q(owner__username = username) & models.Q(is_deleted = False))
+
+	storage_used = 0
+	for uf in user_files :
+		size = uf.file.file.size
+		storage_used += size
+
+	return storage_used
