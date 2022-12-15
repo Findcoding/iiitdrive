@@ -242,7 +242,7 @@
                         <h4>Usage</h4>
 						<input type="text" id="net_storage" value="{{storage_used}}" hidden>
 						<p id="p_bar"></p>
-                        <p><b id="used_storage">0</b><b> MB</b> out of <b>500 MB</b> (40%) (<a href="#" class="upgrade">Upgrade</a>)</p>
+                        <p><b id="used_storage">0</b><b> MB</b> out of <b>500 MB</b> (<b id="percentage">0</b>%) (<a href="#" class="upgrade">Upgrade</a>)</p>
                     </div>
 
 					<script>
@@ -255,7 +255,13 @@
 						g.setAttribute("max", "100");
 						document.getElementById("p_bar").appendChild(g);
 
-						document.getElementById('used_storage').innerHTML = Math.ceil(storage/1024/1024);
+						let num = storage/1024/1024;
+						document.getElementById('used_storage').innerHTML = Math.round(num*10)/10;
+
+						let percent = (stor*100)/500;
+						let result = Math.round(percent*10)/10;
+						document.getElementById('percentage').innerHTML = result;
+
 					</script>
 
                 </div>
