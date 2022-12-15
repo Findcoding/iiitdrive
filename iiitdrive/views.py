@@ -148,11 +148,13 @@ def mydrive(request):
 				file.save()
 			return redirect(mydrive)
 		elif 'share' in request.POST and 'share_id' in request.POST :
-			shared_user = get_user_model().objects.filter(username = request.POST['share']).first()
-			file = files.filter(file__uid = request.POST['share_id']).first()
-			if shared_user is not None and file is not None :
-				file.shared_with.add(shared_user)
-				file.save()
+			share_username = request.POST['share']
+			if share_username != user.username :
+				shared_user = get_user_model().objects.filter(username = share_username).first()
+				file = files.filter(file__uid = request.POST['share_id']).first()
+				if shared_user is not None and file is not None :
+					file.shared_with.add(shared_user)
+					file.save()
 			return redirect(mydrive)
 
 	storage_used = get_storage_used(user.username)
