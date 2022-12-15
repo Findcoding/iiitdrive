@@ -11,4 +11,5 @@ requests==2.28.1
 sqlparse==0.4.3
 upgrade-requirements==1.7.0
 urllib3==1.26.12
+whitenoise==6.2.0
 yarg==0.1.9

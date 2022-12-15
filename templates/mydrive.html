@@ -36,6 +36,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     {% endblock %}
 
@@ -239,9 +240,30 @@
                 <div class="w3-card w3-round w3-white w3-hide-small" style="border-radius: 10px;">
                     <div class="w3-container" style="padding-top: 5px;">
                         <h4>Usage</h4>
-                        <progress value="40" max="100"></progress>
-                        <p>40.5 MB out of 500 MB (40%) (<a href="#" class="upgrade">Upgrade</a>)</p>
+						<input type="text" id="net_storage" value="{{storage_used}}" hidden>
+						<p id="p_bar"></p>
+                        <p><b id="used_storage">0</b><b> MB</b> out of <b>500 MB</b> (<b id="percentage">0</b>%) (<a href="#" class="upgrade">Upgrade</a>)</p>
                     </div>
+
+					<script>
+						let storage = document.getElementById('net_storage').value;
+						let stor = ~~(storage/1024/1024);
+
+						// create progress bar
+						var g = document.createElement("progress");
+						g.setAttribute("value", stor);
+						g.setAttribute("max", "100");
+						document.getElementById("p_bar").appendChild(g);
+
+						let num = storage/1024/1024;
+						document.getElementById('used_storage').innerHTML = Math.round(num*10)/10;
+
+						let percent = (stor*100)/500;
+						let result = Math.round(percent*10)/10;
+						document.getElementById('percentage').innerHTML = result;
+
+					</script>
+
                 </div>
                 <br>
 
@@ -295,8 +317,8 @@
                                 <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
                             </div>
                             <div class="d_file" id="before_{{forloop.counter}}">
-                                <a href="{{file.file.file.url}}" style="text-decoration: none;" class="download"
-                                    id="download_{{forloop.counter}}" download="proposed_file_name" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
+                                <a href="" style="text-decoration: none;" class="download"
+                                    id="download_{{forloop.counter}}" download="{{file.file.name}}.{{file.file.type}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
                                 <a role="" style="text-decoration: none;" class="rename" onclick="rename('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}',);">
                                     <i class="fa" title="Rename"></i></a>
 								<a role="" style="text-decoration: none;" class="share" onclick="share('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}');">

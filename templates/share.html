@@ -173,8 +173,8 @@
 								<h6 class="display-6 font-weight-light title desc"> Shared by <b>{{file.owner.username}} </b></h6>
                             </div>
                             <div class="d_file">
-                                <a href="{{file.file.file.url}}" style="text-decoration: none;" class="download"
-                                    id="download_{{forloop.counter}}" download="proposed_file_name" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
+                                <a href="" style="text-decoration: none;" class="download"
+                                    id="download_{{forloop.counter}}" download="{{file.file.name}}.{{file.file.type}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
                             </div>
 
                         </div>
