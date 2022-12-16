@@ -143,77 +143,27 @@
                 {% include 'profile_card.html' %}
                 <br>
 
-                <!-- Accordion -->
-                <div class="w3-card w3-round">
-                    <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-                        <div id="Demo1" class="w3-hide w3-container">
-                            <p>Some text..</p>
-                        </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-                        <div id="Demo2" class="w3-hide w3-container">
-                            <p>Some other text..</p>
-                        </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
-                        <div id="Demo3" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                                <br>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/lights.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/mountains.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/forest.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/snow.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
+                <!-- Recent Tags -->
+				<div class="alert alert-warning" role="alert">
+					<h5 class="alert-heading"><b>Recent Tags</b></h5>
+					<p>
+						{% for tag in 5|get_trending_tags %}
+						<span class="badge badge-primary">{{tag}}</span>
+						{% endfor %}
+					</p>
+				</div>
 
-                <!-- Interests -->
-                <div class="w3-card w3-round w3-white w3-hide-small">
-                    <div class="w3-container">
-                        <p>Recent Tags</p>
-                        <p>
-							{% for tag in 5|get_trending_tags %}
-                            <span class="w3-tag w3-small w3-theme-d5">{{tag}}</span>
-							{% endfor %}
-                        </p>
-                    </div>
-                </div>
-                <br>
 
                 <!-- Alert Box -->
-                <div
-                    class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-                    <span onclick="this.parentElement.style.display='none'"
-                        class="w3-button w3-theme-l3 w3-display-topright">
-                        <i class="fa fa-remove"></i>
-                    </span>
-                    <p><strong>Hey!</strong></p>
-                    <p>People are looking at your profile. Find out who.</p>
-                </div>
+                <a class="card1" role="" style="width: 100%; text-decoration: none;">
+					<h3 class="h3_class">Hey Folks!</h3>
+					<p class="small">To access a user's profile details, click on their username.</p>
+					<div class="go-corner" href="#">
+					  <div class="go-arrow"> → </div>
+					</div>
+				</a>
+
+				<br>
 
                 <div class="w3-card w3-round w3-white w3-hide-small">
                     <!-- Countdown 4-->
@@ -231,6 +181,9 @@
 
                 <!-- End Left Column -->
             </div>
+
+
+
 
             <!-- Middle Column -->
             <div class="w3-col m7">
@@ -270,14 +223,16 @@
 						<img class="w3-left w3-circle w3-margin-right" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" style="width:60px">
 					{% endif %}
                     <span class="w3-right w3-opacity"><i>{{post.created_at|timesince}} ago</i></span>
-                    <a href="{% url 'social' %}" style="text-decoration: none;"><h4 class="text-primary"><b>@{{request.user.username}}</b></h4></a>
+                    <h4 class="text-primary"><a href="{% url 'social' %}" style="text-decoration: none;"><b>@{{request.user.username}} </b></a><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px"></h4>
+					<small class="user_status"><b>Member of IIITD</b></small>
+					<br>
 					<hr class="w3-clear">
 
-					<p>{{post.text}}</p>
+					<p class="post_text">{{post.text}}</p>
 
 					{% if post.file %}
 					<div class="w3-row-padding" style="margin:0 -16px">
-                        <div class="w3-half">
+                        <div class="w3-full">
                             <img src="{{post.file.file.url}}" style="width:100%" alt="{{post.file.name}}" class="w3-margin-bottom">
                         </div>
                     </div>
@@ -302,8 +257,8 @@
                     <hr>
 
                     <div class="comments">
-                        <div class="container" style="text-align: right;"> <span><i class="fa fa-thumbs-up total_like"></i>{{post.likes.all.count}}</span>
-							<span class="ml-2"><i class="fa fa-comments total_comments"></i>{{post.comments.all.count}}</span>
+                        <div class="container" style="text-align: right;"> <span><i class="fa fa-thumbs-up total_like"></i> {{post.likes.all.count}}</span>
+							<span class="ml-2"><i class="fa fa-comments total_comments"></i> {{post.comments.all.count}}</span>
                         </div>
 
 						{% for comment in post.comments.all|dictsort:"created_at" %}
@@ -313,7 +268,7 @@
 							{% else %}
 								<img class="rounded-image" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
 							{% endif %}
-							<div class="d-flex flex-column ml-2"> <span class="name">{{comment.user}}</span>
+							<div class="d-flex flex-column ml-2"> <span class="name"><b>{{comment.user}}</b></span>
 								<small class="comment-text">{{comment.comment}}</small>
 								<small class="comment-text"><i>{{comment.created_at|timesince}} ago</i></small>
 								<div class="d-flex flex-row align-items-center status">
