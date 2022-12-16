@@ -268,9 +268,9 @@
 							{% else %}
 								<img class="rounded-image" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
 							{% endif %}
-							<div class="d-flex flex-column ml-2"> <span class="name"><b>{{comment.user}}</b></span>
-								<small class="comment-text">{{comment.comment}}</small>
-								<small class="comment-text"><i>{{comment.created_at|timesince}} ago</i></small>
+							<div class="d-flex flex-column ml-2"> <span class="name"><b>{{comment.user}} </b><img src="{% static "images/bluetick.png" %}" alt="Verified" width="14px"></span>
+								<small class="left_p"><b>{{comment.comment}}</b></small>
+								<small class="right_p"><i>{{comment.created_at|timesince}} ago</i></small>
 								<div class="d-flex flex-row align-items-center status">
 									<small>Reply</small>
 								</div>

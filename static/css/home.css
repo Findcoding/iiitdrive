@@ -201,7 +201,8 @@ hr {
 }
 
 .name {
-	font-weight: 600
+	font-weight: 600;
+	color: rgb(44, 43, 43);
 }
 
 .comment-text {
@@ -699,6 +700,19 @@ small.user_status {
 	font-weight: bolder;
 	color: #0c0c0c;
 	font-family: "Google Sans", arial, sans-serif;
+}
+
+
+.inline {
+	display: inline-block;
+}
+
+.right_p {
+    float: right;
+}
+
+.left_p {
+    float: left;
 }
 
 /* Comment */
