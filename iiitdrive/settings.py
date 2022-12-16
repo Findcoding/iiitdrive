@@ -57,15 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 	'whitenoise.middleware.WhiteNoiseMiddleware',
-=======
-    'whitenoise.middleware.WhiteNoiseMiddleware',
->>>>>>> Stashed changes
-=======
-    'whitenoise.middleware.WhiteNoiseMiddleware',
->>>>>>> Stashed changes
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
