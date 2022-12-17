@@ -223,7 +223,7 @@
 						<img class="w3-left w3-circle w3-margin-right" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" style="width:60px">
 					{% endif %}
                     <span class="w3-right w3-opacity"><i>{{post.created_at|timesince}} ago</i></span>
-                    <h4 class="text-primary"><a href="{% url 'social' %}" style="text-decoration: none;"><b>@{{request.user.username}} </b></a><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px"></h4>
+                    <h4 class="text-primary"><a href="{% url 'social' %}" style="text-decoration: none;"><b>@{{post.owner.username}} </b></a><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px"></h4>
 					<small class="user_status"><b>Member of IIITD</b></small>
 					<br>
 					<hr class="w3-clear">
