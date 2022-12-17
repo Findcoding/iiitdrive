@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-d4%yev_0%^dv_sjlh-qkfr-wqre!27e@=e^k+*^c-_6b5_mygi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '*', '127.0.0.1', 'ec2-54-252-174-27.ap-southeast-2.compute.amazonaws.com']
 
 AUTH_USER_MODEL = 'iiitdrive.CustomUser'
 
