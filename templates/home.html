@@ -214,7 +214,7 @@
 
 
 				{% for post in posts %}
-                <div class="w3-container w3-card w3-white w3-round w3-margin">
+                <div class="w3-container w3-card w3-white w3-round w3-margin" id="all_posts">
 					<br>
 
 					{% if post.owner.details.profile_picture %}
@@ -223,7 +223,7 @@
 						<img class="w3-left w3-circle w3-margin-right" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" style="width:60px">
 					{% endif %}
                     <span class="w3-right w3-opacity"><i>{{post.created_at|timesince}} ago</i></span>
-                    <h4 class="text-primary"><a href="{% url 'social' %}" style="text-decoration: none;"><b>@{{request.user.username}} </b></a><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px"></h4>
+                    <h4 class="text-primary"><a href="{% url 'social' %}" style="text-decoration: none;"><b>@{{post.owner.username}} </b></a><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px"></h4>
 					<small class="user_status"><b>Member of IIITD</b></small>
 					<br>
 					<hr class="w3-clear">
@@ -246,9 +246,14 @@
 
                     <br>
 
-					<button type="button" class="like like-btn w3-margin-bottom">
+					<button type="button" class="like like-btn w3-margin-bottom" id="liked_id_{{forloop.counter}}" onclick="like_post('{{post.uid}}', '{{csrf_token}}')">
+						{% if post|is_liked_by_user:request.user %}
+						<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+						Liked
+						{% else %}
 						<i class="fa fa-thumbs-up" aria-hidden="true"></i>
 						Like
+						{% endif %}
 					</button>
                     <button type="button" class="comment comment-btn w3-margin-bottom" onclick="comment_section('comment_section_{{forloop.counter}}')">
 						<i class="fa fa-comment icon"></i> 
@@ -257,7 +262,7 @@
                     <hr>
 
                     <div class="comments">
-                        <div class="container" style="text-align: right;"> <span><i class="fa fa-thumbs-up total_like"></i> {{post.likes.all.count}}</span>
+                        <div class="container" style="text-align: right;"> <span id="total_likes"><i class="fa fa-thumbs-up total_like"></i> {{post.likes.all.count}}</span>
 							<span class="ml-2"><i class="fa fa-comments total_comments"></i> {{post.comments.all.count}}</span>
                         </div>
 
@@ -271,9 +276,9 @@
 							<div class="d-flex flex-column ml-2"> <span class="name"><b>{{comment.user}} </b><img src="{% static "images/bluetick.png" %}" alt="Verified" width="14px"></span>
 								<small class="left_p"><b>{{comment.comment}}</b></small>
 								<small class="right_p"><i>{{comment.created_at|timesince}} ago</i></small>
-								<div class="d-flex flex-row align-items-center status">
+								<!-- <div class="d-flex flex-row align-items-center status">
 									<small>Reply</small>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						{% endfor %}
