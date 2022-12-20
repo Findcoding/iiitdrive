@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load my_tags %}
 
 <head>
 	{% block linkfile %}
@@ -13,8 +14,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-	<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
-	<!-- <script type="text/javascript" src="{% static 'js/index.js' %}"></script> -->
+	<script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
@@ -26,7 +26,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<script type="text/javascript" src="{% static 'js/sidebar.js' %}"></script>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
@@ -34,6 +34,11 @@
 
 
 	{% block extrahead %}
+	<style>
+		h2 {
+			font-family: "Google Sans", arial, sans-serif;
+		}
+	</style>
 	{% endblock%}
 
 </head>
@@ -65,6 +70,10 @@
 				class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
 				<h2>Trash</h2>
 			</a>
+			<a href="{% url 'share' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Shared">
+                <h2>Shared</h2>
+            </a>
 			<a href="{% url 'profilepage' %}" style="text-decoration:none"
 				class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-theme-d4" title="Profile">
 				<h2 style="color: black;">Profile</h2>
@@ -79,44 +88,59 @@
 		<div class="main-body">
 			<div class="row">
 				<div class="col-lg-4">
-					<div class="card animate__animated animate__fadeInUp animate__slower">
+					<div class="card user_details animate__animated animate__fadeInUp animate__slower">
 						<img src="{% static "images/iiitd.png" %}" alt="IIITD">
-						<div class="card-body">
-							<div class="d-flex flex-column align-items-center text-center">
-								<img src="{% static "images/biju1.jpg" %}" alt="Admin" class="rounded-circle p-1"
-									width="110">
-								<div class="mt-3">
-									<h4>Bijendar Prasad <img src="{% static "images/bluetick.png" %}" alt="Verified"
-											width="17px"> </h4>
-									<p class="text-secondary mb-1">Full Stack Developer</p>
-									<p class="text-muted font-size-sm">Surajkund, Faridabad, Haryana</p>
-									<button class="btn btn-primary">Follow</button>
-									<button class="btn btn-outline-primary">Message</button>
+
+						<div class="card-body" style="padding-top: 100px;">
+							<form method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+								<div class="d-flex flex-column align-items-center text-center">
+
+									<div class="circle">
+										{% if request.user.details.profile_picture %}
+											<img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm zoom profile-pic" src = "{{request.user.details.profile_picture.url}}">
+										{% else %}
+											<img class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm zoom profile-pic" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+										{% endif %}
+									</div>
+									<div class="p-image">
+										<i class="fa fa-camera upload-button"></i>
+										<input class="form-control file-upload" name="profile_image" value="" type="file" id="profile_image" accept="image/*" required>
+									</div>
+									<br>
+									<br>
+									<input class="btn btn-outline-primary" type="submit" value="Upload Profile Photo" onclick="return upload_photo()">
+
 								</div>
+
+							</form>
+
+							<div class="w3-center" style="padding-top: 30px;">
+								<a href="{% url 'social' %}" style="text-decoration: none;">
+									<button class="edit_profile" style="width: 50%;">Social Profile </button>
+								</a>
 							</div>
+							<br>
+
+							<div class="w3-center" style="padding-top: 5px;">
+
+								<div class="h5 font-weight-300">
+									<b>{{request.user.username}} </b><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px">
+								</div>
+
+								<span class="font-weight-light">{{request.user.email}}</span>
+							</div>
+
 							<hr class="my-4">
-						</div>
 
-						<div class="card-body">
-							<div class="w3-center" style="padding-top: 10px;">
-								<button type="button" class="btn btn-outline-primary btn-floating">
-									<i class="fa fa-github fa-lg"></i>
-								</button>
-								<button type="button" class="btn btn-outline-primary btn-floating">
-									<i class="fa fa-linkedin fa-lg"></i>
-								</button>
-								<button type="button" class="btn btn-outline-primary btn-floating">
-									<i class="fa fa-twitter fa-lg"></i>
-								</button>
-								<button type="button" class="btn btn-outline-primary btn-floating">
-									<i class="fa fa-instagram fa-lg"></i>
-								</button>
-								<button type="button" class="btn btn-outline-primary btn-floating">
-									<i class="fa fa-facebook-f fa-lg"></i>
-								</button>
-							</div>
+							{% if request.user.details.about_me %}
+							<p>{{request.user.details.about_me}}</p>
+							{% endif %}
 
 						</div>
+
+						{% include 'social_profile_links.html' %}
+
 					</div>
 				</div>
 
@@ -128,11 +152,10 @@
 								{% csrf_token %}
 								<div class="row mb-3">
 									<div class="col-sm-3">
-										<h6 class="mb-0"><b>Full Name</b></h6>
+										<h6 class="mb-0"><b>User Name</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" name="name" value="Bijendar Prasad"
-											readonly>
+										<input type="text" class="form-control" name="name" value="{{request.user.username}}" readonly>
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -140,78 +163,77 @@
 										<h6 class="mb-0"><b>Email</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<input type="email" class="form-control" name="email"
-											value="bijendar19238@iiitd.ac.in" readonly>
+										<input type="email" class="form-control" name="email" value="{{request.user.email}}" readonly>
 									</div>
 								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0"><b>Roll No.</b></h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="number" class="form-control" name="rollno" value=""
-											placeholder="2019238" oninput="this.value=(parseInt(this.value))" required>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0"><b>Programme</b></h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<select id="programme" class="form-control" name="programme" required>
-											<option id="select" value="none">Select</option>
-											<option id="btech" value="B.Tech">B.Tech</option>
-											<option id="mtech" value="M.Tech">M.Tech</option>
-											<option id="phd" value="Ph.D">Ph.D</option>
-										</select>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0"><b>Branch</b></h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" name="branch" value=""
-											placeholder="CSAM" required>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0"><b>Username</b></h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" name="username" value=""
-											placeholder="deadLocks" required>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0"><b>Contact Number</b></h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="number" class="form-control" name="contact_number" value=""
-											placeholder="8169876254" oninput="this.value=(parseInt(this.value))"
-											required>
-									</div>
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-3">
-										<h6 class="mb-0"><b>Address</b></h6>
-									</div>
-									<div class="col-sm-9 text-secondary">
-										<input type="text" class="form-control" name="address" value=""
-											placeholder="Surajkund, Faridabad, Haryana">
-									</div>
-								</div>
+
 								<div class="row mb-3">
 									<div class="col-sm-3">
 										<h6 class="mb-0"><b>About Me</b></h6>
 									</div>
 									<div class="col-sm-9 text-secondary">
-										<textarea rows="4" class="form-control form-control-alternative" name="about_me"
-											value="" placeholder="A few words about you ..." required></textarea>
+										{% if request.user.details.about_me %}
+											<textarea rows="4" class="form-control form-control-alternative" name="about_me" placeholder="{{request.user.details.about_me}}" readonly></textarea>
+										{% else %}
+											<textarea rows="4" class="form-control form-control-alternative" name="about_me" placeholder="A few words about you ..." style="font-style:italic" required></textarea>
+										{% endif %}
 									</div>
 								</div>
+
+								<div class="table-responsive">
+									<table class="table table-bordered border-dark" border=1>
+										<tr>
+											<td class="col-sm-3"><i class="fa fa-github"></i> Github</td>
+											{% if request.user.details.socials|get_social_link:'github' %}
+											<td><input type="url" class="form-control" name="github" value="{{request.user.details.socials|get_social_link:'github'}}" placeholder="Type link here"></td>
+											{% else %}
+											<td><input type="url" class="form-control" name="github" value="" placeholder="Type link here"></td>
+											{% endif %}
+										</tr>
+										<tr>
+											<td class="col-sm-3"><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn</td>
+											{% if request.user.details.socials|get_social_link:'linkedin' %}
+											<td><input type="url" class="form-control" name="linkedin" value="{{request.user.details.socials|get_social_link:'linkedin'}}" placeholder="Type link here"></td>
+											{% else %}
+											<td><input type="url" class="form-control" name="linkedin" value="" placeholder="Type link here"></td>
+											{% endif %}
+										</tr>
+										<tr>
+											<td class="col-sm-3"><i class="fa fa-twitter"></i> Twitter</td>
+											{% if request.user.details.socials|get_social_link:'twitter' %}
+											<td><input type="url" class="form-control" name="twitter" value="{{request.user.details.socials|get_social_link:'twitter'}}" placeholder="Type link here"></td>
+											{% else %}
+											<td><input type="url" class="form-control" name="twitter" value="" placeholder="Type link here"></td>
+											{% endif %}
+										</tr>
+										<tr>
+											<td class="col-sm-3"><i class="fa fa-instagram"></i> Instagram</td>
+											{% if request.user.details.socials|get_social_link:'instagram' %}
+											<td><input type="url" class="form-control" name="instagram" value="{{request.user.details.socials|get_social_link:'instagram'}}" placeholder="Type link here"></td>
+											{% else %}
+											<td><input type="url" class="form-control" name="instagram" value="" placeholder="Type link here"></td>
+											{% endif %}
+										</tr>
+										<tr>
+											<td class="col-sm-3"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</td>
+											{% if request.user.details.socials|get_social_link:'facebook' %}
+											<td><input type="url" class="form-control" name="facebook" value="{{request.user.details.socials|get_social_link:'facebook'}}" placeholder="Type link here"></td>
+											{% else %}
+											<td><input type="url" class="form-control" name="facebook" value="" placeholder="Type link here"></td>
+											{% endif %}
+										</tr>
+										<tr>
+											<td class="col-sm-3"><i class="fa fa-reddit-square"	aria-hidden="true"></i> Reddit</td>
+											{% if request.user.details.socials|get_social_link:'reddit'%}
+											<td><input type="url" class="form-control" name="reddit" value="{{request.user.details.socials|get_social_link:'reddit'}}" placeholder="Type link here"></td>
+											{% else %}
+											<td><input type="url" class="form-control" name="reddit" value="" placeholder="Type link here"></td>
+											{% endif %}
+										</tr>
+
+									</table>
+								</div>
+
 								<div class="row">
 									<div class="col-sm-3"></div>
 									<div class="col-sm-9 text-secondary">
@@ -224,58 +246,7 @@
 					</div>
 
 
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card animate__animated animate__fadeInUpBig animate__slower">
-								<div class="card-body">
-									<form method='post'>
-										{% csrf_token %}
 
-										<div class="table-responsive">
-											<table class="table table-bordered border-dark" border=1>
-												<tr>
-													<td class="col-sm-3"><i class="fa fa-github"></i> Github</td>
-													<td><input type="url" class="form-control" name="github" value=""
-															placeholder="Type link here"></td>
-												</tr>
-												<tr>
-													<td class="col-sm-3"><i class="fa fa-linkedin-square"
-															aria-hidden="true"></i> LinkedIn</td>
-													<td><input type="url" class="form-control" name="linkedin" value=""
-															placeholder="Type link here"></td>
-												</tr>
-												<tr>
-													<td class="col-sm-3"><i class="fa fa-twitter"></i> Twitter</td>
-													<td><input type="url" class="form-control" name="twitter" value=""
-															placeholder="Type link here"></td>
-												</tr>
-												<tr>
-													<td class="col-sm-3"><i class="fa fa-instagram"></i> Instagram</td>
-													<td><input type="url" class="form-control" name="instagram" value=""
-															placeholder="Type link here"></td>
-												</tr>
-												<tr>
-													<td class="col-sm-3"><i class="fa fa-facebook-square"
-															aria-hidden="true"></i> Facebook</td>
-													<td><input type="url" class="form-control" name="facebook" value=""
-															placeholder="Type link here"></td>
-												</tr>
-											</table>
-										</div>
-
-										<div class="row">
-											<div class="col-sm-3"></div>
-											<div class="col-sm-9 text-primary">
-												<input type="submit" class="btn btn-primary px-4" value="Save Changes">
-											</div>
-										</div>
-
-									</form>
-
-								</div>
-							</div>
-						</div>
-					</div>
 
 
 				</div>

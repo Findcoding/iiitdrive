@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load my_tags %}
 
 <head>
     {% block linkfile %}
@@ -16,12 +17,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sidebar.js' %}"></script>
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile_card_details.css' %}" />
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/upload.css' %}" />
     <script type="text/javascript" src="{% static 'js/upload.js' %}"></script>
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
@@ -36,7 +39,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
@@ -58,12 +61,14 @@
         html,
         body,
         h1,
-        h2,
         h3,
         h4,
         h5 {
             font-family: "Open Sans", sans-serif
         }
+		.events, h2, h6 {
+			font-family: "Google Sans", arial, sans-serif;
+		}
     </style>
     {% endblock %}
 
@@ -92,6 +97,10 @@
             <a href="{% url 'trash' %}" style="text-decoration:none"
                 class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
                 <h2>Trash</h2>
+            </a>
+			<a href="{% url 'share' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Shared">
+                <h2>Shared</h2>
             </a>
             <a href="{% url 'profilepage' %}" style="text-decoration:none" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Profile">
                 <h2>Profile</h2>
@@ -134,85 +143,27 @@
                 {% include 'profile_card.html' %}
                 <br>
 
-                <!-- Accordion -->
-                <div class="w3-card w3-round">
-                    <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-                        <div id="Demo1" class="w3-hide w3-container">
-                            <p>Some text..</p>
-                        </div>
-                        <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-                        <div id="Demo2" class="w3-hide w3-container">
-                            <p>Some other text..</p>
-                        </div>
-                        <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
-                        <div id="Demo3" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                                <br>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/lights.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/mountains.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/forest.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="https://www.w3schools.com/w3images/snow.jpg" style="width:100%"
-                                        class="w3-margin-bottom">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
+                <!-- Recent Tags -->
+				<div class="alert alert-warning" role="alert">
+					<h5 class="alert-heading"><b>Recent Tags</b></h5>
+					<p>
+						{% for tag in 5|get_trending_tags %}
+						<span class="badge badge-primary">{{tag}}</span>
+						{% endfor %}
+					</p>
+				</div>
 
-                <!-- Interests -->
-                <div class="w3-card w3-round w3-white w3-hide-small">
-                    <div class="w3-container">
-                        <p>Recent Tags</p>
-                        <p>
-                            <span class="w3-tag w3-small w3-theme-d5">News</span>
-                            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
-                            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-                            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-                            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-                            <span class="w3-tag w3-small w3-theme">Games</span>
-                            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
-                            <span class="w3-tag w3-small w3-theme-l2">Food</span>
-                            <span class="w3-tag w3-small w3-theme-l3">Design</span>
-                            <span class="w3-tag w3-small w3-theme-l4">Art</span>
-                            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
-                        </p>
-                    </div>
-                </div>
-                <br>
 
                 <!-- Alert Box -->
-                <div
-                    class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-                    <span onclick="this.parentElement.style.display='none'"
-                        class="w3-button w3-theme-l3 w3-display-topright">
-                        <i class="fa fa-remove"></i>
-                    </span>
-                    <p><strong>Hey!</strong></p>
-                    <p>People are looking at your profile. Find out who.</p>
-                </div>
+                <a class="card1" role="" style="width: 100%; text-decoration: none;">
+					<h3 class="h3_class">Hey Folks!</h3>
+					<p class="small">To access a user's profile details, click on their username.</p>
+					<div class="go-corner" href="#">
+					  <div class="go-arrow"> → </div>
+					</div>
+				</a>
+
+				<br>
 
                 <div class="w3-card w3-round w3-white w3-hide-small">
                     <!-- Countdown 4-->
@@ -223,7 +174,6 @@
                             <span class="h2 font-weight-bold" id="min">00</span>
                             <span class="h2 font-weight-bold" id="sec">00</span>
                             <span class="h2 font-weight-bold" id="zone"></span>
-
                         </div>
                     </div>
 
@@ -232,167 +182,161 @@
                 <!-- End Left Column -->
             </div>
 
+
+
+
             <!-- Middle Column -->
             <div class="w3-col m7">
 
+                <div class="container" style="width: 100%;">
+                    <h2 class="display-4 font-weight-light title"> ACTIVITY <b>FEED </b></h2>
+                </div>
+
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
-                        <h3>ACTIVITY FEED</h3>
                         <div class="w3-card w3-round w3-white">
-                            <div class="w3-container w3-padding">
-                                <h6 class="w3-opacity">Social Media template</h6>
-                                <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
-                                <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>
-                                     Post</button>
-                            </div>
+							<form id="post_details" method='post'>
+                                {% csrf_token %}
+								<div class="w3-container w3-padding">
+									<h6><b>What are you doing?...</b></h6>
+									<textarea class="massage_details" name="message" id="massage_details" rows="3" value="" placeholder="Doing Assignment..." required></textarea>
+									<br>
+									<button type="submit" class="post_btn" onclick="return post(event, 'post_details','massage_details')">
+										<span><i class="fa fa-pencil"></i><b> Post</b></span>
+									</button>
+
+								</div>
+
+							</form>
                         </div>
                     </div>
                 </div>
 
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar"
-                        class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">1 min</span>
-                    <h4>John Doe</h4><br>
-                    <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <div class="w3-row-padding" style="margin:0 -16px">
-                        <div class="w3-half">
-                            <img src="https://www.w3schools.com/w3images/lights.jpg" style="width:100%"
-                                alt="Northern Lights" class="w3-margin-bottom">
-                        </div>
-                        <div class="w3-half">
-                            <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%" alt="Nature"
-                                class="w3-margin-bottom">
-                        </div>
-                    </div>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
-                            class="fa fa-thumbs-up"></i> Like</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                         Comment</button>
-                </div>
 
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="https://www.w3schools.com/w3images/avatar5.png" alt="Avatar"
-                        class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">16 min</span>
-                    <h4>Jane Doe</h4><br>
-                    <hr class="w3-clear">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                         Like</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                         Comment</button>
-                </div>
+				{% for post in posts %}
+                <div class="w3-container w3-card w3-white w3-round w3-margin" id="all_posts">
+					<br>
 
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar"
-                        class="w3-left w3-circle w3-margin-right" style="width:60px">
-                    <span class="w3-right w3-opacity">32 min</span>
-                    <h4>Angie Jane</h4><br>
-                    <hr class="w3-clear">
-                    <p>Have you seen this?</p>
-                    <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%"
-                        class="w3-margin-bottom">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
-                        Like</button>
-                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>
-                        Comment</button>
-                </div>
+					{% if post.owner.details.profile_picture %}
+						<img class="w3-left w3-circle w3-margin-right" src = "{{post.owner.details.profile_picture.url}}" style="width:60px">
+					{% else %}
+						<img class="w3-left w3-circle w3-margin-right" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" style="width:60px">
+					{% endif %}
+                    <span class="w3-right w3-opacity"><i>{{post.created_at|timesince}} ago</i></span>
+                    <h4 class="text-primary"><a href="{% url 'social' %}" style="text-decoration: none;"><b>@{{post.owner.username}} </b></a><img src="{% static "images/bluetick.png" %}" alt="Verified" width="17px"></h4>
+					<small class="user_status"><b>Member of IIITD</b></small>
+					<br>
+					<hr class="w3-clear">
 
-                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                    <div class="card">
-                        <div class="d-flex justify-content-between p-2 px-3">
-                            <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/UXdKE3o.jpg"
-                                    width="50" class="rounded-circle">
-                                <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">Jeanette Sun</span>
-                                    <small class="text-primary">Collegues</small>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">20 mins</small> <i
-                                    class="fa fa-ellipsis-h"></i> </div>
-                        </div> <img src="https://i.imgur.com/xhzhaGA.jpg" class="img-fluid">
-                        <div class="p-2">
-                            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt.</p>
-                            <hr>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex flex-row icons d-flex align-items-center"> <i
-                                        class="fa fa-heart"></i> <i class="fa fa-smile-o ml-2"></i> </div>
-                                <div class="d-flex flex-row muted-color"> <span>2 comments</span> <span
-                                        class="ml-2">Share</span> </div>
-                            </div>
-                            <hr>
-                            <div class="comments">
-                                <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40"
-                                        class="rounded-image">
-                                    <div class="d-flex flex-column ml-2"> <span class="name">Daniel Frozer</span> <small
-                                            class="comment-text">I like this alot! thanks alot</small>
-                                        <div class="d-flex flex-row align-items-center status"> <small>Like</small>
-                                            <small>Reply</small> <small>Translate</small> <small>18 mins</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40"
-                                        class="rounded-image">
-                                    <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span>
-                                        <small class="comment-text">Thanks for sharing!</small>
-                                        <div class="d-flex flex-row align-items-center status"> <small>Like</small>
-                                            <small>Reply</small> <small>Translate</small> <small>8 mins</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-input"> <input type="text" class="form-control">
-                                    <div class="fonts"> <i class="fa fa-camera"></i> </div>
-                                </div>
-                            </div>
+					<p class="post_text">{{post.text}}</p>
+
+					{% if post.file %}
+					<div class="w3-row-padding" style="margin:0 -16px">
+                        <div class="w3-full">
+                            <img src="{{post.file.file.url}}" style="width:100%" alt="{{post.file.name}}" class="w3-margin-bottom">
                         </div>
                     </div>
+					{% endif %}
+
+                    <div>
+						{% for tag in post.tags.all%}
+                        <span class="badge badge-primary">{{tag.name}}</span>
+						{% endfor %}
+                    </div>
+
+                    <br>
+
+					<button type="button" class="like like-btn w3-margin-bottom" id="liked_id_{{forloop.counter}}" onclick="like_post('{{post.uid}}', '{{csrf_token}}')">
+						{% if post|is_liked_by_user:request.user %}
+						<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+						Liked
+						{% else %}
+						<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+						Like
+						{% endif %}
+					</button>
+                    <button type="button" class="comment comment-btn w3-margin-bottom" onclick="comment_section('comment_section_{{forloop.counter}}')">
+						<i class="fa fa-comment icon"></i> 
+						Comment
+					</button>
+                    <hr>
+
+                    <div class="comments">
+                        <div class="container" style="text-align: right;"> <span id="total_likes"><i class="fa fa-thumbs-up total_like"></i> {{post.likes.all.count}}</span>
+							<span class="ml-2"><i class="fa fa-comments total_comments"></i> {{post.comments.all.count}}</span>
+                        </div>
+
+						{% for comment in post.comments.all|dictsort:"created_at" %}
+						<div class="d-flex flex-row mb-2">
+							{% if comment.user.details.profile_picture %}
+								<img class="rounded-image" src = "{{comment.user.details.profile_picture.url}}">
+							{% else %}
+								<img class="rounded-image" src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+							{% endif %}
+							<div class="d-flex flex-column ml-2"> <span class="name"><b>{{comment.user}} </b><img src="{% static "images/bluetick.png" %}" alt="Verified" width="14px"></span>
+								<small class="left_p"><b>{{comment.comment}}</b></small>
+								<small class="right_p"><i>{{comment.created_at|timesince}} ago</i></small>
+								<!-- <div class="d-flex flex-row align-items-center status">
+									<small>Reply</small>
+								</div> -->
+							</div>
+						</div>
+						{% endfor %}
+
+						<div class="timeline-comment-box" id="comment_section_{{forloop.counter}}" style="display: none;">
+							<form method="post">
+								{% csrf_token %}
+								<div class="input-group">
+								{% if request.user.details.profile_picture %}
+									<img class="comment_img" src="{{request.user.details.profile_picture.url}}">
+								{% else %}
+									<img class="comment_img" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+								{% endif %}
+								<input type="text" class="form-control rounded-corner" name="comment" placeholder="Write a comment..." required style="margin-left: 10px;">
+								<input type="text" class="form-control rounded-corner" name="comment_post" value="{{post.uid}}" style="margin-left: 10px;" hidden>
+								<span class="input-group-btn p-l-10" style="padding-left: 10px;">
+									<button class="btn btn-primary f-s-12 rounded-corner" type="submit">
+									Comment
+									</button>
+								</span>
+								</div>
+							</form>
+						</div>
+
+                    </div>
+                    <div class="container" style="padding-top: 10px;"></div>
+
                 </div>
+				{% endfor %}
+
+
+
+
 
                 <!-- End Middle Column -->
             </div>
 
             <!-- Right Column -->
             <div class="w3-col m2">
-                <div class="w3-card w3-round w3-white w3-center">
-                    <div class="w3-container">
-                        <p>Upcoming Events:</p>
-                        <img src="https://www.w3schools.com/w3images/forest.jpg" alt="Forest" style="width:100%;">
-                        <p><strong>Holiday</strong></p>
-                        <p>Friday 15:00</p>
-                        <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+                <div class="w3-card w3-round w3-white w3-center events">
+                    <div class="w3-container inner">
+						<br>
+                        <p class="event" style="color: rgb(76, 9, 232);"><b>UPCOMING EVENTS:</b></p>
+						<div class="img_fest">
+							<img src="{% static "images/fest.jpg" %}" alt="Fest" style="width:100%;">
+						</div>
+						<br>
+                        <p><strong>IIITD's Cultural Fest</strong></p>
+                        <p>Januaury, 2023</p>
+                        <p><a href="https://odyssey.iiitd.edu.in/" style="text-decoration: none;" target="_blank"><button class="info"><b>More Details</b></button></a></p>
                     </div>
                 </div>
                 <br>
 
-                <div class="w3-card w3-round w3-white w3-center">
-                    <div class="w3-container">
-                        <p>Friend Request</p>
-                        <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-                        <span>Jane Doe</span>
-                        <div class="w3-row w3-opacity">
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-green w3-section" title="Accept"><i
-                                        class="fa fa-check"></i></button>
-                            </div>
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-red w3-section" title="Decline"><i
-                                        class="fa fa-remove"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <br>
 
-                
+
 
                 <!-- <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
                     <p>ADS</p>
@@ -414,15 +358,23 @@
     <br>
 
     <!-- Footer -->
-    <footer class="w3-container w3-theme-d3 w3-padding-16">
+    <!-- <footer class="w3-container w3-theme-d3 w3-padding-16">
         <h5>Footer</h5>
     </footer>
 
     <footer class="w3-container w3-theme-d5">
         <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Template</a></p>
-    </footer>
+    </footer> -->
 
     {% include 'model.html' %}
+
+	<script>
+		$("#massage_details").on('input', function() {
+			var scroll_height = $("#massage_details").get(0).scrollHeight;
+
+			$("#massage_details").css('height', scroll_height + 'px');
+		});
+	</script>
 
     {% endblock %}
 

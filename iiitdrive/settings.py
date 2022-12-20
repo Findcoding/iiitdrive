@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+from .local_settings import *
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,11 +28,22 @@ SECRET_KEY = 'django-insecure-d4%yev_0%^dv_sjlh-qkfr-wqre!27e@=e^k+*^c-_6b5_mygi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '*', '127.0.0.1', 'ec2-54-252-174-27.ap-southeast-2.compute.amazonaws.com']
+
+AUTH_USER_MODEL = 'iiitdrive.CustomUser'
+
+LOGIN_URL='/login'
+LOGIN_REDIRECT_URL = "/home"
+LOGOUT_REDIRECT_URL = "/"
+
+
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_SECONDS = 1*60*60
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,9 +53,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'iiitdrive',   # include IIITDrive app
+	'widget_tweaks', # customized Django Form
 ]
 
 MIDDLEWARE = [
+	'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +66,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+	'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'iiitdrive.urls'
 
@@ -141,3 +160,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

@@ -9,10 +9,14 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <script src="https://kit.fontawesome.com/09f47cf394.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/09f47cf394.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
     <script type="text/javascript" src="{% static 'js/sidebar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/starred.js' %}"></script>
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/starred.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile_card_details.css' %}" />
 
@@ -44,12 +48,14 @@
         html,
         body,
         h1,
-        h2,
         h3,
         h4,
         h5 {
             font-family: "Open Sans", sans-serif
         }
+		h2 {
+			font-family: "Google Sans", arial, sans-serif;
+		}
     </style>
     {% endblock %}
 
@@ -78,6 +84,10 @@
             <a href="{% url 'trash' %}" style="text-decoration:none"
                 class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Trash">
                 <h2>Trash</h2>
+            </a>
+			<a href="{% url 'share' %}" style="text-decoration:none"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Shared">
+                <h2>Shared</h2>
             </a>
             <a href="{% url 'profilepage' %}" style="text-decoration:none"
                 class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Profile">
@@ -117,67 +127,66 @@
                 <!-- End Left Column -->
             </div>
 
-            
+
 
             <!-- Middle Column -->
             <div class="w3-col m7">
 
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <h3>FAVOURITE</h3>
-                    </div>
+                <div class="container" style="width: 100%;">
+                    <h2 class="display-4 font-weight-light title"> FAVOURITE <b>FILES </b></h2>
+                </div>
 
-                    <div class="py-5">
-                        <div class="row">
 
-                            <div class="col-lg-6 mb-5">
-                                <!-- Collapse Panel 1--><a data-toggle="collapse" href="#collapseExample1" role="button"
-                                    aria-expanded="true" aria-controls="collapseExample1"
-                                    class="btn btn-primary btn-block py-2 shadow-sm with-chevron">
-                                    <p class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><strong
-                                            class="text-uppercase">Note</strong><i class="fa fa-angle-down"></i></p>
-                                </a>
-                                <div id="collapseExample1" class="collapse shadow-sm show">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <p class="font-italic mb-0 text-muted">The file will stay in your trash for 7 days before being automatically deleted.
-                                            </p>
-                                        </div>
-                                    </div>
+                <div class="row" style="padding-top: 20px;">
+                    <div class="col-lg-6 mb-5" style="width: 100%;">
+                        <!-- Collapse Panel 1-->
+                        <a data-toggle="collapse" href="#collapseExample1" role="button"
+                            aria-expanded="true" aria-controls="collapseExample1"
+                            class="btn btn-warning btn-block py-2 shadow-sm with-chevron">
+                            <p class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><strong
+                                    class="text-uppercase">Note</strong><i class="fa fa-angle-down"></i></p>
+                        </a>
+                        <div id="collapseExample1" class="collapse shadow-sm show">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="font-italic mb-0 text-muted">Add stars to things you want to easily find later.
+                                    </p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="col-lg-6 mb-5">
-                                <!-- Collapse Panel 1--><a data-toggle="collapse" href="#collapseExample2" role="button"
-                                    aria-expanded="true" aria-controls="collapseExample2"
-                                    class="btn btn-success btn-block py-2 shadow-sm with-chevron">    <!-- danger, warning -->
-                                    <p class="d-flex align-items-center justify-content-between mb-0 px-3 py-2"><strong
-                                            class="text-uppercase">Did you know?</strong><i class="fa fa-angle-down"></i></p>
-                                </a>
-                                <div id="collapseExample2" class="collapse shadow-sm show">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <p class="font-italic mb-0 text-muted">To remove a file from your Drive, you can put it in your trash.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+				{% for f in files %}
+				{% empty %}
+				<div class="container">
+					<img src="{% static "images/nothing.gif" %}" alt="Nothing to show" style="margin-left: 18%;">
+                </div>
+				{% endfor %}
+
+
+				<div class="container" id="all_starred_files">
+					{% for file in files %}
+                    <div class="gallery">
+                        <div class="card cards">
+
+							<span class="fa fa-trash" style="text-align: right; font-size: 1.5em;" title="Delete" id="delete_{{forloop.counter}}" onclick="delete_file(event, 'delete_{{forloop.counter}}', '{{file.file.uid}}', '{{csrf_token}}')"></span>
+
+							<div class="card-image">
+                                {% include 'file_type.html' %}
+                                <div class="desc"><b>{{file.file.name}}.{{file.file.type}}</b></div>
+                            </div>
+                            <div class="d_file">
+                                <a href="" style="text-decoration: none;" class="download"
+                                    id="download_{{forloop.counter}}" download="{{file.file.name}}.{{file.file.type}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
+                                <a role="" style="text-decoration: none;" class="unstarred">
+                                    <i class="fa" title="Unstarred" onclick="remove_from_favourite(event, '{{file.file.uid}}', '{{csrf_token}}')"></i></a>
                             </div>
 
                         </div>
                     </div>
-
-                    
-
-                    
-
-                </div>
-
-
-
-
-
-
+					{% endfor %}
+            	</div>
 
 
 
