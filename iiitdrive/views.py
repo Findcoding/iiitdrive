@@ -19,7 +19,7 @@ from .models import UserDetails, Social, ResourceFile, UserFiles, Post, Tag, Lik
 User = get_user_model()
 
 def indexpage(request):
-    print("hello world")
+    #print("hello world")
     return render(request, 'index.html')
 
 
@@ -118,11 +118,7 @@ def homepage(request):
 		elif 'liked_post' in request.POST :
 			post = Post.objects.filter(uid = request.POST['liked_post']).first()
 			if post is not None :
-				like = Like()
-				like.user=user
-				like.post=post
-				like.save()
-
+				like = Like.objects.get_or_create(user=user, post=post)
 			return redirect(homepage)
 
 	posts = Post.objects.all().order_by('-created_at')

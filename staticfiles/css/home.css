@@ -201,7 +201,8 @@ hr {
 }
 
 .name {
-	font-weight: 600
+	font-weight: 600;
+	color: rgb(44, 43, 43);
 }
 
 .comment-text {
@@ -686,6 +687,34 @@ div.events:focus {
 }
 
 
+.post_text {
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #000;
+	font-family: "Google Sans", arial, sans-serif;
+}
+
+small.user_status {
+	font-size: 17px;
+	font-weight: bolder;
+	color: #0c0c0c;
+	font-family: "Google Sans", arial, sans-serif;
+}
+
+
+.inline {
+	display: inline-block;
+}
+
+.right_p {
+    float: right;
+}
+
+.left_p {
+    float: left;
+}
+
 /* Comment */
 .comment-btn {
 	box-shadow: inset 0 0 0 4px #aee40c;
@@ -749,4 +778,92 @@ div.events:focus {
 
 .comment:focus {
 	outline: 2px dotted #aee40c;
+}
+
+
+/* alert card */
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+* {
+	transition: all 0.3s ease-out;
+}
+
+.h3_class {
+	color: #262626;
+	font-size: 17px;
+	line-height: 24px;
+	font-weight: 700;
+	margin-bottom: 4px;
+}
+
+
+p.small {
+	font-size: 17px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #666666;
+}
+
+.go-corner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	overflow: hidden;
+	top: 0;
+	right: 0;
+	background-color: #11904e;
+	border-radius: 0 4px 0 32px;
+}
+
+.go-arrow {
+	margin-top: -4px;
+	margin-right: -4px;
+	color: white;
+	font-family: courier, sans;
+}
+
+.card1 {
+	display: block;
+	position: relative;
+	background-color: white;
+	border-radius: 4px;
+	padding: 32px 24px;
+	text-decoration: none;
+	z-index: 0;
+	overflow: hidden;
+	border: 2px solid #11904e;
+	border-radius: 7px;
+}
+
+.card1:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: -16px;
+	right: -16px;
+	background: #11904e;
+	height: 35px;
+	width: 35px;
+	border-radius: 35px;
+	transform: scale(1);
+	transform-origin: 50% 50%;
+	transition: transform 0.25s ease-out;
+}
+
+.card1:hover:before {
+	transform: scale(33);
+}
+
+.card1:hover p {
+	transition: all 0.3s ease-out;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.card1:hover h3 {
+	transition: all 0.3s ease-out;
+	color: #ffffff;
 }

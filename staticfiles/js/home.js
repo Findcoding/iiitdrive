@@ -110,3 +110,15 @@ function post_method(form_id) {
 	let form = document.getElementById(form_id);
     form.submit();
 }
+
+
+function like_post(liked_id, csrf_token) {
+
+	$.post("", {
+		liked_post: liked_id,
+		csrfmiddlewaretoken: csrf_token
+	});
+
+	$("#all_posts").load(location.href + " #all_posts>*", "");
+
+}
