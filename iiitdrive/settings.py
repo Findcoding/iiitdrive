@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     'iiitdrive',   # include IIITDrive app
 	'widget_tweaks', # customized Django Form
+	'storages',   # s3_bucket
 ]
 
 MIDDLEWARE = [
@@ -163,3 +164,8 @@ MEDIA_URL = '/media/'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# S3 BUCKET
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'iiitdrive/static'),
+# ]
