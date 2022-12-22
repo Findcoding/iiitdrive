@@ -62,16 +62,75 @@ function validateSize(input) {
 
 
 
-function click_download(download_id) {
-	document.getElementById(download_id).click();
+function click_download(download_id, url_path, file_name) {
+	// document.getElementById(download_id).click();
+
+
+	let d = document.getElementById(download_id);
+	d.href = url_path;
+	d.download = file_name;
+	d.click();
+
 }
 
 
-function download(download_id) {
+function downloadFile(url, fileName) {
+	fetch(url, {
+			method: 'get',
+			mode: 'no-cors',
+			referrerPolicy: 'no-referrer'
+		})
+		.then(res => res.blob())
+		.then(res => {
+			const aElement = document.createElement('a');
+			aElement.setAttribute('download', fileName);
+			const href = URL.createObjectURL(res);
+			aElement.href = href;
+			aElement.setAttribute('target', '_blank');
+			aElement.click();
+			URL.revokeObjectURL(href);
+		});
+};
+
+
+function download_files(url_path, file_name) {
+
+	fetch(url_path, {
+		method: 'get',
+		mode: 'no-cors',
+		referrerPolicy: 'no-referrer'
+	})
+	.then(resp => resp.blob())
+	.then(blob => {
+		const url = window.URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.style.display = 'none';
+		a.href = url;
+
+		a.download = file_name;
+		document.body.appendChild(a);
+		a.click();
+		window.URL.revokeObjectURL(url);
+		// alert('your file has downloaded!');
+
+	}).catch(() => alert('oh no!'));
+
+};
+
+
+function download(download_id, url_path, file_name) {
 	let downloadButton = document.getElementById(download_id);
 
 	if (downloadButton) {
-		click_download(download_id);
+		// click_download(download_id, url_path, file_name);
+		// downloadFile(url_path, file_name);
+
+		// $('a#download_id').attr({
+		// 	target: '_blank',
+		// 	href: 'url_path'
+		// });
+
+		download_files(url_path, file_name);
 
 		downloadButton.addEventListener('click', function (event) {
 			event.preventDefault();

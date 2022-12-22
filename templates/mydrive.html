@@ -322,11 +322,13 @@
                             </div>
                             <div class="d_file" id="before_{{forloop.counter}}">
                                 <a href="" style="text-decoration: none;" class="download"
-                                    id="download_{{forloop.counter}}" download="{{file.file.name}}.{{file.file.type}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}');"></i></a>
+                                    id="download_{{forloop.counter}}" download="{{file.file.name}}.{{file.file.type}}" title="Download"><i class="fa" onclick="download('download_{{forloop.counter}}', '{{file.file.file.url}}', '{{file.file.name}}.{{file.file.type}}');"></i></a>
                                 <a role="" style="text-decoration: none;" class="rename" onclick="rename('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'rename_{{forloop.counter}}',);">
                                     <i class="fa" title="Rename"></i></a>
 								<a role="" style="text-decoration: none;" class="share" onclick="share('after_{{forloop.counter}}', 'before_{{forloop.counter}}', 'share_{{forloop.counter}}');">
 									<i class="fa" title="Share"></i></a>
+
+
                             </div>
 
                             <div class="d_file" id="after_{{forloop.counter}}" style="display: none;">
