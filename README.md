@@ -32,7 +32,7 @@ for the course [CSE569 : Cloud Computing](http://techtree.iiitd.edu.in/viewDescr
 in Monsoon 2022 Semester
 under the guidance of Professor [Dhruv Kumar](https://www.iiitd.ac.in/dhruv "Profile")
 
-## Project Description:
 
-https://docs.google.com/document/d/1BAdGviTEIXkaZhCm9A4qL2k6I55iq6qunpuxnfnGR-0/edit?usp=sharing
-
+## Documents Links
+- [Project Description](https://docs.google.com/document/d/1BAdGviTEIXkaZhCm9A4qL2k6I55iq6qunpuxnfnGR-0/edit?usp=sharing)
+- [Project Report](https://docs.google.com/document/d/1OgHL3LtF6xz4ha2sjd88ME4ZjpUQ6u3eselZWwrL8Uc/edit?usp=sharing)
