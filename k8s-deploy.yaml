@@ -14,21 +14,17 @@ spec:
       labels:
         app: django-app
     spec:
+      serviceAccountName: cicd-sa
       containers:
         - name: django-container
-          image: findcoding/django-iiitdrive:latest   # <--- your Django image
+          image: findcoding/django-iiitdrive:latest
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8000   # typical for Django runserver / gunicorn
+            - containerPort: 8000
           env:
             - name: DJANGO_SETTINGS_MODULE
               value: "iiitdrive.settings"
-            # Example: pull secret key from Kubernetes Secret (optional)
-            # - name: DJANGO_SECRET_KEY
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: django-secret
-            #       key: secret_key
+              
 ---
 apiVersion: v1
 kind: Service
@@ -42,5 +38,5 @@ spec:
     app: django-app
   ports:
     - name: http
-      port: 80        # service port inside cluster
-      targetPort: 8000 # containerPort in the pod
+      port: 80        
+      targetPort: 8000
